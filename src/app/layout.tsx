@@ -1,11 +1,22 @@
 import '../styles/globals.css'
 
 import type { Metadata } from 'next'
-import { Inter as FontSans } from 'next/font/google'
+import {
+	Gabarito as FontSans,
+	JetBrains_Mono as FontMono,
+} from 'next/font/google'
 import { cn } from '@/lib/utils'
-import Providers from '@/components/Providers'
 
-const fontSans = FontSans({ subsets: ['latin'], variable: '--font-sans' })
+import { StoreProvider as Providers } from '@/components/provider'
+import { Navigation } from '@/components/layout'
+
+const fontSans = FontSans({
+	subsets: ['latin'],
+	display: 'swap',
+	adjustFontFallback: false,
+	variable: '--font-sans',
+})
+const fontMono = FontMono({ subsets: ['latin'], variable: '--font-mono' })
 
 export const metadata: Metadata = {
 	title: 'SpeakFest',
@@ -19,13 +30,18 @@ export default function RootLayout({
 }>) {
 	return (
 		<Providers>
-			<html lang='en'>
+			<html lang='en' suppressHydrationWarning>
+				<head />
 				<body
 					className={cn(
-						'min-h-screen bg-background font-sans antialiased',
+						'min-h-screen font-sans antialiased',
 						fontSans.variable,
+						fontMono.variable,
 					)}>
-					{children}
+					<main className='mx-auto flex max-w-5xl'>
+						<Navigation />
+						{children}
+					</main>
 				</body>
 			</html>
 		</Providers>
