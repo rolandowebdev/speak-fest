@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import Link, { type LinkProps } from 'next/link'
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 
 export const NavigationLink = ({
 	href,

@@ -1,17 +1,9 @@
 'use client'
 
 import React from 'react'
-
 import { usePathname } from 'next/navigation'
-import {
-	ChevronLeft,
-	ChevronRight,
-	ChevronsLeft,
-	ChevronsRight,
-	PanelTopOpen,
-} from 'lucide-react'
-
-import { cn } from '@/lib/utils'
+import { ChevronsLeft, ChevronsRight, PanelTopOpen } from 'lucide-react'
+import { cn } from '@/libs/utils'
 import { useNavigationState } from '@/hooks'
 import {
 	Button,
@@ -20,53 +12,65 @@ import {
 	SheetContent,
 	SheetTrigger,
 } from '@/components/ui'
-import {
-	navigationItems as navigations,
-	NavigationLink,
-} from '@/components/layout'
+import { NavigationLink, MenuLink, menuLinkItems } from '@/components/layout'
+import { useSession } from 'next-auth/react'
 
 const MobileNavigation = ({
 	pathname,
 	isOpen,
 	setIsOpen,
+	filterLinkItems,
 }: {
 	pathname: string
 	isOpen: boolean
 	setIsOpen: (open: boolean) => void
-}) => (
-	<>
-		<Sheet open={isOpen} onOpenChange={setIsOpen}>
-			<SheetTrigger asChild>
-				<Button
-					variant='outline'
-					size='icon'
-					className='fixed bottom-0 right-0 z-20 m-2 inline-flex shadow-sm sm:hidden'>
-					<PanelTopOpen className='h-[1.2rem] w-[1.2rem] -rotate-90 scale-100' />
-					<span className='sr-only'>Open Menu</span>
-				</Button>
-			</SheetTrigger>
-			<SheetContent side='left' className='p-4'>
-				<ul className='space-y-4 py-4'>
-					{navigations.map(({ name, href, Icon }) => (
-						<li key={name}>
-							<NavigationLink
-								href={href}
-								currentPath={pathname}
-								onClick={() => setIsOpen(false)}>
-								<Icon size={20} />
-								<span>{name}</span>
-							</NavigationLink>
-						</li>
-					))}
-				</ul>
-			</SheetContent>
-		</Sheet>
-	</>
-)
+	filterLinkItems: () => MenuLink[]
+}) => {
+	return (
+		<>
+			<Sheet open={isOpen} onOpenChange={setIsOpen}>
+				<SheetTrigger asChild>
+					<Button
+						variant='outline'
+						size='icon'
+						className='fixed bottom-0 right-0 z-20 m-2 inline-flex shadow-sm sm:hidden'>
+						<PanelTopOpen className='h-[1.2rem] w-[1.2rem] -rotate-90 scale-100' />
+						<span className='sr-only'>Open Menu</span>
+					</Button>
+				</SheetTrigger>
+				<SheetContent side='left' className='p-4'>
+					<ul className='space-y-4 py-4'>
+						{filterLinkItems().map(({ href, name, Icon }) => (
+							<li key={name}>
+								<NavigationLink
+									href={href}
+									currentPath={pathname}
+									onClick={() => setIsOpen(false)}>
+									<Icon size={20} />
+									<span>{name}</span>
+								</NavigationLink>
+							</li>
+						))}
+					</ul>
+				</SheetContent>
+			</Sheet>
+		</>
+	)
+}
 
 export const Navigation = () => {
-	const { isCollapse, isOpen, setIsCollapse, setIsOpen } = useNavigationState()
 	const pathname = usePathname()
+	const { status } = useSession()
+	const { isCollapse, isOpen, setIsCollapse, setIsOpen } = useNavigationState()
+
+	const filterLinkItems = () => {
+		if (status === 'unauthenticated') {
+			return menuLinkItems.filter(({ visible }) => visible !== 'auth')
+		}
+
+		return menuLinkItems.filter(({ visible }) => visible !== 'no-auth')
+	}
+
 	return (
 		<>
 			<nav
@@ -104,7 +108,7 @@ export const Navigation = () => {
 					{/* <ThemeToggle isCollapse={isCollapse} /> */}
 				</div>
 				<ul className='w-full space-y-4 border-y py-4'>
-					{navigations.map(({ name, href, Icon }) => (
+					{filterLinkItems().map(({ href, name, Icon }) => (
 						<li key={name}>
 							<NavigationLink
 								href={href}
@@ -131,9 +135,10 @@ export const Navigation = () => {
 			</nav>
 
 			<MobileNavigation
-				pathname={pathname}
 				isOpen={isOpen}
+				pathname={pathname}
 				setIsOpen={setIsOpen}
+				filterLinkItems={filterLinkItems}
 			/>
 		</>
 	)

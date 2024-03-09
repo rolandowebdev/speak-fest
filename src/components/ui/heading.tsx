@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'lucide-react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 
 const headingVariants = cva('scroll-m-12 font-bold', {
 	variants: {

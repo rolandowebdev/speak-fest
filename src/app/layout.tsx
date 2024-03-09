@@ -5,9 +5,9 @@ import {
 	Gabarito as FontSans,
 	JetBrains_Mono as FontMono,
 } from 'next/font/google'
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 
-import { StoreProvider as Providers } from '@/components/provider'
+import { StoreProvider as Provider } from '@/components/provider'
 import { Navigation } from '@/components/layout'
 
 const fontSans = FontSans({
@@ -29,7 +29,7 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<Providers>
+		<Provider>
 			<html lang='en' suppressHydrationWarning>
 				<head />
 				<body
@@ -44,6 +44,6 @@ export default function RootLayout({
 					</main>
 				</body>
 			</html>
-		</Providers>
+		</Provider>
 	)
 }

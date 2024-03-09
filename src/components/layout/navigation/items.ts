@@ -1,19 +1,42 @@
-import { Home, User, PenLine } from 'lucide-react'
+import React from 'react'
+import { User, PenLine, Dice6, ClipboardPen } from 'lucide-react'
 
-export const navigationItems = [
+export type MenuLink = {
+	href: string
+	name: string
+	visible: 'all' | 'no-auth' | 'auth'
+	Icon: React.ElementType
+}
+
+export const menuLinkItems: MenuLink[] = [
 	{
-		name: 'Home',
-		href: '/',
-		Icon: Home,
+		href: '/leaderboard',
+		name: 'Leaderboard',
+		visible: 'all',
+		Icon: Dice6,
 	},
 	{
-		name: 'User',
-		href: '/user',
+		href: '/login',
+		name: 'Log In',
+		visible: 'no-auth',
 		Icon: User,
 	},
 	{
-		name: 'Blog',
-		href: '/blog',
+		href: '/register',
+		name: 'Register',
+		visible: 'no-auth',
+		Icon: ClipboardPen,
+	},
+	{
+		href: '/new-thread',
+		name: 'New Thread',
+		visible: 'auth',
 		Icon: PenLine,
+	},
+	{
+		href: '/profile',
+		name: 'My Profile',
+		visible: 'auth',
+		Icon: User,
 	},
 ]

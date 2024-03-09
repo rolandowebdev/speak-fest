@@ -1,5 +1,5 @@
 import React from 'react'
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 
 import { Heading } from '@/components/ui'
 import { Footer } from '@/components/layout'
@@ -11,6 +11,7 @@ type PageContainerProps = {
 	className?: string
 	withHeader?: boolean
 	withFooter?: boolean
+	link?: React.ReactNode
 }
 
 export const PageContainer = ({
@@ -29,7 +30,7 @@ export const PageContainer = ({
 		{withHeader && (
 			<header className='space-y-2 border-b pb-4'>
 				<Heading>{title}</Heading>
-				<p className='text-secondary'>{description}</p>
+				<p>{description}</p>
 			</header>
 		)}
 		{children}
