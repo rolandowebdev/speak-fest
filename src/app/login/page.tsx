@@ -1,4 +1,4 @@
-import LoginViews from '@/views/auth/login'
+import LoginViews from '@/views/login'
 
 export default function Login() {
 	return <LoginViews />
