@@ -45,7 +45,7 @@ const MobileNavigation = ({
 					</Button>
 				</SheetTrigger>
 				<SheetContent side='left' className='p-4'>
-					<ul className='space-y-4 py-4'>
+					<ul className='space-y-4 py-8'>
 						{filterLinkItems().map(({ href, name, Icon }) => (
 							<li key={name}>
 								<NavigationLink

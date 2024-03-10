@@ -1,5 +1,3 @@
-'use client'
-
 import { CustomLeaderboardsEntry } from '@/types'
 import { ColumnDef } from '@tanstack/react-table'
 

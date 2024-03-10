@@ -63,7 +63,7 @@ export default function ProfileView() {
 					<User size={32} /> Profile
 				</Heading>
 			</Header>
-			<div className='flex space-x-10 items-center'>
+			<div className='flex space-x-10 flex-col md:flex-row items-center'>
 				<div className='flex flex-col space-y-2 w-full'>
 					<Avatar className='h-16 w-16'>
 						<AvatarImage src={avatarSrc} alt={data?.name || 'avatar'} />
@@ -104,7 +104,7 @@ export default function ProfileView() {
 						</AlertDialogContent>
 					</AlertDialog>
 				</div>
-				<div className='flex w-full justify-center'>
+				<div className='md:flex w-full hidden justify-center'>
 					<div
 						className={cn(
 							'h-[244px] w-[244px] overflow-hidden rounded-3xl',

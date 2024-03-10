@@ -5,6 +5,7 @@ import {
 	useReactTable,
 } from '@tanstack/react-table'
 import {
+	Skeleton,
 	Table,
 	TableBody,
 	TableCell,
@@ -75,8 +76,18 @@ export function DataTable<TData, TValue>({
 						))
 					) : (
 						<TableRow>
-							<TableCell colSpan={columns.length} className='h-24 text-center'>
-								No results.
+							<TableCell
+								colSpan={columns.length}
+								className='h-24 text-center w-full space-y-4'>
+								<Skeleton className='w-full h-16' />
+								<Skeleton className='w-full h-16' />
+								<Skeleton className='w-full h-16' />
+								<Skeleton className='w-full h-16' />
+								<Skeleton className='w-full h-16' />
+								<Skeleton className='w-full h-16' />
+								<Skeleton className='w-full h-16' />
+								<Skeleton className='w-full h-16' />
+								<Skeleton className='w-full h-16' />
 							</TableCell>
 						</TableRow>
 					)}
