@@ -5,5 +5,5 @@ type HeaderProps = {
 }
 
 export const Header = ({ children }: HeaderProps) => {
-	return <header className='space-y-2 border-b pb-4'>{children}</header>
+	return <header className='space-y-4 border-b pb-4'>{children}</header>
 }

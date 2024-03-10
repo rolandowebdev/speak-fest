@@ -20,7 +20,7 @@ const initialState: InitialState = {
 }
 
 const threadsSlice = createSlice({
-	name: 'asyncThreadsWithAuthor',
+	name: 'getThreadsWithAuthor',
 	initialState,
 	reducers: {},
 	extraReducers(builder) {

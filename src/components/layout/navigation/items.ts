@@ -10,8 +10,8 @@ export type MenuLink = {
 
 export const menuLinkItems: MenuLink[] = [
 	{
-		href: '/leaderboard',
-		name: 'Leaderboard',
+		href: '/leaderboards',
+		name: 'Leaderboards',
 		visible: 'all',
 		Icon: Dice6,
 	},

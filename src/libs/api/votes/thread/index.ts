@@ -1,6 +1,6 @@
 import { fetchWithAuth } from '@/libs/api/common'
 
-export const upVoteThread = async (threadId: string) => {
+const upVoteThread = async (threadId: string) => {
 	try {
 		const data = await fetchWithAuth({
 			method: 'POST',
@@ -12,7 +12,7 @@ export const upVoteThread = async (threadId: string) => {
 	}
 }
 
-export const downVoteThread = async (threadId: string) => {
+const downVoteThread = async (threadId: string) => {
 	try {
 		const data = await fetchWithAuth({
 			method: 'POST',
@@ -24,7 +24,7 @@ export const downVoteThread = async (threadId: string) => {
 	}
 }
 
-export const neutralVoteThread = async (threadId: string) => {
+const neutralVoteThread = async (threadId: string) => {
 	try {
 		const data = await fetchWithAuth({
 			method: 'POST',
@@ -35,3 +35,5 @@ export const neutralVoteThread = async (threadId: string) => {
 		throw new Error(error.message)
 	}
 }
+
+export { upVoteThread, downVoteThread, neutralVoteThread }

@@ -15,7 +15,7 @@ const initialState: InitialState = {
 }
 
 const usersSlice = createSlice({
-	name: 'asyncSetUsers',
+	name: 'users',
 	initialState,
 	reducers: {},
 	extraReducers(builder) {

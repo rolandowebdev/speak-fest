@@ -21,7 +21,7 @@ import {
 } from '@/components/ui'
 import { asyncSetProfile, useAppDispatch, useAppSelector } from '@/libs/redux'
 import { cn } from '@/libs/utils'
-import { Undo2 } from 'lucide-react'
+import { Undo2, User } from 'lucide-react'
 
 import { signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
@@ -57,6 +57,10 @@ export default function ProfileView() {
 					<Undo2 size={18} />
 					Back to home
 				</Button>
+				<Heading className='flex items-center gap-2'>
+					{' '}
+					<User size={32} /> Profile
+				</Heading>
 			</Header>
 			<div className='flex space-x-10'>
 				<div className='flex flex-col space-y-2 w-full'>

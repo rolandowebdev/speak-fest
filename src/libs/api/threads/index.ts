@@ -1,12 +1,12 @@
 import { fetchWithAuth } from '@/libs/api/common'
 
-export type PostThread = {
+type PostThread = {
 	title: string
 	body: string
 	category: string
 }
 
-export const getAllThreads = async () => {
+const getAllThreads = async () => {
 	try {
 		const data = await fetchWithAuth({
 			method: 'GET',
@@ -18,7 +18,7 @@ export const getAllThreads = async () => {
 	}
 }
 
-export const getDetailThread = async (threadId: string) => {
+const getDetailThread = async (threadId: string) => {
 	try {
 		const data = await fetchWithAuth({
 			method: 'GET',
@@ -30,7 +30,7 @@ export const getDetailThread = async (threadId: string) => {
 	}
 }
 
-export const postThread = async (body: PostThread) => {
+const postThread = async (body: PostThread) => {
 	try {
 		const data = await fetchWithAuth({
 			method: 'POST',
@@ -44,3 +44,5 @@ export const postThread = async (body: PostThread) => {
 		throw new Error(error.message)
 	}
 }
+
+export { getAllThreads, getDetailThread, postThread }

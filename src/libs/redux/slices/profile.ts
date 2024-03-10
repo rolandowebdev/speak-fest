@@ -15,7 +15,7 @@ const initialState: InitialState = {
 }
 
 const profileSlice = createSlice({
-	name: 'asyncSetProfile',
+	name: 'profile',
 	initialState,
 	reducers: {},
 	extraReducers(builder) {

@@ -14,7 +14,7 @@ export const PageContainer = ({
 }: PageContainerProps) => (
 	<section
 		className={cn(
-			'flex w-full flex-col space-y-4 border-l px-2 pb-4 pt-8 sm:px-4',
+			'flex w-full flex-col space-y-4 border-l px-2 py-4 sm:px-4',
 			className,
 		)}>
 		{children}

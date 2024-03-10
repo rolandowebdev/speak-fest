@@ -12,7 +12,7 @@ const initialState: InitialState = {
 }
 
 const registerSlice = createSlice({
-	name: 'asyncRegister',
+	name: 'register',
 	initialState,
 	reducers: {},
 	extraReducers(builder) {

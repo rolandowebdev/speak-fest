@@ -3,7 +3,7 @@ import { hideLoading, showLoading } from 'react-redux-loading-bar'
 import { LoginParams, login } from '@/libs/api/auth'
 
 const asyncAuth = createAsyncThunk(
-	'auth/login',
+	'auth/asyncAuth',
 	async (body: LoginParams, { dispatch }) => {
 		try {
 			dispatch(showLoading())

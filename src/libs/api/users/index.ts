@@ -5,7 +5,7 @@ export type RegisterParams = LoginParams & {
 	name: string
 }
 
-export const register = async ({
+const register = async ({
 	email,
 	password,
 	name,
@@ -35,7 +35,7 @@ export const register = async ({
 	}
 }
 
-export const getAllUsers = async (): Promise<any> => {
+const getAllUsers = async (): Promise<any> => {
 	try {
 		const response = await fetch(`${baseUrl}/users`)
 
@@ -49,7 +49,7 @@ export const getAllUsers = async (): Promise<any> => {
 	}
 }
 
-export const getOwnProfile = async (): Promise<any> => {
+const getOwnProfile = async (): Promise<any> => {
 	try {
 		const data = await fetchWithAuth({
 			method: 'GET',
@@ -61,3 +61,5 @@ export const getOwnProfile = async (): Promise<any> => {
 		throw new Error(error.message)
 	}
 }
+
+export { register, getAllUsers, getOwnProfile }

@@ -1,16 +1,14 @@
 import { getSession } from 'next-auth/react'
 
-// * Base URL API documentations: https://forum-api.dicoding.dev/v1
-
 type FetchWithAuthParams = {
 	method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 	endpoint: string
 	options?: RequestInit
 }
 
-export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL_FORUM_API as string
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL_FORUM_API as string
 
-export const fetchWithAuth = async ({
+const fetchWithAuth = async ({
 	endpoint,
 	options,
 	method,
@@ -43,3 +41,5 @@ export const fetchWithAuth = async ({
 		throw new Error(error.message)
 	}
 }
+
+export { fetchWithAuth, baseUrl }

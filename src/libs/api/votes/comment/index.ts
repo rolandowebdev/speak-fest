@@ -7,10 +7,7 @@ export type VoteCommentParams = {
 	commentId: string
 }
 
-export const upVoteComment = async ({
-	threadId,
-	commentId,
-}: VoteCommentParams) => {
+const upVoteComment = async ({ threadId, commentId }: VoteCommentParams) => {
 	try {
 		const data = await fetchWithAuth({
 			method: 'POST',
@@ -22,10 +19,7 @@ export const upVoteComment = async ({
 	}
 }
 
-export const downVoteComment = async ({
-	threadId,
-	commentId,
-}: VoteCommentParams) => {
+const downVoteComment = async ({ threadId, commentId }: VoteCommentParams) => {
 	try {
 		const data = await fetchWithAuth({
 			method: 'POST',
@@ -37,7 +31,7 @@ export const downVoteComment = async ({
 	}
 }
 
-export const neutralVoteComment = async ({
+const neutralVoteComment = async ({
 	threadId,
 	commentId,
 }: VoteCommentParams) => {
@@ -51,3 +45,5 @@ export const neutralVoteComment = async ({
 		throw new Error(error.message)
 	}
 }
+
+export { upVoteComment, downVoteComment, neutralVoteComment }
