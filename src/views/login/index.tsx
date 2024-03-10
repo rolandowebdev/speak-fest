@@ -1,6 +1,7 @@
 'use client'
 
-import { PageContainer } from '@/components/layout'
+import { Header, PageContainer } from '@/components/layout'
+import { Heading } from '@/components/ui'
 import {
 	Button,
 	Form,
@@ -20,7 +21,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-export default function LoginViews() {
+export default function LoginView() {
 	const dispatch = useAppDispatch()
 	const { push } = useRouter()
 
@@ -52,7 +53,10 @@ export default function LoginViews() {
 	const isDisabled = form.formState.isSubmitting || checkInputValidationError
 
 	return (
-		<PageContainer withHeader title='Login to SpeakFest'>
+		<PageContainer>
+			<Header>
+				<Heading>Login to SpeakFest</Heading>
+			</Header>
 			<div className='flex flex-col space-y-2'>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(handleLogin)} className='space-y-2'>
@@ -87,10 +91,12 @@ export default function LoginViews() {
 						</Button>
 					</form>
 				</Form>
-				<Link href='/register' className='text-center'>
+				<p className='text-center'>
 					Don&apos;t have an account?{' '}
-					<span className='text-blue-700 hover:underline'>Register</span>
-				</Link>
+					<Link href='/register' className='link-style'>
+						Register
+					</Link>
+				</p>
 			</div>
 		</PageContainer>
 	)

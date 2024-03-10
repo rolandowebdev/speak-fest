@@ -12,7 +12,12 @@ import {
 	SheetContent,
 	SheetTrigger,
 } from '@/components/ui'
-import { NavigationLink, MenuLink, menuLinkItems } from '@/components/layout'
+import {
+	NavigationLink,
+	MenuLink,
+	menuLinkItems,
+	NavigationLinkSkeleton,
+} from '@/components/layout'
 import { useSession } from 'next-auth/react'
 
 const MobileNavigation = ({
@@ -64,11 +69,11 @@ export const Navigation = () => {
 	const { isCollapse, isOpen, setIsCollapse, setIsOpen } = useNavigationState()
 
 	const filterLinkItems = () => {
-		if (status === 'unauthenticated') {
-			return menuLinkItems.filter(({ visible }) => visible !== 'auth')
+		if (status === 'authenticated') {
+			return menuLinkItems.filter(({ visible }) => visible !== 'no-auth')
 		}
 
-		return menuLinkItems.filter(({ visible }) => visible !== 'no-auth')
+		return menuLinkItems.filter(({ visible }) => visible !== 'auth')
 	}
 
 	return (
@@ -107,19 +112,26 @@ export const Navigation = () => {
 					</Heading>
 					{/* <ThemeToggle isCollapse={isCollapse} /> */}
 				</div>
-				<ul className='w-full space-y-4 border-y py-4'>
-					{filterLinkItems().map(({ href, name, Icon }) => (
-						<li key={name}>
-							<NavigationLink
-								href={href}
-								currentPath={pathname}
-								isCollapse={isCollapse}>
-								<Icon size={20} />
-								<span className={cn({ 'sr-only': isCollapse })}>{name}</span>
-							</NavigationLink>
-						</li>
-					))}
-				</ul>
+				{status === 'loading' ? (
+					<ul className='w-full space-y-4 border-y py-4'>
+						<NavigationLinkSkeleton />
+					</ul>
+				) : (
+					<ul className='w-full space-y-4 border-y py-4'>
+						{filterLinkItems().map(({ href, name, Icon }) => (
+							<li key={name}>
+								<NavigationLink
+									href={href}
+									currentPath={pathname}
+									isCollapse={isCollapse}>
+									<Icon size={20} />
+									<span className={cn({ 'sr-only': isCollapse })}>{name}</span>
+								</NavigationLink>
+							</li>
+						))}
+					</ul>
+				)}
+
 				<Button
 					size='icon'
 					variant='outline'

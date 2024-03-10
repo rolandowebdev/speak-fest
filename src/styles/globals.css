@@ -53,7 +53,12 @@
 	* {
 		@apply border-border;
 	}
+
 	body {
 		@apply bg-background text-foreground;
 	}
+}
+
+.link-style {
+	@apply text-blue-600 underline-offset-4 underline hover:text-blue-500;
 }

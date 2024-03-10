@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { register, RegisterParams } from '@/libs/api/users'
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
-export const asyncRegister = createAsyncThunk(
+const asyncRegister = createAsyncThunk(
 	'auth/register',
 	async (body: RegisterParams, { dispatch }) => {
 		try {
@@ -16,3 +16,5 @@ export const asyncRegister = createAsyncThunk(
 		}
 	},
 )
+
+export { asyncRegister }

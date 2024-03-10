@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { loadingBarReducer } from 'react-redux-loading-bar'
 import authSlice from '@/libs/redux/slices/auth'
 import registerSlice from '@/libs/redux/slices/register'
 import profileSlice from '@/libs/redux/slices/profile'
+import usersSlice from '@/libs/redux/slices/users'
+import threadsSlice from '@/libs/redux/slices/get-threads'
 
 export const store = () => {
 	return configureStore({
@@ -9,12 +12,13 @@ export const store = () => {
 			auth: authSlice,
 			register: registerSlice,
 			profile: profileSlice,
+			users: usersSlice,
+			threads: threadsSlice,
+			loadingBar: loadingBarReducer,
 		},
 	})
 }
 
-// Infer the type of makeStore
 export type AppStore = ReturnType<typeof store>
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<AppStore['getState']>
 export type AppDispatch = AppStore['dispatch']

@@ -1,3 +1,5 @@
+import { User } from '@/types'
+
 type Thread = {
 	id: string
 	title: string
@@ -8,6 +10,10 @@ type Thread = {
 	upVotesBy: string[]
 	downVotesBy: string[]
 	totalComments: number
+}
+
+interface ThreadWithOwner extends Thread {
+	owner: Omit<User, 'id'>
 }
 
 type ThreadResponse = {
@@ -64,6 +70,7 @@ type CreateThreadInput = {
 export type {
 	Thread,
 	ThreadResponse,
+	ThreadWithOwner,
 	AllThreadsResponse,
 	DetailThreadResponse,
 	CreateThreadInput,

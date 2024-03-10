@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Link } from 'lucide-react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/libs/utils'
 
@@ -12,42 +11,15 @@ const headingVariants = cva('scroll-m-12 font-bold', {
 
 export interface HeadingProps
 	extends React.BaseHTMLAttributes<HTMLHeadingElement>,
-		VariantProps<typeof headingVariants> {
-	withLink?: boolean
-}
+		VariantProps<typeof headingVariants> {}
 
 function Heading({
 	children,
 	className,
 	variant,
-	withLink,
+
 	...props
 }: HeadingProps) {
-	if (withLink) {
-		const id = children
-			?.toString()
-			.toLowerCase()
-			.replace(/[^\w\s-]/g, '')
-			.trim()
-			.replace(/\s/g, '-')
-		const Variant = variant ?? 'h1'
-
-		return (
-			<Variant
-				id={id}
-				className={cn(
-					'group flex items-center',
-					headingVariants({ variant, className }),
-				)}
-				{...props}>
-				{children}
-				<a href={`#${id}`}>
-					<Link size={16} className='ml-2 hidden group-hover:block' />
-				</a>
-			</Variant>
-		)
-	}
-
 	return React.createElement(
 		variant ?? 'h1',
 		{ className: cn(headingVariants({ variant, className })), ...props },

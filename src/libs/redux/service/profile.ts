@@ -1,7 +1,7 @@
 import { getOwnProfile } from '@/libs/api/users'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-export const asyncGetProfile = createAsyncThunk('user/profile', async () => {
+export const asyncSetProfile = createAsyncThunk('user/profile', async () => {
 	try {
 		const { data } = await getOwnProfile()
 		return data

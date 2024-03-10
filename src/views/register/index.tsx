@@ -1,6 +1,6 @@
 'use client'
 
-import { PageContainer } from '@/components/layout'
+import { Header, PageContainer } from '@/components/layout'
 import {
 	Button,
 	Form,
@@ -9,6 +9,7 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
+	Heading,
 	Input,
 } from '@/components/ui'
 import { asyncRegister, useAppDispatch } from '@/libs/redux'
@@ -20,7 +21,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-export default function RegisterViews() {
+export default function RegisterView() {
 	const dispatch = useAppDispatch()
 	const { push } = useRouter()
 
@@ -47,7 +48,10 @@ export default function RegisterViews() {
 	const isDisabled = form.formState.isSubmitting || checkInputValidationError
 
 	return (
-		<PageContainer withHeader title='Login to SpeakFest'>
+		<PageContainer>
+			<Header>
+				<Heading>Register your account</Heading>
+			</Header>
 			<div className='flex flex-col space-y-2'>
 				<Form {...form}>
 					<form
@@ -97,10 +101,12 @@ export default function RegisterViews() {
 						</Button>
 					</form>
 				</Form>
-				<Link href='/login' className='text-center'>
+				<p className='text-center'>
 					Already have an account?{' '}
-					<span className='text-blue-700 hover:underline'>Login</span>
-				</Link>
+					<Link href='/login' className='link-style'>
+						Login
+					</Link>
+				</p>
 			</div>
 		</PageContainer>
 	)

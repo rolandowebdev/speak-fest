@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
 import { LoginParams, login } from '@/libs/api/auth'
 
-export const asyncAuth = createAsyncThunk(
+const asyncAuth = createAsyncThunk(
 	'auth/login',
 	async (body: LoginParams, { dispatch }) => {
 		try {
@@ -16,3 +16,5 @@ export const asyncAuth = createAsyncThunk(
 		}
 	},
 )
+
+export { asyncAuth }
