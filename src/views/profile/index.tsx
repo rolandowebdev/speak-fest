@@ -18,6 +18,7 @@ import {
 	AlertDialogTrigger,
 	buttonVariants,
 	Button,
+	ImageBlur,
 } from '@/components/ui'
 import { asyncSetProfile, useAppDispatch, useAppSelector } from '@/libs/redux'
 import { cn } from '@/libs/utils'
@@ -62,7 +63,7 @@ export default function ProfileView() {
 					<User size={32} /> Profile
 				</Heading>
 			</Header>
-			<div className='flex space-x-10'>
+			<div className='flex space-x-10 items-center'>
 				<div className='flex flex-col space-y-2 w-full'>
 					<Avatar className='h-16 w-16'>
 						<AvatarImage src={avatarSrc} alt={data?.name || 'avatar'} />
@@ -104,7 +105,19 @@ export default function ProfileView() {
 					</AlertDialog>
 				</div>
 				<div className='flex w-full justify-center'>
-					<p>ss</p>
+					<div
+						className={cn(
+							'h-[244px] w-[244px] overflow-hidden rounded-3xl',
+							'translate-x-0 transition-transform duration-300 motion-reduce:transition-none',
+						)}>
+						<ImageBlur
+							blurDataURL='/assets/profile.svg'
+							src='/assets/profile.svg'
+							width={244}
+							height={244}
+							alt='Avatar'
+						/>
+					</div>
 				</div>
 			</div>
 		</PageContainer>

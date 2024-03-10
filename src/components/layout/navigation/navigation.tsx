@@ -11,6 +11,7 @@ import {
 	Sheet,
 	SheetContent,
 	SheetTrigger,
+	ImageBlur,
 } from '@/components/ui'
 import {
 	NavigationLink,
@@ -85,22 +86,25 @@ export const Navigation = () => {
 					{ 'w-[5.25rem] -translate-y-[14.75rem] delay-150': isCollapse },
 				)}>
 				<div
-					className={cn('w-full overflow-hidden pb-4', {
-						'space-y-2': !isCollapse,
-					})}>
+					className={cn(
+						'w-full overflow-hidden pb-4 flex flex-col items-center',
+						{
+							'space-y-2': !isCollapse,
+						},
+					)}>
 					<div
 						className={cn(
-							'h-36 w-36 overflow-hidden border-4 border-color',
+							'h-36 w-36 overflow-hidden rounded-3xl',
 							'translate-x-0 transition-transform duration-300 motion-reduce:transition-none',
 							{ '-translate-x-48': isCollapse, 'delay-150': !isCollapse },
 						)}>
-						{/* <ImageBlur
-							blurDataURL={avatarPlaceholder}
-							src={avatar}
-							width={256}
-							height={256}
+						<ImageBlur
+							blurDataURL='/assets/speakfest.png'
+							src='/assets/speakfest.png'
+							width={246}
+							height={246}
 							alt='Avatar'
-						/> */}
+						/>
 					</div>
 					<Heading
 						variant='h2'
