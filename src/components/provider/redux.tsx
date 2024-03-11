@@ -7,6 +7,7 @@ import { SessionProvider } from 'next-auth/react'
 
 export function StoreProvider({ children }: { children: React.ReactNode }) {
 	const storeRef = useRef<AppStore | null>(null)
+
 	if (!storeRef.current) {
 		storeRef.current = store()
 	}

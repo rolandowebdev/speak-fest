@@ -1,5 +1,11 @@
 import React from 'react'
-import { User, PenLine, Dice6, ClipboardPen } from 'lucide-react'
+import {
+	User,
+	PenLine,
+	Dice6,
+	ClipboardPen,
+	MessagesSquare,
+} from 'lucide-react'
 
 export type MenuLink = {
 	href: string
@@ -9,6 +15,12 @@ export type MenuLink = {
 }
 
 export const menuLinkItems: MenuLink[] = [
+	{
+		href: '/',
+		name: 'Threads',
+		visible: 'all',
+		Icon: MessagesSquare,
+	},
 	{
 		href: '/leaderboards',
 		name: 'Leaderboards',

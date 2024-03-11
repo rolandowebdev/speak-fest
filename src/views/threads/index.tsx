@@ -1,56 +1,57 @@
 'use client'
 
-import Link from 'next/link'
-import { Header, PageContainer } from '@/components/layout'
-import { Heading, Skeleton } from '@/components/ui'
-import { asyncSetProfile, useAppDispatch, useAppSelector } from '@/libs/redux'
-import { useSession } from 'next-auth/react'
+import { PageContainer } from '@/components/layout'
+import { ThreadsCard } from './card'
+import {
+	asyncSetProfile,
+	asyncThreadsWithAuthor,
+	useAppDispatch,
+	useAppSelector,
+} from '@/libs/redux'
 import { useEffect } from 'react'
-import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
+import { useSearchParams } from 'next/navigation'
+import { ThreadsHeader } from './header'
+import { NotFoundThreads } from './not-found'
+import { ThreadsSkeleton } from './skeleton'
 
 export default function ThreadsView() {
 	const dispatch = useAppDispatch()
+	const searchParams = useSearchParams()
+	const { data, status } = useAppSelector((state) => state.threads)
 
-	const { status } = useSession()
-	const { data } = useAppSelector((state) => state.profile)
+	const getAllCategories = searchParams.getAll('category')
+
+	const threadsCategory = data?.filter((thread) =>
+		getAllCategories.length > 0
+			? getAllCategories.includes(thread.category)
+			: thread,
+	)!
 
 	useEffect(() => {
+		dispatch(asyncThreadsWithAuthor())
 		dispatch(asyncSetProfile())
 	}, [dispatch])
 
 	return (
 		<PageContainer>
-			<Header>
-				{status === 'loading' ? (
-					<div className='flex flex-col gap-2'>
-						<Skeleton className='w-2/4 h-9 rounded-sm' />
-						<Skeleton className='w-2/4 h-9 rounded-sm' />
-					</div>
-				) : (
-					<>
-						{status === 'authenticated' ? (
-							<Heading>
-								✏️ Welcome{' '}
-								<Link href='/profile' className='link-style'>
-									{data?.name}
-								</Link>
-								. <br />
-								You can start a thread now!
-							</Heading>
-						) : (
-							<Heading>
-								✏️ Join and start a thread. <br />
-								<Link href='/register' className='link-style'>
-									Register
-								</Link>{' '}
-								your account now
-							</Heading>
-						)}
-					</>
-				)}
-			</Header>
+			<ThreadsHeader />
 			<div className='flex flex-col'>
-				<div className='animate-wiggle motion-reduce:animate-none mt-5'></div>
+				<div className='flex flex-col gap-6 mt-5'>
+					{status === 'loading' && (
+						<>
+							<ThreadsSkeleton />
+							<ThreadsSkeleton />
+						</>
+					)}
+
+					{status === 'success' &&
+						threadsCategory?.length > 0 &&
+						threadsCategory.map((thread) => (
+							<ThreadsCard key={thread.id} {...thread} />
+						))}
+
+					{threadsCategory?.length < 1 && <NotFoundThreads />}
+				</div>
 			</div>
 		</PageContainer>
 	)

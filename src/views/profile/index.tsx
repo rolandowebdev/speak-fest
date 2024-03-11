@@ -20,7 +20,12 @@ import {
 	Button,
 	ImageBlur,
 } from '@/components/ui'
-import { asyncSetProfile, useAppDispatch, useAppSelector } from '@/libs/redux'
+import {
+	asyncSetProfile,
+	asyncThreadsWithAuthor,
+	useAppDispatch,
+	useAppSelector,
+} from '@/libs/redux'
 import { cn } from '@/libs/utils'
 import { Undo2, User } from 'lucide-react'
 
@@ -37,11 +42,12 @@ export default function ProfileView() {
 
 	useEffect(() => {
 		dispatch(asyncSetProfile())
+		// dispatch(asyncThreadsWithAuthor())
 	}, [dispatch])
 
 	const isAuth = status === 'authenticated'
-	const avatarSrcPrefetch = data?.avatar ?? '/user.png'
-	const avatarSrc = isAuth ? avatarSrcPrefetch : '/user.png'
+	const avatarSrcPrefetch = data?.avatar ?? 'https://github.com/shadcn.png'
+	const avatarSrc = isAuth ? avatarSrcPrefetch : 'https://github.com/shadcn.png'
 
 	const handleLogout = () => {
 		signOut({ redirect: false })
@@ -111,8 +117,8 @@ export default function ProfileView() {
 							'translate-x-0 transition-transform duration-300 motion-reduce:transition-none',
 						)}>
 						<ImageBlur
-							blurDataURL='/assets/profile.svg'
-							src='/assets/profile.svg'
+							blurDataURL='https://github.com/shadcn.png'
+							src='https://github.com/shadcn.png'
 							width={244}
 							height={244}
 							alt='Avatar'

@@ -21,12 +21,12 @@ export const NavigationLink = ({
 		<Link
 			href={href}
 			className={cn(
-				'flex items-center space-x-2 border-2 border-transparent bg-slate-200 bg-opacity-25 px-3 py-2 font-medium tracking-wide transition-colors hover:border-color',
+				'flex items-center space-x-2 border-2 border-transparent bg-slate-300 bg-opacity-25 px-3 py-2 font-medium tracking-wide transition-colors hover:border-color',
 				'dark:bg-slate-800 dark:bg-opacity-25',
 				{
 					'md:min-w-[10rem] ': !isCollapse,
 					'justify-center': isCollapse,
-					'bg-opacity-50 dark:bg-opacity-50': isActive,
+					'bg-opacity-75 dark:bg-opacity-75': isActive,
 				},
 			)}
 			{...rest}>

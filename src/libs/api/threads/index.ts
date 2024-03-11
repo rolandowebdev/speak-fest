@@ -1,4 +1,4 @@
-import { fetchWithAuth } from '@/libs/api/common'
+import { baseUrl, fetchWithAuth } from '@/libs/api/common'
 
 type PostThread = {
 	title: string
@@ -8,10 +8,11 @@ type PostThread = {
 
 const getAllThreads = async () => {
 	try {
-		const data = await fetchWithAuth({
-			method: 'GET',
-			endpoint: 'threads',
-		})
+		const response = await fetch(`${baseUrl}/threads`)
+		if (!response.ok) {
+			throw new Error('Failed to fetch threads')
+		}
+		const data = await response.json()
 		return data
 	} catch (error: any) {
 		throw new Error(error.message)
