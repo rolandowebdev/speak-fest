@@ -23,7 +23,7 @@ const nextConfig = {
 		return [
 			{
 				source: '/source',
-				destination: 'https://github.com/rolandowebdev/speakfest',
+				destination: 'https://github.com/rolandowebdev/speak-fest',
 				permanent: false,
 			},
 		]

@@ -51,12 +51,17 @@ const getAllUsers = async (): Promise<any> => {
 
 const getOwnProfile = async (): Promise<any> => {
 	try {
-		const data = await fetchWithAuth({
-			method: 'GET',
-			endpoint: 'users/me',
-		})
+		const response = await fetchWithAuth(`${baseUrl}/users/me`)
 
-		return data
+		const responseJson = await response.json()
+
+		const { status, message } = responseJson
+
+		if (status !== 'success') {
+			throw new Error(message)
+		}
+
+		return responseJson
 	} catch (error: any) {
 		throw new Error(error.message)
 	}

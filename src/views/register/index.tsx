@@ -16,6 +16,7 @@ import { asyncRegister, useAppDispatch } from '@/libs/redux'
 import { registerSchema } from '@/libs/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { unwrapResult } from '@reduxjs/toolkit'
+import { ClipboardPen, Undo2 } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
@@ -50,7 +51,16 @@ export default function RegisterView() {
 	return (
 		<PageContainer>
 			<Header>
-				<Heading>Register your account</Heading>
+				<Button
+					variant='link'
+					className='px-0 flex items-center gap-1 text-lg text-primary'
+					onClick={() => push('/')}>
+					<Undo2 size={18} />
+					Back to home
+				</Button>
+				<Heading className='flex items-center gap-2'>
+					<ClipboardPen size={32} /> Register your account
+				</Heading>
 			</Header>
 			<div className='flex flex-col space-y-2'>
 				<Form {...form}>

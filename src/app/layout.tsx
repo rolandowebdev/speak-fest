@@ -9,6 +9,7 @@ import { cn } from '@/libs/utils'
 
 import { StoreProvider as Provider } from '@/components/provider'
 import { Navigation } from '@/components/layout'
+import { Toaster } from '@/components/ui'
 
 const fontSans = FontSans({
 	subsets: ['latin'],
@@ -42,6 +43,7 @@ export default function RootLayout({
 						<Navigation />
 						{children}
 					</main>
+					<Toaster />
 				</body>
 			</html>
 		</Provider>

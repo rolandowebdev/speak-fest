@@ -6,6 +6,7 @@ import profileSlice from '@/libs/redux/slices/profile'
 import usersSlice from '@/libs/redux/slices/users'
 import threadsSlice from '@/libs/redux/slices/get-threads'
 import leaderboardsSlice from '@/libs/redux/slices/leaderboards'
+import postThreadSlice from '@/libs/redux/slices/post-thread'
 
 export const store = () => {
 	return configureStore({
@@ -16,6 +17,7 @@ export const store = () => {
 			users: usersSlice,
 			threads: threadsSlice,
 			leaderboards: leaderboardsSlice,
+			postThread: postThreadSlice,
 			loadingBar: loadingBarReducer,
 		},
 	})

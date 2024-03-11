@@ -61,7 +61,6 @@ export default function ProfileView() {
 					Back to home
 				</Button>
 				<Heading className='flex items-center gap-2'>
-					{' '}
 					<User size={32} /> Profile
 				</Heading>
 			</Header>

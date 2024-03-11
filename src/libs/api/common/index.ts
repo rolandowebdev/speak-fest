@@ -1,45 +1,27 @@
 import { getSession } from 'next-auth/react'
 
-type FetchWithAuthParams = {
-	method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
-	endpoint: string
-	options?: RequestInit
-}
+// * Api documentations: https://forum-api.dicoding.dev/v1
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL_FORUM_API as string
-
-const fetchWithAuth = async ({
-	endpoint,
-	options,
-	method,
-}: FetchWithAuthParams): Promise<any> => {
-	try {
-		const session = await getSession()
-		const accessToken = session?.user.accessToken
-
-		if (!accessToken) {
-			throw new Error('Missing access token')
-		}
-
-		const url = `${baseUrl}/${endpoint}`
-		const headers = new Headers({
-			Authorization: `Bearer ${accessToken}`,
-		})
-
-		const response = await fetch(url, {
-			method,
-			headers,
-			...options,
-		})
-
-		if (!response.ok) {
-			throw new Error(`API request failed with status ${response.status}`)
-		}
-
-		return await response.json()
-	} catch (error: any) {
-		throw new Error(error.message)
+type FetchOptions = {
+	method: 'GET' | 'POST'
+	headers: {
+		'Content-Type': 'application/json'
 	}
+	body: string
 }
 
-export { fetchWithAuth, baseUrl }
+export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL_FORUM_API as string
+
+async function fetchWithAuth(url: string, options: Partial<FetchOptions> = {}) {
+	const session = await getSession()
+	const getAccessTokenFromSession = session?.user.accessToken
+	return fetch(url, {
+		...options,
+		headers: {
+			...options.headers,
+			Authorization: `Bearer ${getAccessTokenFromSession}`,
+		},
+	})
+}
+
+export { fetchWithAuth }

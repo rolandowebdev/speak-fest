@@ -1,10 +1,5 @@
 import { baseUrl, fetchWithAuth } from '@/libs/api/common'
-
-type PostThread = {
-	title: string
-	body: string
-	category: string
-}
+import { CreateThreadInput } from '@/types'
 
 const getAllThreads = async () => {
 	try {
@@ -21,26 +16,40 @@ const getAllThreads = async () => {
 
 const getDetailThread = async (threadId: string) => {
 	try {
-		const data = await fetchWithAuth({
-			method: 'GET',
-			endpoint: `threads/${threadId}`,
-		})
-		return data
+		const response = await fetchWithAuth(`${baseUrl}/threads/${threadId}`)
+		const responseJson = await response.json()
+
+		const { status, message } = responseJson
+
+		if (status !== 'success') {
+			throw new Error(message)
+		}
+
+		return responseJson
 	} catch (error: any) {
 		throw new Error(error.message)
 	}
 }
 
-const postThread = async (body: PostThread) => {
+const postThread = async (body: CreateThreadInput) => {
 	try {
-		const data = await fetchWithAuth({
+		const response = await fetchWithAuth(`${baseUrl}/threads`, {
 			method: 'POST',
-			endpoint: 'threads',
-			options: {
-				body: JSON.stringify(body),
+			headers: {
+				'Content-Type': 'application/json',
 			},
+			body: JSON.stringify(body),
 		})
-		return data
+
+		const responseJson = await response.json()
+
+		const { status, message } = responseJson
+
+		if (status !== 'success') {
+			throw new Error(message)
+		}
+
+		return responseJson
 	} catch (error: any) {
 		throw new Error(error.message)
 	}

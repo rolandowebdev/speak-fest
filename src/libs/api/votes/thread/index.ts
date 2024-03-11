@@ -2,11 +2,22 @@ import { fetchWithAuth } from '@/libs/api/common'
 
 const upVoteThread = async (threadId: string) => {
 	try {
-		const data = await fetchWithAuth({
+		const response = await fetchWithAuth(`threads/${threadId}/up-vote`, {
 			method: 'POST',
-			endpoint: `threads/${threadId}/up-vote`,
+			headers: {
+				'Content-Type': 'application/json',
+			},
 		})
-		return data
+
+		const responseJson = await response.json()
+
+		const { status, message } = responseJson
+
+		if (status !== 'success') {
+			throw new Error(message)
+		}
+
+		return responseJson
 	} catch (error: any) {
 		throw new Error(error.message)
 	}
@@ -14,11 +25,22 @@ const upVoteThread = async (threadId: string) => {
 
 const downVoteThread = async (threadId: string) => {
 	try {
-		const data = await fetchWithAuth({
+		const response = await fetchWithAuth(`threads/${threadId}/down-vote`, {
 			method: 'POST',
-			endpoint: `threads/${threadId}/down-vote`,
+			headers: {
+				'Content-Type': 'application/json',
+			},
 		})
-		return data
+
+		const responseJson = await response.json()
+
+		const { status, message } = responseJson
+
+		if (status !== 'success') {
+			throw new Error(message)
+		}
+
+		return responseJson
 	} catch (error: any) {
 		throw new Error(error.message)
 	}
@@ -26,11 +48,22 @@ const downVoteThread = async (threadId: string) => {
 
 const neutralVoteThread = async (threadId: string) => {
 	try {
-		const data = await fetchWithAuth({
+		const response = await fetchWithAuth(`threads/${threadId}/neutral-vote`, {
 			method: 'POST',
-			endpoint: `threads/${threadId}/neutral-vote`,
+			headers: {
+				'Content-Type': 'application/json',
+			},
 		})
-		return data
+
+		const responseJson = await response.json()
+
+		const { status, message } = responseJson
+
+		if (status !== 'success') {
+			throw new Error(message)
+		}
+
+		return responseJson
 	} catch (error: any) {
 		throw new Error(error.message)
 	}

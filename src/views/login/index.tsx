@@ -15,6 +15,7 @@ import {
 import { asyncAuth, useAppDispatch } from '@/libs/redux'
 import { authSchema } from '@/libs/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { LogIn, Undo2 } from 'lucide-react'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -55,7 +56,16 @@ export default function LoginView() {
 	return (
 		<PageContainer>
 			<Header>
-				<Heading>Login to SpeakFest</Heading>
+				<Button
+					variant='link'
+					className='px-0 flex items-center gap-1 text-lg text-primary'
+					onClick={() => push('/')}>
+					<Undo2 size={18} />
+					Back to home
+				</Button>
+				<Heading className='flex items-center gap-2'>
+					<LogIn size={32} /> Login to SpeakFest
+				</Heading>
 			</Header>
 			<div className='flex flex-col space-y-2'>
 				<Form {...form}>

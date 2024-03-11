@@ -63,8 +63,8 @@ type DetailThreadResponse = {
 
 type CreateThreadInput = {
 	title: string
-	body: string
 	category: string
+	body: string
 }
 
 export type {

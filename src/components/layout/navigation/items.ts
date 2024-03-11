@@ -5,6 +5,7 @@ import {
 	Dice6,
 	ClipboardPen,
 	MessagesSquare,
+	LogIn,
 } from 'lucide-react'
 
 export type MenuLink = {
@@ -31,7 +32,7 @@ export const menuLinkItems: MenuLink[] = [
 		href: '/login',
 		name: 'Log In',
 		visible: 'no-auth',
-		Icon: User,
+		Icon: LogIn,
 	},
 	{
 		href: '/register',
@@ -40,7 +41,7 @@ export const menuLinkItems: MenuLink[] = [
 		Icon: ClipboardPen,
 	},
 	{
-		href: '/new-thread',
+		href: '/create-thread',
 		name: 'New Thread',
 		visible: 'auth',
 		Icon: PenLine,

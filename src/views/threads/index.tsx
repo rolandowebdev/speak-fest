@@ -41,7 +41,6 @@ export default function ThreadsView() {
 						<>
 							<ThreadsSkeleton />
 							<ThreadsSkeleton />
-							<ThreadsSkeleton />
 						</>
 					)}
 

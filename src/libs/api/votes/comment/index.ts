@@ -9,11 +9,25 @@ export type VoteCommentParams = {
 
 const upVoteComment = async ({ threadId, commentId }: VoteCommentParams) => {
 	try {
-		const data = await fetchWithAuth({
-			method: 'POST',
-			endpoint: `threads/${threadId}/comments/${commentId}/up-vote`,
-		})
-		return data
+		const response = await fetchWithAuth(
+			`threads/${threadId}/comments/${commentId}/up-vote`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			},
+		)
+
+		const responseJson = await response.json()
+
+		const { status, message } = responseJson
+
+		if (status !== 'success') {
+			throw new Error(message)
+		}
+
+		return responseJson
 	} catch (error: any) {
 		throw new Error(error.message)
 	}
@@ -21,11 +35,25 @@ const upVoteComment = async ({ threadId, commentId }: VoteCommentParams) => {
 
 const downVoteComment = async ({ threadId, commentId }: VoteCommentParams) => {
 	try {
-		const data = await fetchWithAuth({
-			method: 'POST',
-			endpoint: `threads/${threadId}/comments/${commentId}/down-vote`,
-		})
-		return data
+		const response = await fetchWithAuth(
+			`threads/${threadId}/comments/${commentId}/down-vote`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			},
+		)
+
+		const responseJson = await response.json()
+
+		const { status, message } = responseJson
+
+		if (status !== 'success') {
+			throw new Error(message)
+		}
+
+		return responseJson
 	} catch (error: any) {
 		throw new Error(error.message)
 	}
@@ -36,11 +64,25 @@ const neutralVoteComment = async ({
 	commentId,
 }: VoteCommentParams) => {
 	try {
-		const data = await fetchWithAuth({
-			method: 'POST',
-			endpoint: `threads/${threadId}/comments/${commentId}/neutral-vote`,
-		})
-		return data
+		const response = await fetchWithAuth(
+			`threads/${threadId}/comments/${commentId}/neutral-vote`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			},
+		)
+
+		const responseJson = await response.json()
+
+		const { status, message } = responseJson
+
+		if (status !== 'success') {
+			throw new Error(message)
+		}
+
+		responseJson
 	} catch (error: any) {
 		throw new Error(error.message)
 	}
