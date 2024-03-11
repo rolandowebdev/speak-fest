@@ -103,7 +103,7 @@ export const Navigation = () => {
 							src='/assets/speakfest.png'
 							width={246}
 							height={246}
-							alt='Avatar'
+							alt='SpeakFest Logo'
 						/>
 					</div>
 					<Heading

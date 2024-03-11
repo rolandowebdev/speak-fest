@@ -19,6 +19,15 @@ const nextConfig = {
 		],
 		dangerouslyAllowSVG: true,
 	},
+	redirects: async () => {
+		return [
+			{
+				source: '/source',
+				destination: 'https://github.com/rolandowebdev/speakfest',
+				permanent: false,
+			},
+		]
+	},
 }
 
 export default nextConfig

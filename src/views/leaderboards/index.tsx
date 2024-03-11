@@ -8,7 +8,6 @@ import { useEffect } from 'react'
 import {
 	asyncSetLeaderboards,
 	asyncSetProfile,
-	asyncThreadsWithAuthor,
 	useAppDispatch,
 	useAppSelector,
 } from '@/libs/redux'
@@ -23,7 +22,6 @@ export default function LeaderboardsView() {
 	const { data } = useAppSelector((state) => state.leaderboards)
 
 	useEffect(() => {
-		// dispatch(asyncThreadsWithAuthor())
 		dispatch(asyncSetLeaderboards())
 		dispatch(asyncSetProfile())
 	}, [dispatch])

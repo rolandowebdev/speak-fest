@@ -1,6 +1,6 @@
 'use client'
 
-import { PageContainer } from '@/components/layout'
+import { Footer, PageContainer } from '@/components/layout'
 import { ThreadsCard } from './card'
 import {
 	asyncSetProfile,
@@ -36,9 +36,10 @@ export default function ThreadsView() {
 		<PageContainer>
 			<ThreadsHeader />
 			<div className='flex flex-col'>
-				<div className='flex flex-col gap-6 mt-5'>
+				<div className='flex flex-col gap-6 space-y-2'>
 					{status === 'loading' && (
 						<>
+							<ThreadsSkeleton />
 							<ThreadsSkeleton />
 							<ThreadsSkeleton />
 						</>
@@ -53,6 +54,7 @@ export default function ThreadsView() {
 					{threadsCategory?.length < 1 && <NotFoundThreads />}
 				</div>
 			</div>
+			{status === 'success' && <Footer />}
 		</PageContainer>
 	)
 }

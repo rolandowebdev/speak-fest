@@ -1,8 +1,8 @@
 'use client'
 
-import React from 'react'
 import Image, { type ImageProps } from 'next/image'
 import { cn } from '@/libs/utils'
+import { useState } from 'react'
 
 export type ImageBlurProps = Omit<ImageProps, 'onLoad' | 'placeholder'> & {}
 
@@ -13,7 +13,7 @@ const ImageBlur = ({
 	className,
 	...rest
 }: ImageBlurProps) => {
-	const [blur, setBlur] = React.useState(true)
+	const [blur, setBlur] = useState(true)
 	const classNames = cn('transition-all duration-500', className, {
 		'blur-md': blur,
 	})

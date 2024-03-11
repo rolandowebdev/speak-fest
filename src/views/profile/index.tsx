@@ -20,12 +20,7 @@ import {
 	Button,
 	ImageBlur,
 } from '@/components/ui'
-import {
-	asyncSetProfile,
-	asyncThreadsWithAuthor,
-	useAppDispatch,
-	useAppSelector,
-} from '@/libs/redux'
+import { asyncSetProfile, useAppDispatch, useAppSelector } from '@/libs/redux'
 import { cn } from '@/libs/utils'
 import { Undo2, User } from 'lucide-react'
 
@@ -38,11 +33,12 @@ export default function ProfileView() {
 
 	const { push } = useRouter()
 	const { status } = useSession()
-	const { data } = useAppSelector((state) => state.profile)
+	const { data, status: threadsStatus } = useAppSelector(
+		(state) => state.profile,
+	)
 
 	useEffect(() => {
 		dispatch(asyncSetProfile())
-		// dispatch(asyncThreadsWithAuthor())
 	}, [dispatch])
 
 	const isAuth = status === 'authenticated'
@@ -77,7 +73,7 @@ export default function ProfileView() {
 							<Skeleton />
 						</AvatarFallback>
 					</Avatar>
-					{status === 'loading' ? (
+					{threadsStatus === 'loading' ? (
 						<>
 							<Skeleton className='w-44 h-9 rounded-sm' />
 							<Skeleton className='w-56 h-6 rounded-sm' />
