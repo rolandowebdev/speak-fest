@@ -22,6 +22,7 @@ import {
 } from '@/components/ui'
 import { asyncSetProfile, useAppDispatch, useAppSelector } from '@/libs/redux'
 import { cn } from '@/libs/utils'
+import { convertToUppercase } from '@/utils'
 import { Undo2, User } from 'lucide-react'
 
 import { signOut, useSession } from 'next-auth/react'
@@ -80,7 +81,9 @@ export default function ProfileView() {
 						</>
 					) : (
 						<>
-							<Heading variant='h2'>{data?.name}</Heading>
+							<Heading variant='h2'>
+								{convertToUppercase(data?.name ?? '')}
+							</Heading>
 							<p>{data?.email}</p>
 							<p>Score : 0</p>
 						</>

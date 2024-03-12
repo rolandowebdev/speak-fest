@@ -1,7 +1,7 @@
 'use client'
 
 import { Footer, PageContainer } from '@/components/layout'
-import { ThreadsCard } from './card'
+import { ThreadsCard } from './components/card'
 import {
 	asyncSetProfile,
 	asyncThreadsWithAuthor,
@@ -10,9 +10,9 @@ import {
 } from '@/libs/redux'
 import { useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { ThreadsHeader } from './header'
-import { NotFoundThreads } from './not-found'
-import { ThreadsSkeleton } from './skeleton'
+import { ThreadsHeader } from './components/header'
+import { NotFoundThreads } from './components/not-found'
+import { ThreadsSkeleton } from './components/skeleton'
 
 export default function ThreadsView() {
 	const dispatch = useAppDispatch()

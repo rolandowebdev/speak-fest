@@ -2,8 +2,7 @@
 
 import { Footer, Header, PageContainer } from '@/components/layout'
 import { Button, Heading } from '@/components/ui'
-import { DataTable } from './data-table'
-import { columns } from './columns'
+import { DataTable } from './components/data-table'
 import { useEffect } from 'react'
 import {
 	asyncSetLeaderboards,
@@ -14,6 +13,26 @@ import {
 import { CustomLeaderboardsEntry } from '@/types'
 import { Dice6, Undo2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { ColumnDef } from '@tanstack/react-table'
+
+export const columns: ColumnDef<CustomLeaderboardsEntry>[] = [
+	{
+		accessorKey: 'avatar',
+		header: 'Avatar',
+	},
+	{
+		accessorKey: 'name',
+		header: 'Name',
+	},
+	{
+		accessorKey: 'email',
+		header: 'Email',
+	},
+	{
+		accessorKey: 'score',
+		header: 'Score',
+	},
+]
 
 export default function LeaderboardsView() {
 	const dispatch = useAppDispatch()
