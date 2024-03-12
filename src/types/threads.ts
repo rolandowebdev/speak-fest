@@ -1,4 +1,4 @@
-import { User } from '@/types'
+import { Comment, CommentWithEmailOwner, User } from '@/types'
 
 type Thread = {
 	id: string
@@ -12,8 +12,20 @@ type Thread = {
 	totalComments: number
 }
 
+export interface DetailThread
+	extends Omit<Thread, 'totalComments' | 'ownerId'> {
+	owner: Pick<Comment, 'owner'>['owner']
+	comments: Comment[]
+}
+
 interface ThreadWithOwner extends Thread {
 	owner: Omit<User, 'id'>
+}
+
+export interface DetailThreadWithEmailOwner extends DetailThread {
+	owner: User
+	comments: CommentWithEmailOwner[]
+	totalComments: number
 }
 
 type ThreadResponse = {

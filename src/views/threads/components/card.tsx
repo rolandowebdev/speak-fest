@@ -15,7 +15,7 @@ export const ThreadsCard = ({
 	owner: { name },
 }: ThreadWithOwner) => {
 	return (
-		<Link href={id} className='group'>
+		<Link href={`thread/${id}`} className='group'>
 			<article className='rounded-md border p-5 duration-300 hover:-translate-y-2 hover:shadow-md'>
 				<Heading variant='h2' className='group-hover:underline'>
 					{title.length > 100 ? `${title.slice(0, 100)}...` : title}

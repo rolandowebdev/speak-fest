@@ -4,6 +4,25 @@ type Owner = {
 	avatar: string
 }
 
+type Comment = {
+	id: string
+	content: string
+	createdAt: string
+	owner: {
+		id: string
+		name: string
+		avatar: string
+	}
+	upVotesBy: string[]
+	downVotesBy: string[]
+}
+
+type CommentWithEmailOwner = Omit<Comment, 'owner'> & {
+	owner: Pick<Comment, 'owner'>['owner'] & {
+		email: string
+	}
+}
+
 type CommentResponse = {
 	status: string
 	message: string
@@ -19,4 +38,4 @@ type CommentResponse = {
 	}
 }
 
-export type { CommentResponse }
+export type { CommentResponse, Comment, CommentWithEmailOwner }
