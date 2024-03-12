@@ -66,6 +66,7 @@ export default function CreateThreadView() {
 				toast({
 					title: 'Thread created',
 					description: 'Your thread has been created successfully.',
+					variant: 'success',
 				})
 			}
 		} catch (error: any) {

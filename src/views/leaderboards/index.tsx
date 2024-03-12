@@ -1,6 +1,6 @@
 'use client'
 
-import { Header, PageContainer } from '@/components/layout'
+import { Footer, Header, PageContainer } from '@/components/layout'
 import { Button, Heading } from '@/components/ui'
 import { DataTable } from './data-table'
 import { columns } from './columns'
@@ -19,7 +19,7 @@ export default function LeaderboardsView() {
 	const dispatch = useAppDispatch()
 
 	const { push } = useRouter()
-	const { data } = useAppSelector((state) => state.leaderboards)
+	const { data, status } = useAppSelector((state) => state.leaderboards)
 
 	useEffect(() => {
 		dispatch(asyncSetLeaderboards())
@@ -59,6 +59,7 @@ export default function LeaderboardsView() {
 				</Heading>
 			</Header>
 			<DataTable columns={columns} data={convertedData} />
+			{status === 'success' && <Footer />}
 		</PageContainer>
 	)
 }
