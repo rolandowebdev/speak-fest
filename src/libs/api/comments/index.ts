@@ -1,13 +1,6 @@
 import { baseUrl, fetchWithAuth } from '@/libs/api/common'
 
-export type PostCommentParams = {
-	body: {
-		content: string
-	}
-	threadId: string
-}
-
-export const postComment = async ({ body, threadId }: PostCommentParams) => {
+export const postComment = async (content: string, threadId: string) => {
 	try {
 		const response = await fetchWithAuth(
 			`${baseUrl}/threads/${threadId}/comments`,
@@ -16,19 +9,23 @@ export const postComment = async ({ body, threadId }: PostCommentParams) => {
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({ body }),
+				body: JSON.stringify({ content }),
 			},
 		)
 
 		const responseJson = await response.json()
 
-		const { status, message } = responseJson
+		const {
+			status,
+			message,
+			data: { comment },
+		} = responseJson
 
 		if (status !== 'success') {
 			throw new Error(message)
 		}
 
-		return responseJson
+		return comment
 	} catch (error: any) {
 		throw new Error(error.message)
 	}

@@ -37,4 +37,11 @@ const createThreadSchema = z.object({
 		.trim(),
 })
 
-export { authSchema, registerSchema, createThreadSchema }
+const postCommentSchema = z.object({
+	comment: z
+		.string()
+		.min(3, { message: 'Min. comment length is 3 characters' })
+		.trim(),
+})
+
+export { authSchema, registerSchema, createThreadSchema, postCommentSchema }

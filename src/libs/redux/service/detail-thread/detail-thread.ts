@@ -3,7 +3,7 @@ import { asyncSetUsers } from '@/libs/redux'
 import { getDetailThread } from '@/libs/api/threads'
 import { DetailThread, DetailThreadWithEmailOwner, User } from '@/types'
 
-const asyncDetailThread = createAsyncThunk(
+export const asyncDetailThread = createAsyncThunk(
 	'thread/detailThread',
 	async (threadId: string, { getState, dispatch }) => {
 		try {
@@ -47,5 +47,3 @@ const asyncDetailThread = createAsyncThunk(
 		}
 	},
 )
-
-export default asyncDetailThread

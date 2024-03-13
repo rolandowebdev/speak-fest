@@ -1,15 +1,15 @@
 import { DetailThreadWithEmailOwner } from '@/types'
 import { createSlice } from '@reduxjs/toolkit'
-import asyncDetailThread from '../service/detail-thread/detail-thread'
-import asyncPostCommentThread from '../service/detail-thread/post-comment-thread'
 import {
+	asyncPostCommentThread,
 	asyncDownVoteCommentThread,
 	asyncDownVoteDetailThread,
 	asyncNeutralVoteCommentThread,
 	asyncNeutralVoteDetailThread,
 	asyncUpVoteCommentThread,
 	asyncUpVoteDetailThread,
-} from '..'
+	asyncDetailThread,
+} from '@/libs/redux'
 
 type InitialState = {
 	data: DetailThreadWithEmailOwner | null
@@ -45,8 +45,6 @@ const detailThreadSlice = createSlice({
 				state.message = 'Data detail thread gagal didapatkan!'
 			})
 
-			// * post comment thread
-
 			.addCase(asyncPostCommentThread.fulfilled, (state, action) => {
 				state.data = action.payload
 				state.status = 'success'
@@ -60,8 +58,6 @@ const detailThreadSlice = createSlice({
 				// toast.error(state.message)
 			})
 
-			// * upVote detail Thread
-
 			.addCase(asyncUpVoteDetailThread.fulfilled, (state, action) => {
 				state.data = action.payload
 			})
@@ -71,8 +67,6 @@ const detailThreadSlice = createSlice({
 				state.message = 'Thread tidak ditemukan! Silahkan refresh'
 				// toast.error(state.message)
 			})
-
-			// * downVote detail Thread
 
 			.addCase(asyncDownVoteDetailThread.fulfilled, (state, action) => {
 				state.data = action.payload
@@ -84,8 +78,6 @@ const detailThreadSlice = createSlice({
 				// toast.error(state.message)
 			})
 
-			// * neutralVote detail Thread
-
 			.addCase(asyncNeutralVoteDetailThread.fulfilled, (state, action) => {
 				state.data = action.payload
 			})
@@ -95,8 +87,6 @@ const detailThreadSlice = createSlice({
 				state.message = 'Thread tidak ditemukan! Silahkan refresh'
 				// toast.error(state.message)
 			})
-
-			// * upVote comment detail thread
 
 			.addCase(asyncUpVoteCommentThread.fulfilled, (state, action) => {
 				state.data = action.payload
@@ -108,8 +98,6 @@ const detailThreadSlice = createSlice({
 				// toast.error(state.message)
 			})
 
-			// * downVote comment detail thread
-
 			.addCase(asyncDownVoteCommentThread.fulfilled, (state, action) => {
 				state.data = action.payload
 			})
@@ -119,8 +107,6 @@ const detailThreadSlice = createSlice({
 				state.message = 'Comment tidak ditemukan! Silahkan refresh'
 				// toast.error(state.message)
 			})
-
-			// * neutralVote comment detail thread
 
 			.addCase(asyncNeutralVoteCommentThread.fulfilled, (state, action) => {
 				state.data = action.payload
