@@ -16,22 +16,22 @@ export async function generateMetadata({
 	try {
 		const { slug } = params
 
-		const { data } = await api.getDetailThread(slug)
+		const data = await api.getDetailThread(slug)
 
-		const thread = data.detailThread as ThreadDetail
+		const thread = data as ThreadDetail
 
 		return {
-			title: `${thread?.title || 'Thread not found'} ${METADATA.exTitle}`,
+			title: `${thread?.title} ${METADATA.exTitle}`,
 			description: thread?.body || 'Detail thread not found',
 			openGraph: {
-				url: `${process.env.DOMAIN}/thread/${thread?.id || ''}`,
+				url: `${process.env.DOMAIN}/thread/${thread?.id}`,
 				siteName: METADATA.openGraph.siteName,
 				locale: METADATA.openGraph.locale,
 				type: 'article',
 			},
-			keywords: thread?.title || 'Thread not found',
+			keywords: thread?.title,
 			alternates: {
-				canonical: `${process.env.DOMAIN}/thread/${thread?.id || ''}`,
+				canonical: `${process.env.DOMAIN}/thread/${thread?.id}`,
 			},
 		}
 	} catch (error) {
