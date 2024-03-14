@@ -6,15 +6,15 @@ import { store, AppStore } from '@/libs/redux'
 import { SessionProvider } from 'next-auth/react'
 
 export function StoreProvider({ children }: { children: React.ReactNode }) {
-	const storeRef = useRef<AppStore | null>(null)
+  const storeRef = useRef<AppStore | null>(null)
 
-	if (!storeRef.current) {
-		storeRef.current = store()
-	}
+  if (!storeRef.current) {
+    storeRef.current = store()
+  }
 
-	return (
-		<SessionProvider>
-			<Provider store={storeRef.current}>{children}</Provider>
-		</SessionProvider>
-	)
+  return (
+    <SessionProvider>
+      <Provider store={storeRef.current}>{children}</Provider>
+    </SessionProvider>
+  )
 }

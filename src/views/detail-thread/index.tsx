@@ -2,61 +2,66 @@
 
 import { Footer, Header, PageContainer } from '@/components/layout'
 import { Button, Heading, Separator } from '@/components/ui'
-import {
-	asyncDetailThread,
-	asyncSetProfile,
-	useAppDispatch,
-} from '@/libs/redux'
 import { MessagesSquare, Undo2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import OwnerInfoComponent from './components/owner-info'
-import ThreadDetailsComponent from './components/thread-detail'
 import ThreadComment from './components/thread-comment'
 import CardComment from './components/card-comment'
+import { useAppDispatch, useAppSelector } from '@/libs/redux'
+import { asyncReceiveThreadDetail } from '@/libs/redux/slices/thread-detail'
+import { asyncSetProfile } from '@/libs/redux/slices/profile'
+import ThreadDetails from './components/thread-detail'
+import { Comment } from '@/types'
 
 type DetailtThreadViewProps = {
-	slug: string
+  slug: string
 }
 
 export const DetailThreadView = ({ slug }: DetailtThreadViewProps) => {
-	const dispatch = useAppDispatch()
-	const { push } = useRouter()
+  const dispatch = useAppDispatch()
+  const { data, status } = useAppSelector((state) => state.threadDetail)
+  const { push } = useRouter()
 
-	useEffect(() => {
-		dispatch(asyncDetailThread(slug))
-		dispatch(asyncSetProfile())
-	}, [dispatch, slug])
+  useEffect(() => {
+    dispatch(asyncReceiveThreadDetail(slug))
+    dispatch(asyncSetProfile())
+  }, [dispatch, slug])
 
-	return (
-		<PageContainer>
-			<Header>
-				<Button
-					variant='link'
-					className='px-0 flex items-center gap-1 text-lg text-primary'
-					onClick={() => push('/')}>
-					<Undo2 size={18} />
-					Back to home
-				</Button>
-				<Heading className='flex items-center gap-2'>
-					<MessagesSquare size={32} /> Detail Thread
-				</Heading>
-			</Header>
+  return (
+    <PageContainer>
+      <Header>
+        <Button
+          variant="link"
+          className="flex items-center gap-1 px-0 text-lg text-primary"
+          onClick={() => push('/')}
+        >
+          <Undo2 size={18} />
+          Back to home
+        </Button>
+        <Heading className="flex flex-wrap items-center gap-2">
+          <MessagesSquare size={32} /> Detail Thread
+        </Heading>
+      </Header>
 
-			<OwnerInfoComponent />
+      <OwnerInfoComponent />
 
-			<ThreadDetailsComponent />
+      <ThreadDetails threadId={slug} />
 
-			<Separator className='bg-transparent' />
-			<Separator className='bg-transparent' />
+      <ThreadComment treadId={slug} />
 
-			<ThreadComment treadId={slug} />
+      <Separator />
 
-			<Separator />
+      {data?.comments?.map((comment: Comment) => (
+        <CardComment
+          key={comment.id}
+          {...comment}
+          threadId={slug}
+          threadStatus={status}
+        />
+      ))}
 
-			<CardComment />
-
-			<Footer />
-		</PageContainer>
-	)
+      <Footer />
+    </PageContainer>
+  )
 }

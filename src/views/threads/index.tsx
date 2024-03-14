@@ -1,59 +1,69 @@
 'use client'
 
 import { Footer, PageContainer } from '@/components/layout'
-import { ThreadsCard } from './components/card'
-import {
-	asyncSetProfile,
-	asyncThreadsWithAuthor,
-	useAppDispatch,
-	useAppSelector,
-} from '@/libs/redux'
+import { ThreadsCard } from './components/card-thread'
 import { useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { ThreadsHeader } from './components/header'
 import { NotFoundThreads } from './components/not-found'
 import { ThreadsSkeleton } from './components/skeleton'
+import { useAppDispatch, useAppSelector } from '@/libs/redux'
+import { Thread } from '@/types'
+import { asyncSetProfile } from '@/libs/redux/slices/profile'
+import { asyncReceiveThreads } from '@/libs/redux/slices/threads'
+import { asyncReceiveUsers } from '@/libs/redux/slices/users'
 
 export default function ThreadsView() {
-	const dispatch = useAppDispatch()
-	const searchParams = useSearchParams()
-	const { data, status } = useAppSelector((state) => state.threads)
+  const dispatch = useAppDispatch()
+  const searchParams = useSearchParams()
+  const { data: users } = useAppSelector((state) => state.users)
+  const { data: threads, status: statusThreads } = useAppSelector(
+    (state) => state.threads,
+  )
 
-	const getAllCategories = searchParams.getAll('category')
+  const threadsWithAuthor = threads.map((thread: Thread) => ({
+    ...thread,
+    author: users.find((user) => user.id === thread.ownerId)?.name,
+  }))
 
-	const threadsCategory = data?.filter((thread) =>
-		getAllCategories.length > 0
-			? getAllCategories.includes(thread.category)
-			: thread,
-	)!
+  const getAllCategories = searchParams.getAll('category')
 
-	useEffect(() => {
-		dispatch(asyncThreadsWithAuthor())
-		dispatch(asyncSetProfile())
-	}, [dispatch])
+  const threadsCategory = threadsWithAuthor?.filter((thread) =>
+    getAllCategories.length > 0
+      ? getAllCategories.includes(thread.category)
+      : thread,
+  )!
 
-	return (
-		<PageContainer>
-			<ThreadsHeader />
-			<div className='flex flex-col'>
-				<div className='flex flex-col gap-6 space-y-2'>
-					{status === 'loading' && (
-						<>
-							<ThreadsSkeleton />
-							<ThreadsSkeleton />
-						</>
-					)}
+  useEffect(() => {
+    dispatch(asyncReceiveThreads())
+    dispatch(asyncReceiveUsers())
+    dispatch(asyncSetProfile())
+  }, [dispatch])
 
-					{status === 'success' &&
-						threadsCategory?.length > 0 &&
-						threadsCategory.map((thread) => (
-							<ThreadsCard key={thread.id} {...thread} />
-						))}
+  return (
+    <PageContainer>
+      <ThreadsHeader />
+      <div className="flex flex-col">
+        <div className="flex flex-col gap-6 space-y-2">
+          {statusThreads === 'success' ? (
+            threadsCategory?.length > 0 &&
+            threadsCategory.map((thread: Thread) => (
+              <ThreadsCard key={thread.id} {...thread} />
+            ))
+          ) : (
+            <>
+              <ThreadsSkeleton />
+              <ThreadsSkeleton />
+            </>
+          )}
 
-					{threadsCategory?.length < 1 && <NotFoundThreads />}
-				</div>
-			</div>
-			{status === 'success' && <Footer />}
-		</PageContainer>
-	)
+          {statusThreads === 'success' && threadsCategory?.length < 1 && (
+            <NotFoundThreads />
+          )}
+        </div>
+      </div>
+
+      <Footer />
+    </PageContainer>
+  )
 }
