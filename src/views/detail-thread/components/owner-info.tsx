@@ -13,27 +13,23 @@ const OwnerInfoComponent = () => {
           <AvatarImage src="https://github.com/shadcn.png" />
         </AvatarFallback>
       </Avatar>
-      <div className="flex flex-col">
-        {status === 'success' ? (
+      {status === 'success' ? (
+        <div className="flex flex-col">
           <span className="text-lg font-semibold">{data?.owner.name}</span>
-        ) : (
-          <Skeleton className="h-5 w-32" />
-        )}
-
-        <div className="flex items-center gap-1 text-muted-foreground">
-          {status === 'success' ? (
-            <span>{data?.category}</span>
-          ) : (
-            <Skeleton className="h-5 w-16" />
-          )}
-          |
-          {status === 'success' ? (
+          <div className="flex items-center gap-1 text-muted-foreground">
+            <span>{data?.category}</span> |
             <span>{postedAt(data?.createdAt)}</span>
-          ) : (
-            <Skeleton className="h-5 w-16" />
-          )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="flex flex-col gap-1">
+          <Skeleton className="h-5 w-32" />
+          <div className="flex items-center gap-1 text-muted-foreground">
+            <Skeleton className="h-5 w-16" />|
+            <Skeleton className="h-5 w-16" />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
