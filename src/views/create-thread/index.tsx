@@ -13,19 +13,18 @@ import {
 	Input,
 } from '@/components/ui'
 import { useToast } from '@/hooks'
-import { asyncPostThread, useAppDispatch } from '@/libs/redux'
+import { useAppDispatch } from '@/libs/redux'
+import { asyncAddThread } from '@/libs/redux/slices/threads'
 import { createThreadSchema } from '@/libs/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { PenLine, Undo2 } from 'lucide-react'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 export default function CreateThreadView() {
 	const dispatch = useAppDispatch()
-	const { status } = useSession()
 	const { toast } = useToast()
 	const { push } = useRouter()
 
@@ -41,34 +40,22 @@ export default function CreateThreadView() {
 	async function handleCreateThread(
 		values: z.infer<typeof createThreadSchema>,
 	) {
-		if (status === 'unauthenticated') {
-			toast({
-				title: 'Unauthenticated',
-				description: 'You must be logged in to create a thread.',
-				variant: 'destructive',
-			})
-			return
-		}
-
 		try {
-			const response = await dispatch(
-				asyncPostThread({
+			dispatch(
+				asyncAddThread({
 					title: values.title,
 					body: values.body,
 					category: values.category,
 				}),
 			)
 
-			const originalPromiseResult = unwrapResult(response)
+			toast({
+				title: 'Thread created',
+				description: 'Your thread has been created successfully.',
+				variant: 'success',
+			})
 
-			if (originalPromiseResult.status === 'success') {
-				push('/')
-				toast({
-					title: 'Thread created',
-					description: 'Your thread has been created successfully.',
-					variant: 'success',
-				})
-			}
+			push('/')
 		} catch (error: any) {
 			console.log(error.message)
 			toast({

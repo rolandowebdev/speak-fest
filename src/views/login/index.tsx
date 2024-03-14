@@ -12,7 +12,8 @@ import {
 	FormMessage,
 	Input,
 } from '@/components/ui'
-import { asyncAuth, useAppDispatch } from '@/libs/redux'
+import { useAppDispatch } from '@/libs/redux'
+import { asyncAuth } from '@/libs/redux/slices/auth'
 import { authSchema } from '@/libs/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LogIn, Undo2 } from 'lucide-react'

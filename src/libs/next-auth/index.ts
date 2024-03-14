@@ -1,6 +1,7 @@
 import { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { LoginParams, login } from '@/libs/api/auth'
+import { LoginInputs } from '@/types'
+import api from '../api'
 
 const authOptions: NextAuthOptions = {
 	secret: process.env.NEXTAUTH_SECRET,
@@ -26,7 +27,7 @@ const authOptions: NextAuthOptions = {
 				},
 			},
 			async authorize(credentials) {
-				const { data } = await login(credentials as LoginParams)
+				const { data } = await api.login(credentials as LoginInputs)
 				if (data) {
 					return data.token
 				}

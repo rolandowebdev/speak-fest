@@ -12,10 +12,10 @@ import {
 	Heading,
 	Input,
 } from '@/components/ui'
-import { asyncRegister, useAppDispatch } from '@/libs/redux'
+import { useAppDispatch } from '@/libs/redux'
+import { asyncRegisterUser } from '@/libs/redux/slices/register'
 import { registerSchema } from '@/libs/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { unwrapResult } from '@reduxjs/toolkit'
 import { ClipboardPen, Undo2 } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -36,12 +36,15 @@ export default function RegisterView() {
 	})
 
 	async function handleRegister(values: z.infer<typeof registerSchema>) {
-		const resultAction = await dispatch(asyncRegister(values))
-		const originalPromiseResult = unwrapResult(resultAction)
+		dispatch(
+			asyncRegisterUser({
+				email: values.email,
+				password: values.password,
+				name: values.name,
+			}),
+		)
 
-		if (originalPromiseResult.status === 'success') {
-			push('/login')
-		}
+		push('/login')
 	}
 
 	const checkInputValidationError =

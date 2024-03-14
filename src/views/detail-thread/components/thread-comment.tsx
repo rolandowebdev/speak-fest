@@ -9,7 +9,9 @@ import {
 	Skeleton,
 	Textarea,
 } from '@/components/ui'
+import { toast } from '@/hooks'
 import { useAppDispatch } from '@/libs/redux'
+import { asyncAddThreadComment } from '@/libs/redux/slices/thread-detail'
 import { postCommentSchema } from '@/libs/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useSession } from 'next-auth/react'
@@ -30,12 +32,17 @@ const ThreadComment = ({ treadId }: { treadId: string }) => {
 
 	async function handleLogin(values: z.infer<typeof postCommentSchema>) {
 		try {
-			// dispatch(
-			// 	asyncPostCommentThread({
-			// 		content: values.comment,
-			// 		threadId: treadId as string,
-			// 	}),
-			// )
+			dispatch(
+				asyncAddThreadComment({ content: values.comment, threadId: treadId }),
+			)
+
+			toast({
+				title: 'Comment created',
+				description: 'Your comment has been created successfully.',
+				variant: 'success',
+			})
+
+			form.reset()
 		} catch (error: any) {
 			console.log(error.message)
 			throw new Error(error)
@@ -80,7 +87,7 @@ const ThreadComment = ({ treadId }: { treadId: string }) => {
 					<Link href='/login' className='link-style'>
 						Login
 					</Link>{' '}
-					to your account
+					to add your comment
 				</p>
 			)}
 		</>

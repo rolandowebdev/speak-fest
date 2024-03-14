@@ -1,6 +1,6 @@
 import METADATA from '@/constants/metadata'
-import { getDetailThread } from '@/libs/api/threads'
-import { DetailThread } from '@/types'
+import api from '@/libs/api'
+import { ThreadDetail } from '@/types'
 import { DetailThreadView } from '@/views/detail-thread'
 import { Metadata } from 'next'
 
@@ -16,9 +16,9 @@ export async function generateMetadata({
 	try {
 		const { slug } = params
 
-		const { data } = await getDetailThread(slug)
+		const { data } = await api.getDetailThread(slug)
 
-		const thread = data.detailThread as DetailThread
+		const thread = data.detailThread as ThreadDetail
 
 		return {
 			title: `${thread?.title || 'Thread not found'} ${METADATA.exTitle}`,

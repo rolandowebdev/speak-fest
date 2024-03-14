@@ -4,16 +4,12 @@ import { Footer, Header, PageContainer } from '@/components/layout'
 import { Button, Heading } from '@/components/ui'
 import { DataTable } from './components/data-table'
 import { useEffect } from 'react'
-import {
-	asyncSetLeaderboards,
-	asyncSetProfile,
-	useAppDispatch,
-	useAppSelector,
-} from '@/libs/redux'
 import { CustomLeaderboardsEntry } from '@/types'
 import { Dice6, Undo2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { ColumnDef } from '@tanstack/react-table'
+import { asyncReceiveLeaderboard } from '@/libs/redux/slices/leaderboard'
+import { useAppDispatch, useAppSelector } from '@/libs/redux'
 
 export const columns: ColumnDef<CustomLeaderboardsEntry>[] = [
 	{
@@ -38,11 +34,10 @@ export default function LeaderboardsView() {
 	const dispatch = useAppDispatch()
 
 	const { push } = useRouter()
-	const { data, status } = useAppSelector((state) => state.leaderboards)
+	const { data, status } = useAppSelector((state) => state.leaderboard)
 
 	useEffect(() => {
-		dispatch(asyncSetLeaderboards())
-		dispatch(asyncSetProfile())
+		dispatch(asyncReceiveLeaderboard())
 	}, [dispatch])
 
 	const convertToCustomLeaderboardsEntry = (

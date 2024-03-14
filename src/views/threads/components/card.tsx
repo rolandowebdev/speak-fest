@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Heading, Separator } from '@/components/ui'
 import { Clock, Hash, MessageCircle, User } from 'lucide-react'
-import { ThreadWithOwner } from '@/types'
+import { Thread } from '@/types'
 import { postedAt } from '@/libs/utils'
 import parse from 'html-react-parser'
 
@@ -12,8 +12,8 @@ export const ThreadsCard = ({
 	createdAt,
 	totalComments,
 	category,
-	owner: { name },
-}: ThreadWithOwner) => {
+	author,
+}: Thread) => {
 	return (
 		<Link href={`thread/${id}`} className='group'>
 			<article className='rounded-md border p-5 duration-300 hover:-translate-y-2 hover:shadow-md'>
@@ -31,7 +31,7 @@ export const ThreadsCard = ({
 					</span>
 					<span className='flex items-center gap-2'>
 						<User />
-						{name}
+						{author}
 					</span>
 					<span className='flex items-center gap-2'>
 						<Clock />

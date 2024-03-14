@@ -1,6 +1,16 @@
+import api from '@/libs/api'
+import { createAsyncThunk } from '@reduxjs/toolkit'
 import { User } from '@/types'
 import { createSlice } from '@reduxjs/toolkit'
-import { asyncSetProfile } from '@/libs/redux'
+
+export const asyncSetProfile = createAsyncThunk('user/profile', async () => {
+	try {
+		const { data } = await api.getOwnProfile()
+		return data
+	} catch (error: any) {
+		throw new Error(error.message)
+	}
+})
 
 type InitialState = {
 	data: User | null

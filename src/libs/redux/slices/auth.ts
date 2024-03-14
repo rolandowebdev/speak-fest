@@ -1,5 +1,23 @@
+import api from '@/libs/api'
 import { createSlice } from '@reduxjs/toolkit'
-import { asyncAuth } from '@/libs/redux'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import { hideLoading, showLoading } from 'react-redux-loading-bar'
+import { LoginInputs } from '@/types'
+
+export const asyncAuth = createAsyncThunk(
+	'auth/asyncAuth',
+	async (body: LoginInputs, { dispatch }) => {
+		try {
+			dispatch(showLoading())
+			const data = await api.login(body)
+			return data
+		} catch (error: any) {
+			throw new Error(error.message)
+		} finally {
+			dispatch(hideLoading())
+		}
+	},
+)
 
 type InitialState = {
 	data: string | null

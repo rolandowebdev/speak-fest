@@ -1,4 +1,4 @@
-import { Separator, Skeleton } from '@/components/ui'
+import { Skeleton } from '@/components/ui'
 import React from 'react'
 
 export const CommentSkeleton = () => {

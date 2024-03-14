@@ -22,7 +22,8 @@ export async function middleware(req: NextRequest) {
 	} else {
 		if (
 			currentPathname.includes('/threads') ||
-			currentPathname.includes('/profile')
+			currentPathname.includes('/profile') ||
+			currentPathname.includes('/create-thread')
 		) {
 			return NextResponse.redirect(new URL('/', req.url))
 		}

@@ -20,36 +20,40 @@ import {
 	Button,
 	ImageBlur,
 } from '@/components/ui'
-import { asyncSetProfile, useAppDispatch, useAppSelector } from '@/libs/redux'
+import { useAppDispatch, useAppSelector } from '@/libs/redux'
+import { asyncReceiveLeaderboard } from '@/libs/redux/slices/leaderboard'
+import { asyncSetProfile } from '@/libs/redux/slices/profile'
+import { asyncReceiveThreads } from '@/libs/redux/slices/threads'
 import { cn } from '@/libs/utils'
 import { convertToUppercase } from '@/utils'
-import { Undo2, User } from 'lucide-react'
-
-import { signOut, useSession } from 'next-auth/react'
+import { Coins, MessagesSquare, Undo2, User } from 'lucide-react'
+import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
 export default function ProfileView() {
 	const dispatch = useAppDispatch()
-
 	const { push } = useRouter()
-	const { status } = useSession()
-	const { data, status: threadsStatus } = useAppSelector(
+
+	const { data: threads } = useAppSelector((state) => state.threads)
+	const { data: leaderboard } = useAppSelector((state) => state.leaderboard)
+	const { data: profile, status: statusProfile } = useAppSelector(
 		(state) => state.profile,
 	)
 
+	const { avatar, name, email, score, totalThreads } = {
+		...profile,
+		score:
+			leaderboard.find(({ user }) => profile?.id === user.id)?.score || '...',
+		totalThreads: threads.filter((thread) => profile?.id === thread.ownerId)
+			.length,
+	}
+
 	useEffect(() => {
 		dispatch(asyncSetProfile())
+		dispatch(asyncReceiveLeaderboard())
+		dispatch(asyncReceiveThreads())
 	}, [dispatch])
-
-	const isAuth = status === 'authenticated'
-	const avatarSrcPrefetch = data?.avatar ?? 'https://github.com/shadcn.png'
-	const avatarSrc = isAuth ? avatarSrcPrefetch : 'https://github.com/shadcn.png'
-
-	const handleLogout = () => {
-		signOut({ redirect: false })
-		push('/login')
-	}
 
 	return (
 		<PageContainer>
@@ -68,24 +72,32 @@ export default function ProfileView() {
 			<div className='flex space-x-10 flex-col md:flex-row items-center'>
 				<div className='flex flex-col space-y-2 w-full'>
 					<Avatar className='h-16 w-16'>
-						<AvatarImage src={avatarSrc} alt={data?.name || 'avatar'} />
+						<AvatarImage src={avatar} alt={name || 'avatar'} />
 						<AvatarFallback>
 							<Skeleton />
 						</AvatarFallback>
 					</Avatar>
-					{threadsStatus === 'loading' ? (
-						<>
-							<Skeleton className='w-44 h-9 rounded-sm' />
-							<Skeleton className='w-56 h-6 rounded-sm' />
-							<Skeleton className='w-24 h-6 rounded-sm' />
-						</>
+					{statusProfile === 'success' ? (
+						<div className='flex flex-col space-y-4 mb-2'>
+							<div className='flex flex-col'>
+								<Heading variant='h2'>{convertToUppercase(name ?? '')}</Heading>
+								<p>{email}</p>
+							</div>
+							<div className='flex flex-col'>
+								<p className='flex gap-2 items-center'>
+									<Coins size={18} /> Score : {score}
+								</p>
+								<p className='flex gap-2 items-center'>
+									<MessagesSquare size={18} /> Threads : {totalThreads}
+								</p>
+							</div>
+						</div>
 					) : (
 						<>
-							<Heading variant='h2'>
-								{convertToUppercase(data?.name ?? '')}
-							</Heading>
-							<p>{data?.email}</p>
-							<p>Score : 0</p>
+							<Skeleton className='w-44 h-7 rounded-sm' />
+							<Skeleton className='w-56 h-6 rounded-sm' />
+							<Skeleton className='w-24 h-6 rounded-sm' />
+							<Skeleton className='w-24 h-6 rounded-sm' />
 						</>
 					)}
 					<AlertDialog>
@@ -101,7 +113,7 @@ export default function ProfileView() {
 							</AlertDialogHeader>
 							<AlertDialogFooter>
 								<AlertDialogCancel>Cancel</AlertDialogCancel>
-								<AlertDialogAction onClick={handleLogout}>
+								<AlertDialogAction onClick={() => signOut()}>
 									Logout
 								</AlertDialogAction>
 							</AlertDialogFooter>

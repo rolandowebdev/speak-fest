@@ -3,36 +3,32 @@ import { useAppSelector } from '@/libs/redux'
 import { postedAt } from '@/libs/utils'
 
 const OwnerInfoComponent = () => {
-	const { data, status } = useAppSelector((state) => state.detailThread)
-	const isDetailThreadSuccess = status === 'success'
+	const { data, status } = useAppSelector((state) => state.threadDetail)
 
 	return (
 		<div className='flex items-center gap-2'>
-			{isDetailThreadSuccess ? (
-				<Avatar className='w-12 h-12'>
-					<AvatarImage src={data?.owner.avatar} />
-					<AvatarFallback>
-						<AvatarImage src='https://github.com/shadcn.png' />
-					</AvatarFallback>
-				</Avatar>
-			) : (
-				<Skeleton className='w-12 h-12' />
-			)}
+			<Avatar className='w-12 h-12'>
+				<AvatarImage src={data?.owner.avatar} />
+				<AvatarFallback>
+					<AvatarImage src='https://github.com/shadcn.png' />
+				</AvatarFallback>
+			</Avatar>
 			<div className='flex flex-col'>
-				{isDetailThreadSuccess ? (
+				{status === 'success' ? (
 					<span className='text-lg font-semibold'>{data?.owner.name}</span>
 				) : (
-					<Skeleton className='w-36 h-5' />
+					<Skeleton className='w-32 h-5' />
 				)}
+
 				<div className='flex items-center gap-1 text-muted-foreground'>
-					{isDetailThreadSuccess ? (
-						<span>{`# ${data?.category && data?.category}`}</span>
+					{status === 'success' ? (
+						<span>{data?.category}</span>
 					) : (
 						<Skeleton className='w-16 h-5' />
 					)}
 					|
-					{isDetailThreadSuccess ? (
-						<span>{postedAt(data?.createdAt as string)}</span>
+					{status === 'success' ? (
+						<span>{postedAt(data?.createdAt)}</span>
 					) : (
 						<Skeleton className='w-16 h-5' />
 					)}

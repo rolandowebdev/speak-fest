@@ -1,22 +1,44 @@
 import { Button, Heading, Separator, Skeleton } from '@/components/ui'
-import { useAppSelector } from '@/libs/redux'
+import { useAppDispatch, useAppSelector } from '@/libs/redux'
+import { asyncVoteThread } from '@/libs/redux/slices/thread-detail'
 import parse from 'html-react-parser'
 import { ThumbsDown, ThumbsUp } from 'lucide-react'
+import { useSession } from 'next-auth/react'
 
-const ThreadDetailsComponent = () => {
-	const { status, data } = useAppSelector((state) => state.detailThread)
+const ThreadDetails = ({ threadId }: { threadId: string }) => {
+	const dispatch = useAppDispatch()
 
-	const isDetailThreadSuccess = status === 'success'
+	const { data: profile } = useAppSelector((state) => state.profile)
+	const { status: authStatus } = useSession()
+	const { status: threadStatus, data: threadDetail } = useAppSelector(
+		(state) => state.threadDetail,
+	)
+
+	const handleUpVote = () => {
+		if (threadDetail.upVotesBy.includes(profile?.id as string)) {
+			dispatch(asyncVoteThread({ threadId, voteType: 'neutral-vote' }))
+		} else {
+			dispatch(asyncVoteThread({ threadId, voteType: 'up-vote' }))
+		}
+	}
+
+	const handleDownVote = () => {
+		if (threadDetail.downVotesBy.includes(profile?.id as string)) {
+			dispatch(asyncVoteThread({ threadId, voteType: 'neutral-vote' }))
+		} else {
+			dispatch(asyncVoteThread({ threadId, voteType: 'down-vote' }))
+		}
+	}
 
 	return (
 		<>
-			<Heading variant='h2'>{data?.title}</Heading>
+			<Heading variant='h2'>{threadDetail?.title}</Heading>
 			<div className='flex flex-col gap-2'>
 				<div>
 					<Separator />
-					{isDetailThreadSuccess ? (
+					{threadStatus === 'success' ? (
 						<p className='my-4 text-muted-foreground'>
-							{parse(data?.body ?? '')}
+							{parse(threadDetail?.body ?? '')}
 						</p>
 					) : (
 						<div className='space-y-3 my-4'>
@@ -30,10 +52,10 @@ const ThreadDetailsComponent = () => {
 					<Separator />
 				</div>
 				<div className='flex items-center justify-between'>
-					{isDetailThreadSuccess ? (
+					{threadStatus === 'success' ? (
 						<>
-							{`${data?.comments.length} ${
-								data?.comments && data?.comments.length > 1
+							{`${threadDetail?.comments.length} ${
+								threadDetail?.comments && threadDetail?.comments.length > 1
 									? 'comments'
 									: 'comment'
 							}`}
@@ -42,13 +64,23 @@ const ThreadDetailsComponent = () => {
 						<Skeleton className='w-36 h-5' />
 					)}
 					<div className='flex gap-2'>
-						<Button variant='ghost' className='flex items-center gap-1 text-lg'>
+						<Button
+							variant='ghost'
+							onClick={handleUpVote}
+							disabled={authStatus === 'unauthenticated'}
+							className='flex items-center gap-1 text-lg'>
 							<ThumbsUp />
-							{isDetailThreadSuccess ? data?.upVotesBy.length : 0}
+							{threadStatus === 'success' ? threadDetail?.upVotesBy.length : 0}
 						</Button>
-						<Button variant='ghost' className='flex items-center gap-1 text-lg'>
+						<Button
+							variant='ghost'
+							onClick={handleDownVote}
+							disabled={authStatus === 'unauthenticated'}
+							className='flex items-center gap-1 text-lg'>
 							<ThumbsDown />
-							{isDetailThreadSuccess ? data?.downVotesBy.length : 0}
+							{threadStatus === 'success'
+								? threadDetail?.downVotesBy.length
+								: 0}
 						</Button>
 					</div>
 				</div>
@@ -57,4 +89,4 @@ const ThreadDetailsComponent = () => {
 	)
 }
 
-export default ThreadDetailsComponent
+export default ThreadDetails

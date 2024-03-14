@@ -2,33 +2,39 @@
 
 import { Footer, PageContainer } from '@/components/layout'
 import { ThreadsCard } from './components/card'
-import {
-	asyncSetProfile,
-	asyncThreadsWithAuthor,
-	useAppDispatch,
-	useAppSelector,
-} from '@/libs/redux'
 import { useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { ThreadsHeader } from './components/header'
 import { NotFoundThreads } from './components/not-found'
 import { ThreadsSkeleton } from './components/skeleton'
+import { useAppDispatch, useAppSelector } from '@/libs/redux'
+import { Thread } from '@/types'
+import { asyncSetProfile } from '@/libs/redux/slices/profile'
+import { asyncReceiveThreads } from '@/libs/redux/slices/threads'
 
 export default function ThreadsView() {
 	const dispatch = useAppDispatch()
 	const searchParams = useSearchParams()
-	const { data, status } = useAppSelector((state) => state.threads)
+	const { data: users } = useAppSelector((state) => state.users)
+	const { data: threads, status: statusThreads } = useAppSelector(
+		(state) => state.threads,
+	)
+
+	const threadsWithAuthor = threads.map((thread: Thread) => ({
+		...thread,
+		author: users.find((user) => user.id === thread.ownerId)?.name,
+	}))
 
 	const getAllCategories = searchParams.getAll('category')
 
-	const threadsCategory = data?.filter((thread) =>
+	const threadsCategory = threadsWithAuthor?.filter((thread) =>
 		getAllCategories.length > 0
 			? getAllCategories.includes(thread.category)
 			: thread,
 	)!
 
 	useEffect(() => {
-		dispatch(asyncThreadsWithAuthor())
+		dispatch(asyncReceiveThreads())
 		dispatch(asyncSetProfile())
 	}, [dispatch])
 
@@ -37,23 +43,25 @@ export default function ThreadsView() {
 			<ThreadsHeader />
 			<div className='flex flex-col'>
 				<div className='flex flex-col gap-6 space-y-2'>
-					{status === 'loading' && (
+					{statusThreads === 'success' ? (
+						threadsCategory?.length > 0 &&
+						threadsCategory.map((thread: Thread) => (
+							<ThreadsCard key={thread.id} {...thread} />
+						))
+					) : (
 						<>
 							<ThreadsSkeleton />
 							<ThreadsSkeleton />
 						</>
 					)}
 
-					{status === 'success' &&
-						threadsCategory?.length > 0 &&
-						threadsCategory.map((thread) => (
-							<ThreadsCard key={thread.id} {...thread} />
-						))}
-
-					{threadsCategory?.length < 1 && <NotFoundThreads />}
+					{statusThreads === 'success' && threadsCategory?.length < 1 && (
+						<NotFoundThreads />
+					)}
 				</div>
 			</div>
-			{status === 'success' && <Footer />}
+
+			<Footer />
 		</PageContainer>
 	)
 }

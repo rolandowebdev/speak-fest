@@ -1,12 +1,11 @@
 import { Header } from '@/components/layout'
-import { Button, Heading, Skeleton } from '@/components/ui'
-import { useAppSelector } from '@/libs/redux'
-import { Hash } from 'lucide-react'
+import { Heading, Skeleton } from '@/components/ui'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { ButtonCategory } from './button-category'
 import { convertToUppercase } from '@/utils'
+import { useAppSelector } from '@/libs/redux'
 
 export const ThreadsHeader = () => {
 	const { status } = useSession()
@@ -30,7 +29,7 @@ export const ThreadsHeader = () => {
 	return (
 		<Header>
 			{status === 'loading' ? (
-				<Skeleton className='w-2/4 h-9 rounded-sm' />
+				<Skeleton className='w-2/5 h-10 rounded-sm' />
 			) : (
 				<>
 					{status === 'authenticated' ? (
@@ -52,7 +51,7 @@ export const ThreadsHeader = () => {
 				</>
 			)}
 
-			{statusThreads === 'success' && (
+			{statusThreads === 'success' ? (
 				<div className='flex items-center gap-4'>
 					<span className='font-semibold'>Hashtag : </span>
 					<div className='flex items-center gap-2'>
@@ -60,6 +59,14 @@ export const ThreadsHeader = () => {
 							categories?.map((category) => (
 								<ButtonCategory key={category} category={category} />
 							))}
+					</div>
+				</div>
+			) : (
+				<div className='flex items-center gap-4'>
+					<span className='font-semibold'>Hashtag : </span>
+					<div className='flex items-center gap-2'>
+						<Skeleton className='w-20 h-10' />
+						<Skeleton className='w-20 h-10' />
 					</div>
 				</div>
 			)}
