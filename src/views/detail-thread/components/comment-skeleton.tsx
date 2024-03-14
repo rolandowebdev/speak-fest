@@ -2,18 +2,18 @@ import { Skeleton } from '@/components/ui'
 import React from 'react'
 
 export const CommentSkeleton = () => {
-	return (
-		<Skeleton className='p-4 border rounded-md flex gap-4 flex-col justify-between h-[178px]'>
-			<Skeleton className='bg-gray-200 rounded-full h-12 w-12' />
-			<Skeleton className='bg-gray-200 h-5 w-28' />
+  return (
+    <Skeleton className="flex h-[178px] flex-col justify-between gap-4 rounded-md border p-4">
+      <Skeleton className="h-12 w-12 rounded-full bg-gray-200" />
+      <Skeleton className="h-5 w-28 bg-gray-200" />
 
-			<div className='flex justify-between items-center'>
-				<Skeleton className='bg-gray-200 h-5 w-24' />
-				<div className='flex gap-2'>
-					<Skeleton className='w-14 h-9 bg-gray-200' />
-					<Skeleton className='w-14 h-9 bg-gray-200' />
-				</div>
-			</div>
-		</Skeleton>
-	)
+      <div className="flex items-center justify-between">
+        <Skeleton className="h-5 w-24 bg-gray-200" />
+        <div className="flex gap-2">
+          <Skeleton className="h-9 w-14 bg-gray-200" />
+          <Skeleton className="h-9 w-14 bg-gray-200" />
+        </div>
+      </div>
+    </Skeleton>
+  )
 }

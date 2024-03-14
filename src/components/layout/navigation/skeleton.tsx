@@ -1,12 +1,12 @@
 import { Skeleton } from '@/components/ui'
 
 export const NavigationLinkSkeleton = () => {
-	return (
-		<>
-			<Skeleton className='flex items-center space-x-2 border-2 border-transparent bg-opacity-25 h-11 px-3 py-2 md:min-w-[10rem] font-medium tracking-wide transition-colors rounded-none' />
-			<Skeleton className='flex items-center space-x-2 border-2 border-transparent bg-opacity-25 h-11 px-3 py-2 md:min-w-[10rem] font-medium tracking-wide transition-colors rounded-none' />
-			<Skeleton className='flex items-center space-x-2 border-2 border-transparent bg-opacity-25 h-11 px-3 py-2 md:min-w-[10rem] font-medium tracking-wide transition-colors rounded-none' />
-			<Skeleton className='flex items-center space-x-2 border-2 border-transparent bg-opacity-25 h-11 px-3 py-2 md:min-w-[10rem] font-medium tracking-wide transition-colors rounded-none' />
-		</>
-	)
+  return (
+    <>
+      <Skeleton className="flex h-11 items-center space-x-2 rounded-none border-2 border-transparent bg-opacity-25 px-3 py-2 font-medium tracking-wide transition-colors md:min-w-[10rem]" />
+      <Skeleton className="flex h-11 items-center space-x-2 rounded-none border-2 border-transparent bg-opacity-25 px-3 py-2 font-medium tracking-wide transition-colors md:min-w-[10rem]" />
+      <Skeleton className="flex h-11 items-center space-x-2 rounded-none border-2 border-transparent bg-opacity-25 px-3 py-2 font-medium tracking-wide transition-colors md:min-w-[10rem]" />
+      <Skeleton className="flex h-11 items-center space-x-2 rounded-none border-2 border-transparent bg-opacity-25 px-3 py-2 font-medium tracking-wide transition-colors md:min-w-[10rem]" />
+    </>
+  )
 }

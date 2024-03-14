@@ -2,302 +2,302 @@ import type { LoginInputs, ThreadDetail, VoteType } from '@/types'
 import { getSession } from 'next-auth/react'
 
 const api = (() => {
-	const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL_FORUM_API as string
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL_FORUM_API as string
 
-	interface FetchOptions {
-		method: 'GET' | 'POST'
-		headers: {
-			'Content-Type': 'application/json'
-		}
-		body: string
-	}
+  interface FetchOptions {
+    method: 'GET' | 'POST'
+    headers: {
+      'Content-Type': 'application/json'
+    }
+    body: string
+  }
 
-	async function _fetchWithAuth(
-		url: string,
-		options: Partial<FetchOptions> = {},
-	) {
-		const session = await getSession()
-		const getAccessTokenFromSession = session?.user.accessToken
-		return fetch(url, {
-			...options,
-			headers: {
-				...options.headers,
-				Authorization: `Bearer ${getAccessTokenFromSession}`,
-			},
-		})
-	}
+  async function _fetchWithAuth(
+    url: string,
+    options: Partial<FetchOptions> = {},
+  ) {
+    const session = await getSession()
+    const getAccessTokenFromSession = session?.user.accessToken
+    return fetch(url, {
+      ...options,
+      headers: {
+        ...options.headers,
+        Authorization: `Bearer ${getAccessTokenFromSession}`,
+      },
+    })
+  }
 
-	interface Register {
-		name: string
-		email: string
-		password: string
-	}
+  interface Register {
+    name: string
+    email: string
+    password: string
+  }
 
-	async function register({ name, email, password }: Partial<Register>) {
-		const response = await fetch(`${BASE_URL}/register`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				name,
-				email,
-				password,
-			}),
-		})
+  async function register({ name, email, password }: Partial<Register>) {
+    const response = await fetch(`${BASE_URL}/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+    })
 
-		const responseJson = await response.json()
-		const { status, message } = responseJson
+    const responseJson = await response.json()
+    const { status, message } = responseJson
 
-		if (status !== 'success') {
-			throw new Error(message)
-		}
+    if (status !== 'success') {
+      throw new Error(message)
+    }
 
-		const {
-			data: { user },
-		} = responseJson
+    const {
+      data: { user },
+    } = responseJson
 
-		return user
-	}
+    return user
+  }
 
-	async function login({ email, password }: LoginInputs): Promise<any> {
-		try {
-			const body = JSON.stringify({ email, password })
-			const response = await fetch(`${BASE_URL}/login`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body,
-			})
+  async function login({ email, password }: LoginInputs): Promise<any> {
+    try {
+      const body = JSON.stringify({ email, password })
+      const response = await fetch(`${BASE_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body,
+      })
 
-			if (!response.ok) {
-				throw new Error(`Login failed with status ${response.status}`)
-			}
+      if (!response.ok) {
+        throw new Error(`Login failed with status ${response.status}`)
+      }
 
-			return await response.json()
-		} catch (error: any) {
-			throw new Error(error.message)
-		}
-	}
+      return await response.json()
+    } catch (error: any) {
+      throw new Error(error.message)
+    }
+  }
 
-	async function getOwnProfile() {
-		const response = await _fetchWithAuth(`${BASE_URL}/users/me`)
+  async function getOwnProfile() {
+    const response = await _fetchWithAuth(`${BASE_URL}/users/me`)
 
-		const responseJson = await response.json()
+    const responseJson = await response.json()
 
-		const { status, message } = responseJson
+    const { status, message } = responseJson
 
-		if (status !== 'success') {
-			throw new Error(message)
-		}
+    if (status !== 'success') {
+      throw new Error(message)
+    }
 
-		return responseJson
-	}
+    return responseJson
+  }
 
-	async function getAllUsers() {
-		const response = await fetch(`${BASE_URL}/users`)
+  async function getAllUsers() {
+    const response = await fetch(`${BASE_URL}/users`)
 
-		const responseJson = await response.json()
+    const responseJson = await response.json()
 
-		const { status, message } = responseJson
+    const { status, message } = responseJson
 
-		if (status !== 'success') {
-			throw new Error(message)
-		}
+    if (status !== 'success') {
+      throw new Error(message)
+    }
 
-		const {
-			data: { users },
-		} = responseJson
+    const {
+      data: { users },
+    } = responseJson
 
-		return users
-	}
+    return users
+  }
 
-	async function getAllThreads() {
-		const response = await fetch(`${BASE_URL}/threads`)
+  async function getAllThreads() {
+    const response = await fetch(`${BASE_URL}/threads`)
 
-		const responseJson = await response.json()
+    const responseJson = await response.json()
 
-		const { status, message } = responseJson
+    const { status, message } = responseJson
 
-		if (status !== 'success') {
-			throw new Error(message)
-		}
+    if (status !== 'success') {
+      throw new Error(message)
+    }
 
-		const {
-			data: { threads },
-		} = responseJson
+    const {
+      data: { threads },
+    } = responseJson
 
-		return threads
-	}
+    return threads
+  }
 
-	async function getDetailThread(id: string) {
-		const response = await fetch(`${BASE_URL}/threads/${id}`)
+  async function getDetailThread(id: string) {
+    const response = await fetch(`${BASE_URL}/threads/${id}`)
 
-		const responseJson = await response.json()
+    const responseJson = await response.json()
 
-		const { status, message } = responseJson
+    const { status, message } = responseJson
 
-		if (status !== 'success') {
-			throw new Error(message)
-		}
+    if (status !== 'success') {
+      throw new Error(message)
+    }
 
-		const {
-			data: { detailThread },
-		} = responseJson
+    const {
+      data: { detailThread },
+    } = responseJson
 
-		return detailThread
-	}
+    return detailThread
+  }
 
-	async function createThread({
-		title,
-		body,
-		category,
-	}: Partial<ThreadDetail>) {
-		const response = await _fetchWithAuth(`${BASE_URL}/threads`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				title,
-				body,
-				category,
-			}),
-		})
+  async function createThread({
+    title,
+    body,
+    category,
+  }: Partial<ThreadDetail>) {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title,
+        body,
+        category,
+      }),
+    })
 
-		const responseJson = await response.json()
+    const responseJson = await response.json()
 
-		const { status, message } = responseJson
+    const { status, message } = responseJson
 
-		if (status !== 'success') {
-			throw new Error(message)
-		}
+    if (status !== 'success') {
+      throw new Error(message)
+    }
 
-		const {
-			data: { thread },
-		} = responseJson
+    const {
+      data: { thread },
+    } = responseJson
 
-		return thread
-	}
+    return thread
+  }
 
-	async function createComment(content: string, threadId: string) {
-		const response = await _fetchWithAuth(
-			`${BASE_URL}/threads/${threadId}/comments`,
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					content,
-				}),
-			},
-		)
+  async function createComment(content: string, threadId: string) {
+    const response = await _fetchWithAuth(
+      `${BASE_URL}/threads/${threadId}/comments`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          content,
+        }),
+      },
+    )
 
-		const responseJson = await response.json()
+    const responseJson = await response.json()
 
-		const {
-			status,
-			message,
-			data: { comment },
-		} = responseJson
+    const {
+      status,
+      message,
+      data: { comment },
+    } = responseJson
 
-		if (status !== 'success') {
-			throw new Error(message)
-		}
+    if (status !== 'success') {
+      throw new Error(message)
+    }
 
-		return comment
-	}
+    return comment
+  }
 
-	async function addThreadVote(threadId: string, voteType: string) {
-		const response = await _fetchWithAuth(
-			`${BASE_URL}/threads/${threadId}/${voteType}`,
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			},
-		)
+  async function addThreadVote(threadId: string, voteType: string) {
+    const response = await _fetchWithAuth(
+      `${BASE_URL}/threads/${threadId}/${voteType}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    )
 
-		const responseJson = await response.json()
+    const responseJson = await response.json()
 
-		const {
-			status,
-			message,
-			data: { vote },
-		} = responseJson
+    const {
+      status,
+      message,
+      data: { vote },
+    } = responseJson
 
-		if (status !== 'success') {
-			throw new Error(message)
-		}
+    if (status !== 'success') {
+      throw new Error(message)
+    }
 
-		return vote
-	}
+    return vote
+  }
 
-	async function addCommentVote(
-		threadId: string,
-		commentId: string,
-		voteType: VoteType,
-	) {
-		const response = await _fetchWithAuth(
-			`${BASE_URL}/threads/${threadId}/comments/${commentId}/${voteType}`,
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			},
-		)
+  async function addCommentVote(
+    threadId: string,
+    commentId: string,
+    voteType: VoteType,
+  ) {
+    const response = await _fetchWithAuth(
+      `${BASE_URL}/threads/${threadId}/comments/${commentId}/${voteType}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    )
 
-		const responseJson = await response.json()
+    const responseJson = await response.json()
 
-		const {
-			status,
-			message,
-			data: { vote },
-		} = responseJson
+    const {
+      status,
+      message,
+      data: { vote },
+    } = responseJson
 
-		if (status !== 'success') {
-			throw new Error(message)
-		}
+    if (status !== 'success') {
+      throw new Error(message)
+    }
 
-		return vote
-	}
+    return vote
+  }
 
-	async function getLeaderboard() {
-		const response = await _fetchWithAuth(`${BASE_URL}/leaderboards`)
+  async function getLeaderboard() {
+    const response = await _fetchWithAuth(`${BASE_URL}/leaderboards`)
 
-		const responseJson = await response.json()
+    const responseJson = await response.json()
 
-		const { status, message } = responseJson
+    const { status, message } = responseJson
 
-		if (status !== 'success') {
-			throw new Error(message)
-		}
+    if (status !== 'success') {
+      throw new Error(message)
+    }
 
-		const {
-			data: { leaderboards },
-		} = responseJson
+    const {
+      data: { leaderboards },
+    } = responseJson
 
-		return leaderboards
-	}
-	// #endregion Leaderboard
+    return leaderboards
+  }
+  // #endregion Leaderboard
 
-	return {
-		register,
-		login,
-		getOwnProfile,
-		getAllUsers,
-		getAllThreads,
-		getDetailThread,
-		createThread,
-		createComment,
-		addThreadVote,
-		addCommentVote,
-		getLeaderboard,
-	}
+  return {
+    register,
+    login,
+    getOwnProfile,
+    getAllUsers,
+    getAllThreads,
+    getDetailThread,
+    createThread,
+    createComment,
+    addThreadVote,
+    addCommentVote,
+    getLeaderboard,
+  }
 })()
 
 export default api

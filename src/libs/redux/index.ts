@@ -11,18 +11,18 @@ import profileSlice from './slices/profile'
 import resgiterSlice from './slices/register'
 
 export const store = () => {
-	return configureStore({
-		reducer: {
-			auth: authSlice,
-			threads: threadsSlice,
-			threadDetail: threadDetailSlice,
-			leaderboard: leaderboardSlice,
-			users: usersSlice,
-			profile: profileSlice,
-			register: resgiterSlice,
-			loadingBar: loadingBarReducer,
-		},
-	})
+  return configureStore({
+    reducer: {
+      auth: authSlice,
+      threads: threadsSlice,
+      threadDetail: threadDetailSlice,
+      leaderboard: leaderboardSlice,
+      users: usersSlice,
+      profile: profileSlice,
+      register: resgiterSlice,
+      loadingBar: loadingBarReducer,
+    },
+  })
 }
 
 export type AppStore = ReturnType<typeof store>

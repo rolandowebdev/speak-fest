@@ -15,52 +15,53 @@ import ThreadDetails from './components/thread-detail'
 import { Comment } from '@/types'
 
 type DetailtThreadViewProps = {
-	slug: string
+  slug: string
 }
 
 export const DetailThreadView = ({ slug }: DetailtThreadViewProps) => {
-	const dispatch = useAppDispatch()
-	const { data, status } = useAppSelector((state) => state.threadDetail)
-	const { push } = useRouter()
+  const dispatch = useAppDispatch()
+  const { data, status } = useAppSelector((state) => state.threadDetail)
+  const { push } = useRouter()
 
-	useEffect(() => {
-		dispatch(asyncReceiveThreadDetail(slug))
-		dispatch(asyncSetProfile())
-	}, [dispatch, slug])
+  useEffect(() => {
+    dispatch(asyncReceiveThreadDetail(slug))
+    dispatch(asyncSetProfile())
+  }, [dispatch, slug])
 
-	return (
-		<PageContainer>
-			<Header>
-				<Button
-					variant='link'
-					className='px-0 flex items-center gap-1 text-lg text-primary'
-					onClick={() => push('/')}>
-					<Undo2 size={18} />
-					Back to home
-				</Button>
-				<Heading className='flex items-center gap-2 flex-wrap'>
-					<MessagesSquare size={32} /> Detail Thread
-				</Heading>
-			</Header>
+  return (
+    <PageContainer>
+      <Header>
+        <Button
+          variant="link"
+          className="flex items-center gap-1 px-0 text-lg text-primary"
+          onClick={() => push('/')}
+        >
+          <Undo2 size={18} />
+          Back to home
+        </Button>
+        <Heading className="flex flex-wrap items-center gap-2">
+          <MessagesSquare size={32} /> Detail Thread
+        </Heading>
+      </Header>
 
-			<OwnerInfoComponent />
+      <OwnerInfoComponent />
 
-			<ThreadDetails threadId={slug} />
+      <ThreadDetails threadId={slug} />
 
-			<ThreadComment treadId={slug} />
+      <ThreadComment treadId={slug} />
 
-			<Separator />
+      <Separator />
 
-			{data?.comments?.map((comment: Comment) => (
-				<CardComment
-					key={comment.id}
-					{...comment}
-					threadId={slug}
-					threadStatus={status}
-				/>
-			))}
+      {data?.comments?.map((comment: Comment) => (
+        <CardComment
+          key={comment.id}
+          {...comment}
+          threadId={slug}
+          threadStatus={status}
+        />
+      ))}
 
-			<Footer />
-		</PageContainer>
-	)
+      <Footer />
+    </PageContainer>
+  )
 }
