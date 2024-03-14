@@ -61,7 +61,7 @@ export default function RegisterView() {
 					<Undo2 size={18} />
 					Back to home
 				</Button>
-				<Heading className='flex items-center gap-2'>
+				<Heading className='flex items-center gap-2 flex-wrap'>
 					<ClipboardPen size={32} /> Register your account
 				</Heading>
 			</Header>

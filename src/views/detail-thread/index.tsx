@@ -38,7 +38,7 @@ export const DetailThreadView = ({ slug }: DetailtThreadViewProps) => {
 					<Undo2 size={18} />
 					Back to home
 				</Button>
-				<Heading className='flex items-center gap-2'>
+				<Heading className='flex items-center gap-2 flex-wrap'>
 					<MessagesSquare size={32} /> Detail Thread
 				</Heading>
 			</Header>
@@ -46,9 +46,6 @@ export const DetailThreadView = ({ slug }: DetailtThreadViewProps) => {
 			<OwnerInfoComponent />
 
 			<ThreadDetails threadId={slug} />
-
-			<Separator className='bg-transparent' />
-			<Separator className='bg-transparent' />
 
 			<ThreadComment treadId={slug} />
 

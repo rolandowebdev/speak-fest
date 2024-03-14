@@ -65,7 +65,7 @@ export default function ProfileView() {
 					<Undo2 size={18} />
 					Back to home
 				</Button>
-				<Heading className='flex items-center gap-2'>
+				<Heading className='flex items-center gap-2 flex-wrap'>
 					<User size={32} /> Profile
 				</Heading>
 			</Header>
@@ -127,8 +127,8 @@ export default function ProfileView() {
 							'translate-x-0 transition-transform duration-300 motion-reduce:transition-none',
 						)}>
 						<ImageBlur
-							blurDataURL='https://github.com/shadcn.png'
-							src='https://github.com/shadcn.png'
+							blurDataURL='/assets/speakfest.png'
+							src='/assets/speakfest.png'
 							width={244}
 							height={244}
 							alt='Avatar'

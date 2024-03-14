@@ -20,6 +20,8 @@ import {
 	NavigationLinkSkeleton,
 } from '@/components/layout'
 import { useSession } from 'next-auth/react'
+import { ThemeToggle } from '@/components/theme'
+import { useTheme } from 'next-themes'
 
 const MobileNavigation = ({
 	pathname,
@@ -60,6 +62,8 @@ const MobileNavigation = ({
 					</ul>
 				</SheetContent>
 			</Sheet>
+
+			<ThemeToggle isMobile />
 		</>
 	)
 }
@@ -67,6 +71,7 @@ const MobileNavigation = ({
 export const Navigation = () => {
 	const pathname = usePathname()
 	const { status } = useSession()
+	const { theme } = useTheme()
 	const { isCollapse, isOpen, setIsCollapse, setIsOpen } = useNavigationState()
 
 	const filterLinkItems = () => {
@@ -81,17 +86,17 @@ export const Navigation = () => {
 		<>
 			<nav
 				className={cn(
-					'sticky top-0 hidden min-h-screen w-48 flex-col items-center self-start px-4 py-8 sm:flex',
+					'sticky top-0 hidden min-h-screen w-48 flex-col items-center self-start px-4 py-16 sm:flex',
 					'translate-y-0 transition-[width,transform] duration-300 motion-reduce:transition-none',
-					{ 'w-[5.25rem] -translate-y-[14.75rem] delay-150': isCollapse },
+					{
+						'w-[5.25rem] -translate-y-[14.75rem] delay-150': isCollapse,
+						'py-8': !isCollapse,
+					},
 				)}>
 				<div
-					className={cn(
-						'w-full overflow-hidden pb-4 flex flex-col items-center',
-						{
-							'space-y-2': !isCollapse,
-						},
-					)}>
+					className={cn('w-full overflow-hidden pb-4 flex flex-col', {
+						'space-y-2': !isCollapse,
+					})}>
 					<div
 						className={cn(
 							'h-36 w-36 overflow-hidden rounded-3xl',
@@ -99,11 +104,11 @@ export const Navigation = () => {
 							{ '-translate-x-48': isCollapse, 'delay-150': !isCollapse },
 						)}>
 						<ImageBlur
-							blurDataURL='/assets/speakfest.png'
+							blurDataURL='/assets/s/speakfest.png'
 							src='/assets/speakfest.png'
 							width={246}
 							height={246}
-							alt='SpeakFest Logo'
+							alt='https://www.freepik.com/icon/talking_9364154#fromView=search&page=1&position=13&uuid=c4a2d0bb-aa9b-403b-a204-95ec043812da'
 						/>
 					</div>
 					<Heading
@@ -114,12 +119,13 @@ export const Navigation = () => {
 						)}>
 						SpeakFest
 					</Heading>
-					{/* <ThemeToggle isCollapse={isCollapse} /> */}
+
+					<ThemeToggle isCollapse={isCollapse} />
 				</div>
 				{status === 'loading' ? (
-					<ul className='w-full space-y-4 border-y py-4'>
+					<div className='w-full space-y-4 border-y py-4'>
 						<NavigationLinkSkeleton />
-					</ul>
+					</div>
 				) : (
 					<ul className='w-full space-y-4 border-y py-4'>
 						{filterLinkItems().map(({ href, name, Icon }) => (

@@ -17,10 +17,10 @@ export const ThreadsCard = ({
 	return (
 		<Link href={`thread/${id}`} className='group'>
 			<article className='rounded-md border p-5 duration-300 hover:-translate-y-2 hover:shadow-md'>
-				<Heading variant='h2' className='group-hover:underline'>
+				<Heading variant='h2' className='group-hover:underline text-wrap'>
 					{title.length > 100 ? `${title.slice(0, 100)}...` : title}
 				</Heading>
-				<div className='max-h-6 truncate mt-4'>
+				<div className='max-h-6 truncate mt-4 text-wrap'>
 					{parse(body.length > 100 ? `${body.slice(0, 100)}...` : body)}
 				</div>
 				<Separator className='my-4' />
@@ -31,7 +31,7 @@ export const ThreadsCard = ({
 					</span>
 					<span className='flex items-center gap-2'>
 						<User />
-						{author}
+						{author || '...'}
 					</span>
 					<span className='flex items-center gap-2'>
 						<Clock />

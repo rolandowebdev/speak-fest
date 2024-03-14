@@ -64,7 +64,7 @@ export default function LoginView() {
 					<Undo2 size={18} />
 					Back to home
 				</Button>
-				<Heading className='flex items-center gap-2'>
+				<Heading className='flex items-center gap-2 flex-wrap'>
 					<LogIn size={32} /> Login to SpeakFest
 				</Heading>
 			</Header>

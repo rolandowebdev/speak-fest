@@ -33,7 +33,7 @@ export const ThreadsHeader = () => {
 			) : (
 				<>
 					{status === 'authenticated' ? (
-						<Heading className='flex space-x-2'>
+						<Heading className='flex space-x-2 flex-wrap'>
 							Hi! {convertToUppercase(data?.name ?? '')}
 							<div className='animate-wiggle motion-reduce:animate-none'>
 								<p className='text-4xl'>👋</p>
@@ -52,9 +52,9 @@ export const ThreadsHeader = () => {
 			)}
 
 			{statusThreads === 'success' ? (
-				<div className='flex items-center gap-4'>
+				<div className='flex items-center gap-4 flex-wrap'>
 					<span className='font-semibold'>Hashtag : </span>
-					<div className='flex items-center gap-2'>
+					<div className='flex items-center gap-2 flex-wrap'>
 						{dataThreads &&
 							categories?.map((category) => (
 								<ButtonCategory key={category} category={category} />

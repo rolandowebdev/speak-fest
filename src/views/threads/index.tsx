@@ -1,7 +1,7 @@
 'use client'
 
 import { Footer, PageContainer } from '@/components/layout'
-import { ThreadsCard } from './components/card'
+import { ThreadsCard } from './components/card-thread'
 import { useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { ThreadsHeader } from './components/header'
@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '@/libs/redux'
 import { Thread } from '@/types'
 import { asyncSetProfile } from '@/libs/redux/slices/profile'
 import { asyncReceiveThreads } from '@/libs/redux/slices/threads'
+import { asyncReceiveUsers } from '@/libs/redux/slices/users'
 
 export default function ThreadsView() {
 	const dispatch = useAppDispatch()
@@ -35,6 +36,7 @@ export default function ThreadsView() {
 
 	useEffect(() => {
 		dispatch(asyncReceiveThreads())
+		dispatch(asyncReceiveUsers())
 		dispatch(asyncSetProfile())
 	}, [dispatch])
 

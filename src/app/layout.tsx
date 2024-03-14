@@ -7,7 +7,7 @@ import {
 } from 'next/font/google'
 import { cn } from '@/libs/utils'
 
-import { StoreProvider as Provider } from '@/components/provider'
+import { StoreProvider as Provider, ThemeProvider } from '@/components/provider'
 import { Navigation } from '@/components/layout'
 import { Toaster } from '@/components/ui'
 
@@ -39,11 +39,17 @@ export default function RootLayout({
 						fontSans.variable,
 						fontMono.variable,
 					)}>
-					<main className='mx-auto flex max-w-5xl'>
-						<Navigation />
-						{children}
-					</main>
-					<Toaster />
+					<ThemeProvider
+						attribute='class'
+						defaultTheme='system'
+						enableSystem
+						disableTransitionOnChange>
+						<main className='mx-auto flex max-w-5xl'>
+							<Navigation />
+							{children}
+						</main>
+						<Toaster />
+					</ThemeProvider>
 				</body>
 			</html>
 		</Provider>

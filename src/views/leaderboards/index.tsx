@@ -68,7 +68,7 @@ export default function LeaderboardsView() {
 					<Undo2 size={18} />
 					Back to home
 				</Button>
-				<Heading className='flex items-center gap-2'>
+				<Heading className='flex items-center gap-2 flex-wrap'>
 					<Dice6 size={32} /> Leaderboards
 				</Heading>
 			</Header>

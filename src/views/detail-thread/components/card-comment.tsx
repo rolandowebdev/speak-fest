@@ -85,7 +85,7 @@ const CardComment = ({
 						)}
 					</div>
 					{threadStatus === 'success' ? (
-						<p className='my-4 text-muted-foreground'>{parse(content)}</p>
+						<div className='my-4 text-muted-foreground'>{parse(content)}</div>
 					) : (
 						<div className='space-y-3 my-4'>
 							<Skeleton className='w-full h-4' />
@@ -101,7 +101,7 @@ const CardComment = ({
 								onClick={handleUpVote}
 								disabled={authStatus === 'unauthenticated'}
 								className='flex items-center gap-1 text-lg'>
-								<ThumbsUp />
+								<ThumbsUp size={18} />
 								{threadStatus === 'success' ? upVotesBy.length : 0}
 							</Button>
 							<Button
@@ -109,7 +109,7 @@ const CardComment = ({
 								onClick={handleDownVote}
 								disabled={authStatus === 'unauthenticated'}
 								className='flex items-center gap-1 text-lg'>
-								<ThumbsDown />
+								<ThumbsDown size={18} />
 								{threadStatus === 'success' ? downVotesBy.length : 0}
 							</Button>
 						</div>

@@ -80,7 +80,7 @@ export default function CreateThreadView() {
 					<Undo2 size={18} />
 					Back to home
 				</Button>
-				<Heading className='flex items-center gap-2'>
+				<Heading className='flex items-center gap-2 flex-wrap'>
 					<PenLine size={32} /> Create new thread
 				</Heading>
 			</Header>
