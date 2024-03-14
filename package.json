@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "pnpm lint -- --fix",
+    "format": "prettier ./src/components --write"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",

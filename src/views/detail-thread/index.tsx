@@ -50,7 +50,7 @@ export const DetailThreadView = ({ slug }: DetailtThreadViewProps) => {
 
       <ThreadComment treadId={slug} />
 
-      <Separator />
+      {data.comments.length > 0 && <Separator />}
 
       {data?.comments?.map((comment: Comment) => (
         <CardComment
@@ -61,7 +61,7 @@ export const DetailThreadView = ({ slug }: DetailtThreadViewProps) => {
         />
       ))}
 
-      <Footer />
+      {data.comments.length > 0 && <Footer />}
     </PageContainer>
   )
 }

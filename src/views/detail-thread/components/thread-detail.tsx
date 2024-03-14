@@ -32,7 +32,11 @@ const ThreadDetails = ({ threadId }: { threadId: string }) => {
 
   return (
     <>
-      <Heading variant="h2">{threadDetail?.title}</Heading>
+      {threadStatus === 'success' ? (
+        <Heading variant="h2">{threadDetail?.title}</Heading>
+      ) : (
+        <Skeleton className="h-10 w-2/4" />
+      )}
       <div className="flex flex-col gap-2">
         <div>
           <Separator />
