@@ -11,8 +11,11 @@ export const asyncAuth = createAsyncThunk(
       dispatch(showLoading())
       const data = await api.login(body)
       return data
-    } catch (error: any) {
-      throw new Error(error.message)
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log('there is an error:', error.message)
+        throw new Error(error.message)
+      }
     } finally {
       dispatch(hideLoading())
     }

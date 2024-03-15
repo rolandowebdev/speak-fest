@@ -5,8 +5,15 @@ import api from '@/utils/api'
 const asyncReceiveLeaderboard = createAsyncThunk(
   'leaderboard/receive',
   async () => {
-    const leaderboard = await api.getLeaderboard()
-    return leaderboard
+    try {
+      const leaderboard = await api.getLeaderboard()
+      return leaderboard
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log('there is an error:', error.message)
+        throw new Error(error.message)
+      }
+    }
   },
 )
 

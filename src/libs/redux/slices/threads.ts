@@ -17,6 +17,7 @@ const asyncAddThread = createAsyncThunk(
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.log('there is an error:', error.message)
+        throw new Error(error.message)
       }
     }
   },

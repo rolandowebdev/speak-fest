@@ -11,6 +11,7 @@ const asyncReceiveThreadDetail = createAsyncThunk(
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.log('there is an error:', error.message)
+        throw new Error(error.message)
       }
     }
   },
@@ -26,6 +27,7 @@ const asyncAddThreadComment = createAsyncThunk(
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.log('there is an error:', error.message)
+        throw new Error(error.message)
       }
     }
   },
@@ -41,6 +43,7 @@ const asyncVoteThread = createAsyncThunk(
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.log('there is an error:', error.message)
+        throw new Error(error.message)
       }
     }
   },
@@ -56,6 +59,7 @@ const asyncVoteComment = createAsyncThunk(
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.log('there is an error:', error.message)
+        throw new Error(error.message)
       }
     }
   },

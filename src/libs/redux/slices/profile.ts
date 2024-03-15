@@ -7,8 +7,11 @@ export const asyncSetProfile = createAsyncThunk('user/profile', async () => {
   try {
     const { data } = await api.getOwnProfile()
     return data
-  } catch (error: any) {
-    throw new Error(error.message)
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.log('there is an error:', error.message)
+      throw new Error(error.message)
+    }
   }
 })
 
