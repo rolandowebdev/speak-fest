@@ -14,7 +14,7 @@ import {
 } from '@/components/ui'
 import { useAppDispatch } from '@/libs/redux'
 import { asyncAuth } from '@/libs/redux/slices/auth'
-import { authSchema } from '@/libs/schema'
+import { authSchema } from '@/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LogIn, Undo2 } from 'lucide-react'
 import { signIn } from 'next-auth/react'
@@ -60,8 +60,7 @@ export default function LoginView() {
         <Button
           variant="link"
           className="flex items-center gap-1 px-0 text-lg text-primary"
-          onClick={() => push('/')}
-        >
+          onClick={() => push('/')}>
           <Undo2 size={18} />
           Back to home
         </Button>

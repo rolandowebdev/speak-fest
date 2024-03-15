@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { ThreadDetail, VoteType } from '@/types'
-import api from '@/libs/api'
+import api from '@/utils/api'
 
 const asyncReceiveThreadDetail = createAsyncThunk(
   'threadDetail/receive',
@@ -104,6 +104,7 @@ export const threadDetailSlice = createSlice({
       .addCase(asyncReceiveThreadDetail.fulfilled, (state, action) => {
         state.data = action.payload
         state.status = 'success'
+        state.message = 'Get thread detail successfully!'
       })
       .addCase(asyncReceiveThreadDetail.rejected, (state) => {
         state.status = 'error'
@@ -116,6 +117,7 @@ export const threadDetailSlice = createSlice({
       .addCase(asyncAddThreadComment.fulfilled, (state, action) => {
         state.data.comments = [action.payload, ...state.data.comments]
         state.status = 'success'
+        state.message = 'Add comment successfully!'
       })
       .addCase(asyncAddThreadComment.rejected, (state) => {
         state.status = 'error'

@@ -12,7 +12,7 @@ import {
 import { toast } from '@/hooks'
 import { useAppDispatch } from '@/libs/redux'
 import { asyncAddThreadComment } from '@/libs/redux/slices/thread-detail'
-import { postCommentSchema } from '@/libs/schema'
+import { postCommentSchema } from '@/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'

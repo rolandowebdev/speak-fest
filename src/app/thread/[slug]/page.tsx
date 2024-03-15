@@ -1,5 +1,5 @@
 import METADATA from '@/constants/metadata'
-import api from '@/libs/api'
+import api from '@/utils/api'
 import { ThreadDetail } from '@/types'
 import { DetailThreadView } from '@/views/detail-thread'
 import { Metadata } from 'next'

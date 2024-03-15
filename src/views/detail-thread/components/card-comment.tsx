@@ -1,5 +1,5 @@
 import { Button, Skeleton } from '@/components/ui'
-import { postedAt } from '@/libs/utils'
+import { postedAt } from '@/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { ThumbsDown, ThumbsUp } from 'lucide-react'
 import { CommentSkeleton } from './comment-skeleton'
@@ -100,8 +100,7 @@ const CardComment = ({
                 variant="ghost"
                 onClick={handleUpVote}
                 disabled={authStatus === 'unauthenticated'}
-                className="flex items-center gap-1 text-lg"
-              >
+                className="flex items-center gap-1 text-lg">
                 <ThumbsUp size={18} />
                 {threadStatus === 'success' ? upVotesBy.length : 0}
               </Button>
@@ -109,8 +108,7 @@ const CardComment = ({
                 variant="ghost"
                 onClick={handleDownVote}
                 disabled={authStatus === 'unauthenticated'}
-                className="flex items-center gap-1 text-lg"
-              >
+                className="flex items-center gap-1 text-lg">
                 <ThumbsDown size={18} />
                 {threadStatus === 'success' ? downVotesBy.length : 0}
               </Button>

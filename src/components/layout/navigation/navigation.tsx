@@ -3,7 +3,7 @@
 import React from 'react'
 import { usePathname } from 'next/navigation'
 import { ChevronsLeft, ChevronsRight, PanelTopOpen } from 'lucide-react'
-import { cn } from '@/libs/utils'
+import { cn } from '@/utils'
 import { useNavigationState } from '@/hooks'
 import {
   Button,
@@ -41,8 +41,7 @@ const MobileNavigation = ({
           <Button
             variant="outline"
             size="icon"
-            className="fixed bottom-0 right-0 z-20 m-2 inline-flex shadow-sm sm:hidden"
-          >
+            className="fixed bottom-0 right-0 z-20 m-2 inline-flex shadow-sm sm:hidden">
             <PanelTopOpen className="h-[1.2rem] w-[1.2rem] -rotate-90 scale-100" />
             <span className="sr-only">Open Menu</span>
           </Button>
@@ -54,8 +53,7 @@ const MobileNavigation = ({
                 <NavigationLink
                   href={href}
                   currentPath={pathname}
-                  onClick={() => setIsOpen(false)}
-                >
+                  onClick={() => setIsOpen(false)}>
                   <Icon size={20} />
                   <span>{name}</span>
                 </NavigationLink>
@@ -94,20 +92,17 @@ export const Navigation = () => {
             'w-[5.25rem] -translate-y-[14.75rem] delay-150': isCollapse,
             'py-8': !isCollapse,
           },
-        )}
-      >
+        )}>
         <div
           className={cn('flex w-full flex-col overflow-hidden pb-4', {
             'space-y-2': !isCollapse,
-          })}
-        >
+          })}>
           <div
             className={cn(
               'h-36 w-36 overflow-hidden rounded-3xl',
               'translate-x-0 transition-transform duration-300 motion-reduce:transition-none',
               { '-translate-x-48': isCollapse, 'delay-150': !isCollapse },
-            )}
-          >
+            )}>
             <ImageBlur
               blurDataURL="/assets/s/speakfest.png"
               src="/assets/speakfest.png"
@@ -121,8 +116,7 @@ export const Navigation = () => {
             className={cn(
               'translate-x-0 transition-transform duration-300 motion-reduce:transition-none',
               { '-translate-x-48': isCollapse, 'delay-150': !isCollapse },
-            )}
-          >
+            )}>
             SpeakFest
           </Heading>
 
@@ -139,8 +133,7 @@ export const Navigation = () => {
                 <NavigationLink
                   href={href}
                   currentPath={pathname}
-                  isCollapse={isCollapse}
-                >
+                  isCollapse={isCollapse}>
                   <Icon size={20} />
                   <span className={cn({ 'sr-only': isCollapse })}>{name}</span>
                 </NavigationLink>
@@ -153,8 +146,7 @@ export const Navigation = () => {
           size="icon"
           variant="outline"
           className="mt-4 w-full"
-          onClick={() => setIsCollapse((prev) => !prev)}
-        >
+          onClick={() => setIsCollapse((prev) => !prev)}>
           {isCollapse ? (
             <ChevronsRight size={20} />
           ) : (

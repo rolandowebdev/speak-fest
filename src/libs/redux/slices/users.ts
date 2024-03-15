@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { User } from '@/types'
-import api from '@/libs/api'
+import api from '@/utils/api'
 
 const asyncReceiveUsers = createAsyncThunk('users/receive', async () => {
   try {

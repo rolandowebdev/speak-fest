@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage, Skeleton } from '@/components/ui'
 import { useAppSelector } from '@/libs/redux'
-import { postedAt } from '@/libs/utils'
+import { postedAt } from '@/utils'
 
 const OwnerInfoComponent = () => {
   const { data, status } = useAppSelector((state) => state.threadDetail)

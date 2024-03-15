@@ -1,5 +1,5 @@
 import React from 'react'
-import { cn } from '@/libs/utils'
+import { cn } from '@/utils'
 
 export type ExternalLinkProps =
   React.AnchorHTMLAttributes<HTMLAnchorElement> & {}
@@ -18,8 +18,7 @@ const ExternalLink = ({
     )}
     target="_blank"
     rel="noopener noreferrer"
-    {...rest}
-  >
+    {...rest}>
     {children}
   </a>
 )

@@ -15,7 +15,7 @@ import {
 import { useToast } from '@/hooks'
 import { useAppDispatch } from '@/libs/redux'
 import { asyncAddThread } from '@/libs/redux/slices/threads'
-import { createThreadSchema } from '@/libs/schema'
+import { createThreadSchema } from '@/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { PenLine, Undo2 } from 'lucide-react'
@@ -76,8 +76,7 @@ export default function CreateThreadView() {
         <Button
           variant="link"
           className="flex items-center gap-1 px-0 text-lg text-primary"
-          onClick={() => push('/')}
-        >
+          onClick={() => push('/')}>
           <Undo2 size={18} />
           Back to home
         </Button>
@@ -90,8 +89,7 @@ export default function CreateThreadView() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleCreateThread)}
-            className="space-y-2"
-          >
+            className="space-y-2">
             <FormField
               control={form.control}
               name="title"

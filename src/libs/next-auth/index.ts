@@ -1,7 +1,7 @@
 import { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { LoginInputs } from '@/types'
-import api from '../api'
+import api from '@/utils/api'
 
 const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,

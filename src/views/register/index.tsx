@@ -14,7 +14,7 @@ import {
 } from '@/components/ui'
 import { useAppDispatch } from '@/libs/redux'
 import { asyncRegisterUser } from '@/libs/redux/slices/register'
-import { registerSchema } from '@/libs/schema'
+import { registerSchema } from '@/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ClipboardPen, Undo2 } from 'lucide-react'
 import Link from 'next/link'
@@ -57,8 +57,7 @@ export default function RegisterView() {
         <Button
           variant="link"
           className="flex items-center gap-1 px-0 text-lg text-primary"
-          onClick={() => push('/')}
-        >
+          onClick={() => push('/')}>
           <Undo2 size={18} />
           Back to home
         </Button>
@@ -70,8 +69,7 @@ export default function RegisterView() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleRegister)}
-            className="space-y-2"
-          >
+            className="space-y-2">
             <FormField
               control={form.control}
               name="name"

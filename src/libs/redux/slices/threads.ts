@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { NewThread, Thread } from '@/types'
-import api from '@/libs/api'
+import api from '@/utils/api'
 
 const asyncReceiveThreads = createAsyncThunk('threads/receive', async () => {
   const threads = await api.getAllThreads()

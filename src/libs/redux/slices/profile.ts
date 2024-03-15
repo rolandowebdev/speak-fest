@@ -1,4 +1,4 @@
-import api from '@/libs/api'
+import api from '@/utils/api'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { User } from '@/types'
 import { createSlice } from '@reduxjs/toolkit'

@@ -1,4 +1,4 @@
-import api from '@/libs/api'
+import api from '@/utils/api'
 import { UserRegister } from '@/types'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 

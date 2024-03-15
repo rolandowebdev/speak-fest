@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { Leaderboard } from '@/types'
-import api from '@/libs/api'
+import api from '@/utils/api'
 
 const asyncReceiveLeaderboard = createAsyncThunk(
   'leaderboard/receive',

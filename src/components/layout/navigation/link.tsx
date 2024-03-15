@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import Link, { type LinkProps } from 'next/link'
-import { cn } from '@/libs/utils'
+import { cn } from '@/utils'
 
 export const NavigationLink = ({
   href,
@@ -29,8 +29,7 @@ export const NavigationLink = ({
           'bg-opacity-80 dark:bg-opacity-80': isActive,
         },
       )}
-      {...rest}
-    >
+      {...rest}>
       {children}
     </Link>
   )

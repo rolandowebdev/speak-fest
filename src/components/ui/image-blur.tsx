@@ -1,7 +1,7 @@
 'use client'
 
 import Image, { type ImageProps } from 'next/image'
-import { cn } from '@/libs/utils'
+import { cn } from '@/utils'
 import { useState } from 'react'
 
 export type ImageBlurProps = Omit<ImageProps, 'onLoad' | 'placeholder'> & {}

@@ -1,4 +1,4 @@
-import api from '@/libs/api'
+import api from '@/utils/api'
 import { createSlice } from '@reduxjs/toolkit'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
@@ -45,7 +45,7 @@ const authSlice = createSlice({
       .addCase(asyncAuth.fulfilled, (state, action) => {
         state.data = action.payload.data.token
         state.status = 'success'
-        state.message = 'Login successfully'
+        state.message = 'Login successfully!'
       })
 
       .addCase(asyncAuth.rejected, (state) => {

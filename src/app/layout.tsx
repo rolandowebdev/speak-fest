@@ -5,7 +5,7 @@ import {
   Gabarito as FontSans,
   JetBrains_Mono as FontMono,
 } from 'next/font/google'
-import { cn } from '@/libs/utils'
+import { cn } from '@/utils'
 
 import { StoreProvider as Provider, ThemeProvider } from '@/components/provider'
 import { Navigation } from '@/components/layout'
@@ -38,14 +38,12 @@ export default function RootLayout({
             'min-h-screen font-sans antialiased',
             fontSans.variable,
             fontMono.variable,
-          )}
-        >
+          )}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
-            disableTransitionOnChange
-          >
+            disableTransitionOnChange>
             <main className="mx-auto flex max-w-5xl">
               <Navigation />
               {children}

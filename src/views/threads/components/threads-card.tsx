@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Heading, Separator } from '@/components/ui'
 import { Clock, Hash, MessageCircle, User } from 'lucide-react'
 import { Thread } from '@/types'
-import { postedAt } from '@/libs/utils'
+import { postedAt } from '@/utils'
 import parse from 'html-react-parser'
 
 export const ThreadsCard = ({

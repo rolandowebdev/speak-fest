@@ -24,7 +24,7 @@ import { useAppDispatch, useAppSelector } from '@/libs/redux'
 import { asyncReceiveLeaderboard } from '@/libs/redux/slices/leaderboard'
 import { asyncSetProfile } from '@/libs/redux/slices/profile'
 import { asyncReceiveThreads } from '@/libs/redux/slices/threads'
-import { cn } from '@/libs/utils'
+import { cn } from '@/utils'
 import { convertToUppercase } from '@/utils'
 import { Coins, MessagesSquare, Undo2, User } from 'lucide-react'
 import { signOut } from 'next-auth/react'
@@ -60,8 +60,7 @@ export default function ProfileView() {
         <Button
           variant="link"
           className="flex items-center gap-1 px-0 text-lg text-primary"
-          onClick={() => push('/')}
-        >
+          onClick={() => push('/')}>
           <Undo2 size={18} />
           Back to home
         </Button>
@@ -125,8 +124,7 @@ export default function ProfileView() {
             className={cn(
               'h-[244px] w-[244px] overflow-hidden rounded-3xl',
               'translate-x-0 transition-transform duration-300 motion-reduce:transition-none',
-            )}
-          >
+            )}>
             <ImageBlur
               blurDataURL="/assets/speakfest.png"
               src="/assets/speakfest.png"
