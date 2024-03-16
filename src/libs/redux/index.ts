@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import type { TypedUseSelectorHook } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch, useSelector, useStore } from 'react-redux'
@@ -10,8 +11,8 @@ import usersSlice from './slices/users'
 import profileSlice from './slices/profile'
 import resgiterSlice from './slices/register'
 
-export const store = () => {
-  return configureStore({
+export const store = () =>
+  configureStore({
     reducer: {
       auth: authSlice,
       threads: threadsSlice,
@@ -23,7 +24,6 @@ export const store = () => {
       loadingBar: loadingBarReducer,
     },
   })
-}
 
 export type AppStore = ReturnType<typeof store>
 export type RootState = ReturnType<AppStore['getState']>

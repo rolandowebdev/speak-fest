@@ -1,3 +1,4 @@
+import * as React from 'react'
 import METADATA from '@/constants/metadata'
 import CreateThreadView from '@/views/create-thread'
 import { Metadata } from 'next'

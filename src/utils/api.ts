@@ -12,7 +12,7 @@ const api = (() => {
     body: string
   }
 
-  async function _fetchWithAuth(
+  async function fetchWithAuth(
     url: string,
     options: Partial<FetchOptions> = {},
   ) {
@@ -82,7 +82,7 @@ const api = (() => {
   }
 
   async function getOwnProfile() {
-    const response = await _fetchWithAuth(`${BASE_URL}/users/me`)
+    const response = await fetchWithAuth(`${BASE_URL}/users/me`)
 
     const responseJson = await response.json()
 
@@ -154,7 +154,7 @@ const api = (() => {
     body,
     category,
   }: Partial<ThreadDetail>) {
-    const response = await _fetchWithAuth(`${BASE_URL}/threads`, {
+    const response = await fetchWithAuth(`${BASE_URL}/threads`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -182,7 +182,7 @@ const api = (() => {
   }
 
   async function createComment(content: string, threadId: string) {
-    const response = await _fetchWithAuth(
+    const response = await fetchWithAuth(
       `${BASE_URL}/threads/${threadId}/comments`,
       {
         method: 'POST',
@@ -211,7 +211,7 @@ const api = (() => {
   }
 
   async function addThreadVote(threadId: string, voteType: string) {
-    const response = await _fetchWithAuth(
+    const response = await fetchWithAuth(
       `${BASE_URL}/threads/${threadId}/${voteType}`,
       {
         method: 'POST',
@@ -241,7 +241,7 @@ const api = (() => {
     commentId: string,
     voteType: VoteType,
   ) {
-    const response = await _fetchWithAuth(
+    const response = await fetchWithAuth(
       `${BASE_URL}/threads/${threadId}/comments/${commentId}/${voteType}`,
       {
         method: 'POST',
@@ -267,7 +267,7 @@ const api = (() => {
   }
 
   async function getLeaderboard() {
-    const response = await _fetchWithAuth(`${BASE_URL}/leaderboards`)
+    const response = await fetchWithAuth(`${BASE_URL}/leaderboards`)
 
     const responseJson = await response.json()
 

@@ -1,11 +1,11 @@
 import api from '@/utils/api'
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { User } from '@/types'
-import { createSlice } from '@reduxjs/toolkit'
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
 export const asyncSetProfile = createAsyncThunk(
   'user/profile',
+  // eslint-disable-next-line consistent-return
   async (_, { dispatch }) => {
     try {
       dispatch(showLoading())

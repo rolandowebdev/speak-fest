@@ -8,7 +8,7 @@ export async function middleware(req: NextRequest) {
   const currentPathname = `/${arrayOfPathname[1]}`
 
   const token = await getToken({
-    req: req,
+    req,
     secret: process.env.NEXTAUTH_SECRET,
   })
 
@@ -19,14 +19,12 @@ export async function middleware(req: NextRequest) {
     ) {
       return NextResponse.redirect(new URL('/', req.url))
     }
-  } else {
-    if (
-      currentPathname.includes('/threads') ||
-      currentPathname.includes('/profile') ||
-      currentPathname.includes('/create-thread')
-    ) {
-      return NextResponse.redirect(new URL('/', req.url))
-    }
+  } else if (
+    currentPathname.includes('/threads') ||
+    currentPathname.includes('/profile') ||
+    currentPathname.includes('/create-thread')
+  ) {
+    return NextResponse.redirect(new URL('/', req.url))
   }
 
   return NextResponse.next()

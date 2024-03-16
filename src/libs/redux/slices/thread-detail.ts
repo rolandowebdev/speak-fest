@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { ThreadDetail, VoteType } from '@/types'
 import api from '@/utils/api'

@@ -1,6 +1,7 @@
 'use client'
 
-import { Header, PageContainer } from '@/components/layout'
+import * as React from 'react'
+import { PageContainer } from '@/components/layout'
 import {
   AlertDialogFooter,
   AlertDialogHeader,
@@ -17,23 +18,20 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
   buttonVariants,
-  Button,
   ImageBlur,
 } from '@/components/ui'
 import { useAppDispatch, useAppSelector } from '@/libs/redux'
 import { asyncReceiveLeaderboard } from '@/libs/redux/slices/leaderboard'
 import { asyncSetProfile } from '@/libs/redux/slices/profile'
 import { asyncReceiveThreads } from '@/libs/redux/slices/threads'
-import { cn } from '@/utils'
-import { convertToUppercase } from '@/utils'
-import { Coins, MessagesSquare, Undo2, User } from 'lucide-react'
+import { cn, convertToUppercase } from '@/utils'
+import { Coins, MessagesSquare, User } from 'lucide-react'
 import { signOut } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
+import { HeaderWithLink } from '@/components/custom'
 
 export default function ProfileView() {
   const dispatch = useAppDispatch()
-  const { push } = useRouter()
 
   const { data: threads } = useAppSelector((state) => state.threads)
   const { data: leaderboard } = useAppSelector((state) => state.leaderboard)
@@ -56,18 +54,7 @@ export default function ProfileView() {
 
   return (
     <PageContainer>
-      <Header>
-        <Button
-          variant="link"
-          className="flex items-center gap-1 px-0 text-lg text-primary"
-          onClick={() => push('/')}>
-          <Undo2 size={18} />
-          Back to home
-        </Button>
-        <Heading className="flex flex-wrap items-center gap-2">
-          <User size={32} /> Profile
-        </Heading>
-      </Header>
+      <HeaderWithLink icon={<User size={32} />} title="Profile" />
       <div className="flex flex-col items-center space-x-10 md:flex-row">
         <div className="flex w-full flex-col space-y-2">
           <Avatar className="h-16 w-16">

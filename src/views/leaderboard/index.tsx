@@ -1,15 +1,15 @@
 'use client'
 
-import { Footer, Header, PageContainer } from '@/components/layout'
-import { Button, Heading } from '@/components/ui'
-import { DataTable } from './components/data-table'
+import * as React from 'react'
+import { Footer, PageContainer } from '@/components/layout'
 import { useEffect } from 'react'
 import { CustomLeaderboardsEntry } from '@/types'
-import { Dice6, Undo2 } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { Dice6 } from 'lucide-react'
 import { ColumnDef } from '@tanstack/react-table'
 import { asyncReceiveLeaderboard } from '@/libs/redux/slices/leaderboard'
 import { useAppDispatch, useAppSelector } from '@/libs/redux'
+import { HeaderWithLink } from '@/components/custom'
+import { DataTable } from './components/data-table'
 
 export const columns: ColumnDef<CustomLeaderboardsEntry>[] = [
   {
@@ -32,8 +32,6 @@ export const columns: ColumnDef<CustomLeaderboardsEntry>[] = [
 
 export default function LeaderboardView() {
   const dispatch = useAppDispatch()
-
-  const { push } = useRouter()
   const { data, status } = useAppSelector((state) => state.leaderboard)
 
   useEffect(() => {
@@ -42,17 +40,14 @@ export default function LeaderboardView() {
 
   const convertToCustomLeaderboardsEntry = (
     responseData: any[],
-  ): CustomLeaderboardsEntry[] => {
-    return responseData.map((entry) => {
-      return {
-        id: entry.user.id,
-        name: entry.user.name,
-        email: entry.user.email,
-        avatar: entry.user.avatar,
-        score: entry.score,
-      }
-    })
-  }
+  ): CustomLeaderboardsEntry[] =>
+    responseData.map((entry) => ({
+      id: entry.user.id,
+      name: entry.user.name,
+      email: entry.user.email,
+      avatar: entry.user.avatar,
+      score: entry.score,
+    }))
 
   const convertedData = data
     ? convertToCustomLeaderboardsEntry(data as any)
@@ -60,18 +55,7 @@ export default function LeaderboardView() {
 
   return (
     <PageContainer>
-      <Header>
-        <Button
-          variant="link"
-          className="flex items-center gap-1 px-0 text-lg text-primary"
-          onClick={() => push('/')}>
-          <Undo2 size={18} />
-          Back to home
-        </Button>
-        <Heading className="flex flex-wrap items-center gap-2">
-          <Dice6 size={32} /> Leaderboard
-        </Heading>
-      </Header>
+      <HeaderWithLink icon={<Dice6 size={32} />} title="Leaderboard" />
       <DataTable columns={columns} data={convertedData} />
       {status === 'success' && <Footer />}
     </PageContainer>

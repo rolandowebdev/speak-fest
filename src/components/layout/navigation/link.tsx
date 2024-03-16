@@ -1,8 +1,8 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import Link, { type LinkProps } from 'next/link'
 import { cn } from '@/utils'
 
-export const NavigationLink = ({
+export function NavigationLink({
   href,
   currentPath,
   children,
@@ -13,7 +13,7 @@ export const NavigationLink = ({
   currentPath: string
   children: ReactNode
   isCollapse?: boolean
-} & LinkProps) => {
+} & LinkProps) {
   const regEx = new RegExp(`^${href}`)
   const isActive = href === '/' ? currentPath === href : regEx.test(currentPath)
 

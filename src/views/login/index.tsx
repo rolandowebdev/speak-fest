@@ -1,7 +1,7 @@
 'use client'
 
-import { Header, PageContainer } from '@/components/layout'
-import { Heading } from '@/components/ui'
+import * as React from 'react'
+import { PageContainer } from '@/components/layout'
 import {
   Button,
   Form,
@@ -16,12 +16,13 @@ import { useAppDispatch } from '@/libs/redux'
 import { asyncAuth } from '@/libs/redux/slices/auth'
 import { authSchema } from '@/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2, LogIn, Undo2 } from 'lucide-react'
+import { Loader2, LogIn } from 'lucide-react'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { HeaderWithLink } from '@/components/custom'
 
 export default function LoginView() {
   const dispatch = useAppDispatch()
@@ -56,18 +57,7 @@ export default function LoginView() {
 
   return (
     <PageContainer>
-      <Header>
-        <Button
-          variant="link"
-          className="flex items-center gap-1 px-0 text-lg text-primary"
-          onClick={() => push('/')}>
-          <Undo2 size={18} />
-          Back to home
-        </Button>
-        <Heading className="flex flex-wrap items-center gap-2">
-          <LogIn size={32} /> Login to SpeakFest
-        </Heading>
-      </Header>
+      <HeaderWithLink icon={<LogIn size={32} />} title="Login" />
       <div className="flex flex-col space-y-2">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-2">

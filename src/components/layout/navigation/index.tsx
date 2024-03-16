@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import * as React from 'react'
 import { usePathname } from 'next/navigation'
 import { ChevronsLeft, ChevronsRight, PanelTopOpen } from 'lucide-react'
 import { cn } from '@/utils'
@@ -13,18 +13,14 @@ import {
   SheetTrigger,
   ImageBlur,
 } from '@/components/ui'
-import {
-  NavigationLink,
-  MenuLink,
-  menuLinkItems,
-  NavigationLinkSkeleton,
-} from '@/components/layout'
 import { useSession } from 'next-auth/react'
 import { ThemeToggle } from '@/components/theme'
-import { useTheme } from 'next-themes'
 import LoadingBar from 'react-redux-loading-bar'
+import { MenuLink, menuLinkItems } from './items'
+import { NavigationLink } from './link'
+import { NavigationLinkSkeleton } from './skeleton'
 
-const MobileNavigation = ({
+function MobileNavigation({
   pathname,
   isOpen,
   setIsOpen,
@@ -34,7 +30,7 @@ const MobileNavigation = ({
   isOpen: boolean
   setIsOpen: (open: boolean) => void
   filterLinkItems: () => MenuLink[]
-}) => {
+}) {
   return (
     <>
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -69,7 +65,7 @@ const MobileNavigation = ({
   )
 }
 
-export const Navigation = () => {
+export function Navigation() {
   const pathname = usePathname()
   const { status } = useSession()
   const { isCollapse, isOpen, setIsCollapse, setIsOpen } = useNavigationState()

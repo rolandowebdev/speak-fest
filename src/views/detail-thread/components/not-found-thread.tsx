@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { Header } from '@/components/layout'
 import { Button, Heading, buttonVariants } from '@/components/ui'
 import { cn } from '@/utils'

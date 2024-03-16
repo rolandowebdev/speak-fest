@@ -1,14 +1,15 @@
 'use client'
 
-import { Footer, Header, PageContainer } from '@/components/layout'
-import { Button, Heading, Separator } from '@/components/ui'
+import * as React from 'react'
+import { Footer, PageContainer } from '@/components/layout'
+import { Separator } from '@/components/ui'
 import { useAppDispatch, useAppSelector } from '@/libs/redux'
 import { asyncSetProfile } from '@/libs/redux/slices/profile'
 import { asyncReceiveThreadDetail } from '@/libs/redux/slices/thread-detail'
 import { Comment } from '@/types'
-import { MessagesSquare, Undo2 } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { MessagesSquare } from 'lucide-react'
 import { useEffect } from 'react'
+import { HeaderWithLink } from '@/components/custom'
 import CardComment from './components/card-comment'
 import NotFoundThread from './components/not-found-thread'
 import OwnerInfoComponent from './components/owner-info'
@@ -19,10 +20,9 @@ type DetailtThreadViewProps = {
   slug: string
 }
 
-export const DetailThreadView = ({ slug }: DetailtThreadViewProps) => {
+export function DetailThreadView({ slug }: DetailtThreadViewProps) {
   const dispatch = useAppDispatch()
   const { data, status } = useAppSelector((state) => state.threadDetail)
-  const { push } = useRouter()
 
   useEffect(() => {
     dispatch(asyncReceiveThreadDetail(slug))
@@ -37,18 +37,7 @@ export const DetailThreadView = ({ slug }: DetailtThreadViewProps) => {
         <NotFoundThread />
       ) : (
         <>
-          <Header>
-            <Button
-              variant="link"
-              className="flex items-center gap-1 px-0 text-lg text-primary"
-              onClick={() => push('/')}>
-              <Undo2 size={18} />
-              Back to home
-            </Button>
-            <Heading className="flex flex-wrap items-center gap-2">
-              <MessagesSquare size={32} /> Detail Thread
-            </Heading>
-          </Header>
+          <HeaderWithLink icon={<MessagesSquare size={32} />} title="Thread" />
 
           <OwnerInfoComponent />
 

@@ -1,11 +1,11 @@
 import api from '@/utils/api'
-import { createSlice } from '@reduxjs/toolkit'
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
 import { LoginInputs } from '@/types'
 
 export const asyncAuth = createAsyncThunk(
   'auth/asyncAuth',
+  // eslint-disable-next-line consistent-return
   async (body: LoginInputs, { dispatch }) => {
     try {
       dispatch(showLoading())

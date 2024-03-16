@@ -1,3 +1,4 @@
+import * as React from 'react'
 import METADATA from '@/constants/metadata'
 import LeaderboardView from '@/views/leaderboard'
 import { Metadata } from 'next'

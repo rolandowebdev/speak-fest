@@ -10,6 +10,7 @@ const asyncReceiveThreads = createAsyncThunk('threads/receive', async () => {
 
 const asyncAddThread = createAsyncThunk(
   'threads/add',
+  // eslint-disable-next-line consistent-return
   async (thread: NewThread, { dispatch }) => {
     const { title, body, category } = thread
     try {

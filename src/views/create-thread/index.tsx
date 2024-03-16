@@ -1,8 +1,10 @@
 'use client'
 
+import * as React from 'react'
 import { Header, PageContainer } from '@/components/layout'
-import { Heading, Textarea } from '@/components/ui'
 import {
+  Heading,
+  Textarea,
   Button,
   Form,
   FormControl,
