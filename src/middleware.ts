@@ -20,7 +20,7 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(new URL('/', req.url))
     }
   } else if (
-    currentPathname.includes('/threads') ||
+    (!token && currentPathname.includes('/threads')) ||
     currentPathname.includes('/profile') ||
     currentPathname.includes('/create-thread')
   ) {
