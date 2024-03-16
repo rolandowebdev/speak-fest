@@ -23,6 +23,7 @@ export const store = () =>
       register: resgiterSlice,
       loadingBar: loadingBarReducer,
     },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
   })
 
 export type AppStore = ReturnType<typeof store>

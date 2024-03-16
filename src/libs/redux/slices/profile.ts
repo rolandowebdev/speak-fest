@@ -4,7 +4,7 @@ import { User } from '@/types'
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
 export const asyncSetProfile = createAsyncThunk(
-  'user/profile',
+  'profile/set',
   // eslint-disable-next-line consistent-return
   async (_, { dispatch }) => {
     try {

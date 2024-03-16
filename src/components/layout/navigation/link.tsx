@@ -26,7 +26,8 @@ export function NavigationLink({
         {
           'md:min-w-[10rem] ': !isCollapse,
           'justify-center': isCollapse,
-          'bg-opacity-80 dark:bg-opacity-80': isActive,
+          'bg-blue-500 bg-opacity-90 text-white dark:bg-blue-500 dark:bg-opacity-70 dark:text-foreground':
+            isActive,
         },
       )}
       {...rest}>

@@ -1,2 +1,2 @@
-export * from './button'
-export * from './header'
+export * from './vote-button'
+export * from './header-with-link'

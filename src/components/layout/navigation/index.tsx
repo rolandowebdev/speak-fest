@@ -112,8 +112,8 @@ export function Navigation() {
               { '-translate-x-48': isCollapse, 'delay-150': !isCollapse },
             )}>
             <ImageBlur
-              blurDataURL="/assets/s/speakfest.png"
-              src="/assets/speakfest.png"
+              blurDataURL="/speakfest.png"
+              src="/speakfest.png"
               width={246}
               height={246}
               alt="https://www.freepik.com/icon/talking_9364154#fromView=search&page=1&position=13&uuid=c4a2d0bb-aa9b-403b-a204-95ec043812da"

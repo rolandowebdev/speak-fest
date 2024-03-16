@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Button } from '@/components/ui'
 import { ThumbsDown, ThumbsUp } from 'lucide-react'
-import { cn } from '@/utils'
 
 interface VoteButtonProps {
   voteType: 'up-vote' | 'down-vote'
@@ -38,9 +37,7 @@ export function VoteButton({
     <Button
       variant="ghost"
       onClick={onClick}
-      className={cn('flex items-center gap-1 text-lg', {
-        'cursor-not-allowed': authStatus === 'unauthenticated',
-      })}
+      className="flex items-center gap-1 text-lg"
       disabled={authStatus === 'unauthenticated'}>
       {icon}
       {voteCount || 0}

@@ -22,6 +22,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { HeaderWithLink } from '@/components/custom'
+import { toast } from '@/hooks'
 
 export default function RegisterView() {
   const dispatch = useAppDispatch()
@@ -37,15 +38,30 @@ export default function RegisterView() {
   })
 
   async function handleRegister(values: z.infer<typeof registerSchema>) {
-    dispatch(
-      asyncRegisterUser({
-        email: values.email,
-        password: values.password,
-        name: values.name,
-      }),
-    )
+    try {
+      dispatch(
+        asyncRegisterUser({
+          email: values.email,
+          password: values.password,
+          name: values.name,
+        }),
+      )
 
-    push('/login')
+      toast({
+        title: 'Register success',
+        description: 'Your account has been created successfully.',
+        variant: 'success',
+      })
+
+      push('/login')
+    } catch (error: any) {
+      toast({
+        title: 'Register failed',
+        description: error.message,
+        variant: 'destructive',
+      })
+      console.log(error.message)
+    }
   }
 
   const checkInputValidationError =

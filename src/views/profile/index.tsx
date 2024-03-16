@@ -113,8 +113,8 @@ export default function ProfileView() {
               'translate-x-0 transition-transform duration-300 motion-reduce:transition-none',
             )}>
             <ImageBlur
-              blurDataURL="/assets/speakfest.png"
-              src="/assets/speakfest.png"
+              blurDataURL="speakfest.png"
+              src="/speakfest.png"
               width={244}
               height={244}
               alt="Avatar"

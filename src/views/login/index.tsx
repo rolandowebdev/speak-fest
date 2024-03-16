@@ -23,6 +23,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { HeaderWithLink } from '@/components/custom'
+import { toast } from '@/hooks'
 
 export default function LoginView() {
   const dispatch = useAppDispatch()
@@ -45,8 +46,19 @@ export default function LoginView() {
         redirect: false,
       })
 
+      toast({
+        title: 'Login success',
+        description: 'You have been logged in successfully.',
+        variant: 'success',
+      })
+
       push('/')
     } catch (error: any) {
+      toast({
+        title: 'Login failed',
+        description: error.message,
+        variant: 'destructive',
+      })
       console.log(error.message)
     }
   }

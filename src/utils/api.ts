@@ -283,7 +283,6 @@ const api = (() => {
 
     return leaderboards
   }
-  // #endregion Leaderboard
 
   return {
     register,
