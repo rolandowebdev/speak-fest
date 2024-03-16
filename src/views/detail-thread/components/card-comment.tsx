@@ -1,4 +1,4 @@
-import { Button, Skeleton } from '@/components/ui'
+import { Button, Heading, Skeleton } from '@/components/ui'
 import { cn, postedAt } from '@/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { ThumbsDown, ThumbsUp } from 'lucide-react'
@@ -85,6 +85,9 @@ const CardComment = ({
             ) : (
               <Skeleton className="h-12 w-12" />
             )}
+            <Heading variant="h3" className="text-lg">
+              {owner.name}
+            </Heading>
           </div>
           {threadStatus === 'success' ? (
             <div className="my-4 text-muted-foreground">{parse(content)}</div>

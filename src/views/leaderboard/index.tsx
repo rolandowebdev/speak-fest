@@ -30,7 +30,7 @@ export const columns: ColumnDef<CustomLeaderboardsEntry>[] = [
   },
 ]
 
-export default function LeaderboardsView() {
+export default function LeaderboardView() {
   const dispatch = useAppDispatch()
 
   const { push } = useRouter()
@@ -64,13 +64,12 @@ export default function LeaderboardsView() {
         <Button
           variant="link"
           className="flex items-center gap-1 px-0 text-lg text-primary"
-          onClick={() => push('/')}
-        >
+          onClick={() => push('/')}>
           <Undo2 size={18} />
           Back to home
         </Button>
         <Heading className="flex flex-wrap items-center gap-2">
-          <Dice6 size={32} /> Leaderboards
+          <Dice6 size={32} /> Leaderboard
         </Heading>
       </Header>
       <DataTable columns={columns} data={convertedData} />

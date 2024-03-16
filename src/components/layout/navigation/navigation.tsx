@@ -87,7 +87,7 @@ export const Navigation = () => {
       <LoadingBar
         style={{
           backgroundColor: '#3b82f6',
-          height: '7px',
+          height: '5px',
           zIndex: 99999,
           position: 'fixed',
           top: 0,

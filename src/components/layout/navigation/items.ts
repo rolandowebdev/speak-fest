@@ -23,8 +23,8 @@ export const menuLinkItems: MenuLink[] = [
     Icon: MessagesSquare,
   },
   {
-    href: '/leaderboards',
-    name: 'Leaderboards',
+    href: '/leaderboard',
+    name: 'Leaderboard',
     visible: 'all',
     Icon: Dice6,
   },
@@ -48,7 +48,7 @@ export const menuLinkItems: MenuLink[] = [
   },
   {
     href: '/profile',
-    name: 'My Profile',
+    name: 'Profile',
     visible: 'auth',
     Icon: User,
   },
