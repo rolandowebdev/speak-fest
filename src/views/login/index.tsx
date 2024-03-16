@@ -38,14 +38,13 @@ export default function LoginView() {
 
   async function handleLogin(values: z.infer<typeof authSchema>) {
     try {
-      dispatch(asyncAuth({ email: values.email, password: values.password }))
-
       const response = await signIn('credentials', {
         ...values,
         redirect: false,
       })
 
       if (response?.ok) {
+        dispatch(asyncAuth({ email: values.email, password: values.password }))
         push('/')
       }
     } catch (error: any) {
