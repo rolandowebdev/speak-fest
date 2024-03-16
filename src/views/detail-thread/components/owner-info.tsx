@@ -1,8 +1,9 @@
+import * as React from 'react'
 import { Avatar, AvatarFallback, AvatarImage, Skeleton } from '@/components/ui'
 import { useAppSelector } from '@/libs/redux'
 import { postedAt } from '@/utils'
 
-const OwnerInfoComponent = () => {
+function OwnerInfoComponent() {
   const { data, status } = useAppSelector((state) => state.threadDetail)
 
   return (

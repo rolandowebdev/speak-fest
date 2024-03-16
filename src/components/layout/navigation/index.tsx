@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import * as React from 'react'
 import { usePathname } from 'next/navigation'
 import { ChevronsLeft, ChevronsRight, PanelTopOpen } from 'lucide-react'
 import { cn } from '@/utils'
@@ -13,18 +13,14 @@ import {
   SheetTrigger,
   ImageBlur,
 } from '@/components/ui'
-import {
-  NavigationLink,
-  MenuLink,
-  menuLinkItems,
-  NavigationLinkSkeleton,
-} from '@/components/layout'
 import { useSession } from 'next-auth/react'
 import { ThemeToggle } from '@/components/theme'
-import { useTheme } from 'next-themes'
 import LoadingBar from 'react-redux-loading-bar'
+import { MenuLink, menuLinkItems } from './items'
+import { NavigationLink } from './link'
+import { NavigationLinkSkeleton } from './skeleton'
 
-const MobileNavigation = ({
+function MobileNavigation({
   pathname,
   isOpen,
   setIsOpen,
@@ -34,7 +30,7 @@ const MobileNavigation = ({
   isOpen: boolean
   setIsOpen: (open: boolean) => void
   filterLinkItems: () => MenuLink[]
-}) => {
+}) {
   return (
     <>
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -69,7 +65,7 @@ const MobileNavigation = ({
   )
 }
 
-export const Navigation = () => {
+export function Navigation() {
   const pathname = usePathname()
   const { status } = useSession()
   const { isCollapse, isOpen, setIsCollapse, setIsOpen } = useNavigationState()
@@ -116,8 +112,8 @@ export const Navigation = () => {
               { '-translate-x-48': isCollapse, 'delay-150': !isCollapse },
             )}>
             <ImageBlur
-              blurDataURL="/assets/s/speakfest.png"
-              src="/assets/speakfest.png"
+              blurDataURL="/speakfest.png"
+              src="/speakfest.png"
               width={246}
               height={246}
               alt="https://www.freepik.com/icon/talking_9364154#fromView=search&page=1&position=13&uuid=c4a2d0bb-aa9b-403b-a204-95ec043812da"

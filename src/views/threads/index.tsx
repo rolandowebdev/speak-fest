@@ -1,17 +1,18 @@
 'use client'
 
+import * as React from 'react'
 import { Footer, PageContainer } from '@/components/layout'
-import { ThreadsCard } from './components/threads-card'
 import { useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { ThreadsHeader } from './components/header'
-import { NotFoundThreads } from './components/not-found'
-import { ThreadsSkeleton } from './components/threads-skeleton'
 import { useAppDispatch, useAppSelector } from '@/libs/redux'
 import { Thread } from '@/types'
 import { asyncSetProfile } from '@/libs/redux/slices/profile'
 import { asyncReceiveThreads } from '@/libs/redux/slices/threads'
 import { asyncReceiveUsers } from '@/libs/redux/slices/users'
+import { ThreadsSkeleton } from './components/threads-skeleton'
+import { NotFoundThreads } from './components/not-found'
+import { ThreadsHeader } from './components/header'
+import { ThreadsCard } from './components/threads-card'
 
 export default function ThreadsView() {
   const dispatch = useAppDispatch()

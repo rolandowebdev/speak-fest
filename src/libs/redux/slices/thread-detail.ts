@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { ThreadDetail, VoteType } from '@/types'
 import api from '@/utils/api'
@@ -143,7 +144,6 @@ export const threadDetailSlice = createSlice({
         state.status = 'error'
         state.message = 'Add comment failed!'
       })
-
       .addCase(asyncVoteThread.fulfilled, ({ data }, action) => {
         switch (action.payload.voteType) {
           case 1:

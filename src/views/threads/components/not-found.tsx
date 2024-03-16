@@ -1,7 +1,8 @@
+import * as React from 'react'
 import { Heading } from '@/components/ui'
 import { FishOff } from 'lucide-react'
 
-export const NotFoundThreads = () => {
+export function NotFoundThreads() {
   return (
     <div className="flex flex-col items-center gap-2">
       <FishOff size={124} />

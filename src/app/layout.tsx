@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 
+import * as React from 'react'
 import type { Metadata } from 'next'
 import {
   Gabarito as FontSans,

@@ -1,7 +1,7 @@
+import * as React from 'react'
 import { Separator, Skeleton } from '@/components/ui'
-import React from 'react'
 
-export const ThreadsSkeleton = () => {
+export function ThreadsSkeleton() {
   return (
     <Skeleton className="h-44 w-full space-y-4 rounded-sm p-5">
       <Skeleton className="h-7 w-3/4 rounded-full bg-gray-200 dark:bg-zinc-700" />

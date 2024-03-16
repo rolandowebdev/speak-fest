@@ -1,7 +1,7 @@
+import * as React from 'react'
 import { Skeleton } from '@/components/ui'
-import React from 'react'
 
-export const CommentSkeleton = () => {
+export function CommentSkeleton() {
   return (
     <Skeleton className="flex h-[178px] flex-col justify-between gap-4 rounded-md border p-4">
       <Skeleton className="h-12 w-12 rounded-full bg-gray-200 dark:bg-zinc-700" />

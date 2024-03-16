@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { cn } from '@/utils'
 
 type PageContainerProps = {
@@ -5,7 +6,7 @@ type PageContainerProps = {
   className?: string
 }
 
-export const PageContainer = ({ children, className }: PageContainerProps) => {
+export function PageContainer({ children, className }: PageContainerProps) {
   return (
     <section
       className={cn(

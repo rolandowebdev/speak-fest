@@ -5,6 +5,7 @@ import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
 const asyncReceiveLeaderboard = createAsyncThunk(
   'leaderboard/receive',
+  // eslint-disable-next-line consistent-return
   async (_, { dispatch }) => {
     try {
       dispatch(showLoading())

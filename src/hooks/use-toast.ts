@@ -61,16 +61,19 @@ const addToRemoveQueue = (toastId: string) => {
 
   const timeout = setTimeout(() => {
     toastTimeouts.delete(toastId)
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     dispatch({
       type: 'REMOVE_TOAST',
-      toastId: toastId,
+      toastId,
     })
   }, TOAST_REMOVE_DELAY)
 
   toastTimeouts.set(toastId, timeout)
 }
 
+// eslint-disable-next-line consistent-return
 export const reducer = (state: State, action: Action): State => {
+  // eslint-disable-next-line default-case
   switch (action.type) {
     case 'ADD_TOAST':
       return {
@@ -161,7 +164,7 @@ function toast({ ...props }: Toast) {
   })
 
   return {
-    id: id,
+    id,
     dismiss,
     update,
   }

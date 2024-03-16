@@ -1,6 +1,7 @@
 'use client'
 
-import { Header, PageContainer } from '@/components/layout'
+import * as React from 'react'
+import { PageContainer } from '@/components/layout'
 import {
   Button,
   Form,
@@ -9,22 +10,23 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  Heading,
   Input,
 } from '@/components/ui'
-import { useAppDispatch } from '@/libs/redux'
+import { useAppDispatch, useAppSelector } from '@/libs/redux'
 import { asyncRegisterUser } from '@/libs/redux/slices/register'
 import { registerSchema } from '@/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ClipboardPen, Undo2, Loader2 } from 'lucide-react'
+import { ClipboardPen, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { HeaderWithLink } from '@/components/custom'
 
 export default function RegisterView() {
   const dispatch = useAppDispatch()
-  const { push } = useRouter()
+  const { status } = useAppSelector((state) => state.register)
+  const router = useRouter()
 
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
@@ -36,15 +38,15 @@ export default function RegisterView() {
   })
 
   async function handleRegister(values: z.infer<typeof registerSchema>) {
-    dispatch(
-      asyncRegisterUser({
-        email: values.email,
-        password: values.password,
-        name: values.name,
-      }),
-    )
+    await dispatch(asyncRegisterUser({ ...values }))
 
-    push('/login')
+    if (status === 'error') {
+      throw new Error('Failed to register')
+    } else {
+      router.refresh()
+    }
+
+    form.reset()
   }
 
   const checkInputValidationError =
@@ -53,18 +55,7 @@ export default function RegisterView() {
 
   return (
     <PageContainer>
-      <Header>
-        <Button
-          variant="link"
-          className="flex items-center gap-1 px-0 text-lg text-primary"
-          onClick={() => push('/')}>
-          <Undo2 size={18} />
-          Back to home
-        </Button>
-        <Heading className="flex flex-wrap items-center gap-2">
-          <ClipboardPen size={32} /> Register your account
-        </Heading>
-      </Header>
+      <HeaderWithLink icon={<ClipboardPen size={32} />} title="Register" />
       <div className="flex flex-col space-y-2">
         <Form {...form}>
           <form

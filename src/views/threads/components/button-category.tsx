@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { Button } from '@/components/ui'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
@@ -6,7 +7,7 @@ type ButtonCategoryProps = {
   category: string
 }
 
-export const ButtonCategory = ({ category }: ButtonCategoryProps) => {
+export function ButtonCategory({ category }: ButtonCategoryProps) {
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const router = useRouter()
@@ -39,8 +40,7 @@ export const ButtonCategory = ({ category }: ButtonCategoryProps) => {
     <Button
       variant="outline"
       onClick={() => handleSetCategories(category)}
-      className={selectedCategory === category ? 'bg-accent' : ''}
-    >
+      className={selectedCategory === category ? 'bg-accent' : ''}>
       # {category}
     </Button>
   )

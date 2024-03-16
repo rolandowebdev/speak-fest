@@ -1,3 +1,4 @@
+import * as React from 'react'
 import METADATA from '@/constants/metadata'
 import api from '@/utils/api'
 import { ThreadDetail } from '@/types'

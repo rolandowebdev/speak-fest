@@ -1,3 +1,4 @@
+import * as React from 'react'
 import METADATA from '@/constants/metadata'
 import LoginViews from '@/views/login'
 import { Metadata } from 'next'

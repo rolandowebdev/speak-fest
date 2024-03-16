@@ -1,13 +1,12 @@
-import { Button, Heading, Separator, Skeleton } from '@/components/ui'
+import * as React from 'react'
+import { Heading, Separator, Skeleton } from '@/components/ui'
 import { useAppDispatch, useAppSelector } from '@/libs/redux'
 import { asyncVoteThread } from '@/libs/redux/slices/thread-detail'
-import { Comment } from '@/types'
-import { cn } from '@/utils'
 import parse from 'html-react-parser'
-import { ThumbsDown, ThumbsUp } from 'lucide-react'
 import { useSession } from 'next-auth/react'
+import { VoteButton } from '@/components/custom'
 
-const ThreadDetails = ({ threadId }: { threadId: string }) => {
+export default function ThreadDetails({ threadId }: { threadId: string }) {
   const dispatch = useAppDispatch()
 
   const { data: profile } = useAppSelector((state) => state.profile)
@@ -60,51 +59,46 @@ const ThreadDetails = ({ threadId }: { threadId: string }) => {
           )}
           <Separator />
         </div>
+
         <div className="flex items-center justify-between">
           {threadStatus === 'success' ? (
-            <>
-              {`${threadDetail?.comments.length} ${
-                threadDetail?.comments && threadDetail?.comments.length > 1
-                  ? 'comments'
-                  : 'comment'
-              }`}
-            </>
+            `${threadDetail?.comments.length} ${
+              threadDetail?.comments && threadDetail?.comments.length > 1
+                ? 'comments'
+                : 'comment'
+            }`
           ) : (
             <Skeleton className="h-5 w-36" />
           )}
-          <div className="flex gap-2">
-            <Button
-              variant="ghost"
-              onClick={handleUpVote}
-              className={cn('flex items-center gap-1 text-lg', {
-                'cursor-not-allowed': authStatus === 'unauthenticated',
-              })}>
-              {isUpVoted ? (
-                <ThumbsUp size={18} className="fill-blue-600" />
-              ) : (
-                <ThumbsUp size={18} />
-              )}
-              {threadDetail?.upVotesBy.length || 0}
-            </Button>
 
-            <Button
-              variant="ghost"
-              onClick={handleDownVote}
-              className={cn('flex items-center gap-1 text-lg', {
-                'cursor-not-allowed': authStatus === 'unauthenticated',
-              })}>
-              {isDownVoted ? (
-                <ThumbsDown size={18} className="fill-blue-600" />
-              ) : (
-                <ThumbsDown size={18} />
-              )}
-              {threadDetail?.downVotesBy.length || 0}
-            </Button>
+          <div className="flex gap-2">
+            {threadStatus === 'success' ? (
+              <>
+                <VoteButton
+                  authStatus={authStatus}
+                  voteType="up-vote"
+                  onClick={handleUpVote}
+                  voteCount={threadDetail?.upVotesBy.length}
+                  isVoted={isUpVoted}
+                />
+
+                <VoteButton
+                  authStatus={authStatus}
+                  voteType="down-vote"
+                  onClick={handleDownVote}
+                  voteCount={threadDetail?.downVotesBy.length}
+                  isVoted={isDownVoted}
+                />
+              </>
+            ) : (
+              <>
+                <Skeleton className="h-9 w-14" />
+                <Skeleton className="h-9 w-14" />
+              </>
+            )}
           </div>
         </div>
       </div>
     </>
   )
 }
-
-export default ThreadDetails

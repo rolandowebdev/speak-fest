@@ -1,11 +1,12 @@
 import api from '@/utils/api'
-import { createSlice } from '@reduxjs/toolkit'
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
 import { LoginInputs } from '@/types'
+import { toast } from '@/hooks'
 
 export const asyncAuth = createAsyncThunk(
   'auth/asyncAuth',
+  // eslint-disable-next-line consistent-return
   async (body: LoginInputs, { dispatch }) => {
     try {
       dispatch(showLoading())
@@ -44,16 +45,24 @@ const authSlice = createSlice({
         state.status = 'loading'
         state.message = 'Login in progress...'
       })
-
       .addCase(asyncAuth.fulfilled, (state, action) => {
         state.data = action.payload.data.token
         state.status = 'success'
-        state.message = 'Login successfully!'
+        state.message = 'You have successfully logged in.'
+        toast({
+          title: 'Login success!',
+          description: state.message,
+          variant: 'success',
+        })
       })
-
-      .addCase(asyncAuth.rejected, (state, action) => {
+      .addCase(asyncAuth.rejected, (state) => {
         state.status = 'error'
-        state.message = action.error.message || 'Login failed, please try again'
+        state.message = 'Make sure your email and password are correct.'
+        toast({
+          title: 'Login failed!',
+          description: state.message,
+          variant: 'destructive',
+        })
       })
   },
 })

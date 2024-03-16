@@ -25,7 +25,6 @@ export function useMediaQuery(query: string): boolean {
     if (mediaQuery.addEventListener) {
       mediaQuery.addEventListener('change', handleChange)
     } else {
-      console.warn('Using deprecated method. Consider updating your code.')
       mediaQuery.addListener(handleChange)
     }
 

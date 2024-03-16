@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { PageContainer } from '@/components/layout'
 import { Heading, buttonVariants } from '@/components/ui'
 import { cn } from '@/utils'
