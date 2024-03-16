@@ -22,6 +22,7 @@ import {
 import { useSession } from 'next-auth/react'
 import { ThemeToggle } from '@/components/theme'
 import { useTheme } from 'next-themes'
+import LoadingBar from 'react-redux-loading-bar'
 
 const MobileNavigation = ({
   pathname,
@@ -71,7 +72,6 @@ const MobileNavigation = ({
 export const Navigation = () => {
   const pathname = usePathname()
   const { status } = useSession()
-  const { theme } = useTheme()
   const { isCollapse, isOpen, setIsCollapse, setIsOpen } = useNavigationState()
 
   const filterLinkItems = () => {
@@ -84,6 +84,18 @@ export const Navigation = () => {
 
   return (
     <>
+      <LoadingBar
+        style={{
+          backgroundColor: '#3b82f6',
+          height: '7px',
+          zIndex: 99999,
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+        }}
+      />
+
       <nav
         className={cn(
           'sticky top-0 hidden min-h-screen w-48 flex-col items-center self-start px-4 py-16 sm:flex',

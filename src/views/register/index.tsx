@@ -16,7 +16,7 @@ import { useAppDispatch } from '@/libs/redux'
 import { asyncRegisterUser } from '@/libs/redux/slices/register'
 import { registerSchema } from '@/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ClipboardPen, Undo2 } from 'lucide-react'
+import { ClipboardPen, Undo2, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
@@ -110,7 +110,11 @@ export default function RegisterView() {
               )}
             />
             <Button type="submit" className="w-full" disabled={isDisabled}>
-              {form.formState.isSubmitting ? 'Loading...' : 'Register'}
+              {form.formState.isSubmitting ? (
+                <Loader2 className="animate-spin" />
+              ) : (
+                'Register'
+              )}
             </Button>
           </form>
         </Form>

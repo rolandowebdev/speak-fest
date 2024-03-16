@@ -2,18 +2,25 @@ import api from '@/utils/api'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { User } from '@/types'
 import { createSlice } from '@reduxjs/toolkit'
+import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
-export const asyncSetProfile = createAsyncThunk('user/profile', async () => {
-  try {
-    const { data } = await api.getOwnProfile()
-    return data
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.log('there is an error:', error.message)
-      throw new Error(error.message)
+export const asyncSetProfile = createAsyncThunk(
+  'user/profile',
+  async (_, { dispatch }) => {
+    try {
+      dispatch(showLoading())
+      const { data } = await api.getOwnProfile()
+      return data
+    } catch (error: any) {
+      if (error instanceof Error) {
+        console.log('there is an error:', error.message)
+        throw new Error(error.message)
+      }
+    } finally {
+      dispatch(hideLoading())
     }
-  }
-})
+  },
+)
 
 type InitialState = {
   data: User | null
@@ -33,7 +40,7 @@ const profileSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(asyncSetProfile.pending, (state, action) => {
+      .addCase(asyncSetProfile.pending, (state) => {
         state.status = 'loading'
         state.message = 'Get own profile in progress...'
       })

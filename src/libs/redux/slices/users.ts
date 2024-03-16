@@ -1,18 +1,25 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { User } from '@/types'
 import api from '@/utils/api'
+import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
-const asyncReceiveUsers = createAsyncThunk('users/receive', async () => {
-  try {
-    const users = await api.getAllUsers()
-    return users
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.log('there is an error:', error.message)
-      throw new Error(error.message)
+const asyncReceiveUsers = createAsyncThunk(
+  'users/receive',
+  async (_, { dispatch }) => {
+    try {
+      dispatch(showLoading())
+      const users = await api.getAllUsers()
+      return users
+    } catch (error: any) {
+      if (error instanceof Error) {
+        console.log('there is an error:', error.message)
+        throw new Error(error.message)
+      }
+    } finally {
+      dispatch(hideLoading())
     }
-  }
-})
+  },
+)
 
 interface InitialState {
   data: User[]

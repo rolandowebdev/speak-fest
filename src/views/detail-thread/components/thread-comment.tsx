@@ -10,10 +10,11 @@ import {
   Textarea,
 } from '@/components/ui'
 import { toast } from '@/hooks'
-import { useAppDispatch } from '@/libs/redux'
+import { useAppDispatch, useAppSelector } from '@/libs/redux'
 import { asyncAddThreadComment } from '@/libs/redux/slices/thread-detail'
 import { postCommentSchema } from '@/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Loader2 } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
@@ -21,7 +22,8 @@ import { z } from 'zod'
 
 const ThreadComment = ({ treadId }: { treadId: string }) => {
   const dispatch = useAppDispatch()
-  const { status } = useSession()
+  const { status: threadStatus } = useAppSelector((state) => state.threadDetail)
+  const { status: authStatus } = useSession()
 
   const form = useForm<z.infer<typeof postCommentSchema>>({
     resolver: zodResolver(postCommentSchema),
@@ -53,11 +55,11 @@ const ThreadComment = ({ treadId }: { treadId: string }) => {
     Object.keys(form.formState.errors).length > 0
   const isDisabled = form.formState.isSubmitting || checkInputValidationError
 
-  return status === 'loading' ? (
+  return authStatus === 'loading' ? (
     <Skeleton className="h-10 w-full" />
   ) : (
     <>
-      {status === 'authenticated' ? (
+      {authStatus === 'authenticated' ? (
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-2">
             <FormField
@@ -78,7 +80,11 @@ const ThreadComment = ({ treadId }: { treadId: string }) => {
             />
 
             <Button type="submit" className="w-full" disabled={isDisabled}>
-              {form.formState.isSubmitting ? 'Loading...' : 'Post'}
+              {form.formState.isSubmitting ? (
+                <Loader2 className="animate-spin" />
+              ) : (
+                'Post'
+              )}
             </Button>
           </form>
         </Form>

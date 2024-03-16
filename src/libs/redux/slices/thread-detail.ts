@@ -1,66 +1,82 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { ThreadDetail, VoteType } from '@/types'
 import api from '@/utils/api'
+import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
 const asyncReceiveThreadDetail = createAsyncThunk(
   'threadDetail/receive',
-  async (threadId: string) => {
+  async (threadId: string, { dispatch }) => {
     try {
+      dispatch(showLoading())
       const thread = await api.getDetailThread(threadId)
       return thread
-    } catch (error: unknown) {
+    } catch (error: any) {
       if (error instanceof Error) {
         console.log('there is an error:', error.message)
         throw new Error(error.message)
       }
+    } finally {
+      dispatch(hideLoading())
     }
   },
 )
 
 const asyncAddThreadComment = createAsyncThunk(
   'threadDetail/addComment',
-  async (comment: { content: string; threadId: string }) => {
+  async (comment: { content: string; threadId: string }, { dispatch }) => {
     const { content, threadId } = comment
     try {
+      dispatch(showLoading())
       const newComment = await api.createComment(content, threadId)
       return newComment
-    } catch (error: unknown) {
+    } catch (error: any) {
       if (error instanceof Error) {
         console.log('there is an error:', error.message)
         throw new Error(error.message)
       }
+    } finally {
+      dispatch(hideLoading())
     }
   },
 )
 
 const asyncVoteThread = createAsyncThunk(
   'threadDetail/addVote',
-  async (vote: { threadId: string; voteType: VoteType }) => {
+  async (vote: { threadId: string; voteType: VoteType }, { dispatch }) => {
     const { threadId, voteType } = vote
     try {
+      dispatch(showLoading())
       const newVote = await api.addThreadVote(threadId, voteType)
       return newVote
-    } catch (error: unknown) {
+    } catch (error: any) {
       if (error instanceof Error) {
         console.log('there is an error:', error.message)
         throw new Error(error.message)
       }
+    } finally {
+      dispatch(hideLoading())
     }
   },
 )
 
 const asyncVoteComment = createAsyncThunk(
   'threadDetail/addCommentVote',
-  async (vote: { threadId: string; commentId: string; voteType: VoteType }) => {
+  async (
+    vote: { threadId: string; commentId: string; voteType: VoteType },
+    { dispatch },
+  ) => {
     const { threadId, commentId, voteType } = vote
     try {
+      dispatch(showLoading())
       const newVote = await api.addCommentVote(threadId, commentId, voteType)
       return newVote
-    } catch (error: unknown) {
+    } catch (error: any) {
       if (error instanceof Error) {
         console.log('there is an error:', error.message)
         throw new Error(error.message)
       }
+    } finally {
+      dispatch(hideLoading())
     }
   },
 )
@@ -135,7 +151,6 @@ export const threadDetailSlice = createSlice({
             data.downVotesBy = data.downVotesBy.filter(
               (vote) => vote !== action.payload.userId,
             )
-
             break
           case 0:
             data.upVotesBy = data.upVotesBy.filter(

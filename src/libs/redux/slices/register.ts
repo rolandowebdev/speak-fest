@@ -1,18 +1,22 @@
 import api from '@/utils/api'
 import { UserRegister } from '@/types'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
 export const asyncRegisterUser = createAsyncThunk(
   'register/user',
-  async (user: UserRegister) => {
+  async (user: UserRegister, { dispatch }) => {
     try {
+      dispatch(showLoading())
       const { name, email, password } = user
       await api.register({ name, email, password })
-    } catch (error: unknown) {
+    } catch (error: any) {
       if (error instanceof Error) {
         console.log('there is an error:', error.message)
         throw new Error(error.message)
       }
+    } finally {
+      dispatch(hideLoading())
     }
   },
 )
@@ -40,12 +44,12 @@ const registerSlice = createSlice({
 
       .addCase(asyncRegisterUser.fulfilled, (state) => {
         state.status = 'success'
-        state.message = 'Registration successfully'
+        state.message = 'Your account has been created successfully.'
       })
 
-      .addCase(asyncRegisterUser.rejected, (state) => {
+      .addCase(asyncRegisterUser.rejected, (state, action) => {
         state.status = 'error'
-        state.message = 'Registration failed, please try again'
+        state.message = action.error.message || 'Registration failed!'
       })
   },
 })

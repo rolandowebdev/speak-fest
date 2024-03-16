@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { NewThread, Thread } from '@/types'
 import api from '@/utils/api'
+import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
 const asyncReceiveThreads = createAsyncThunk('threads/receive', async () => {
   const threads = await api.getAllThreads()
@@ -9,16 +10,19 @@ const asyncReceiveThreads = createAsyncThunk('threads/receive', async () => {
 
 const asyncAddThread = createAsyncThunk(
   'threads/add',
-  async (thread: NewThread) => {
+  async (thread: NewThread, { dispatch }) => {
     const { title, body, category } = thread
     try {
+      dispatch(showLoading())
       const newThread = await api.createThread({ title, body, category })
       return newThread
-    } catch (error: unknown) {
+    } catch (error: any) {
       if (error instanceof Error) {
         console.log('there is an error:', error.message)
         throw new Error(error.message)
       }
+    } finally {
+      dispatch(hideLoading())
     }
   },
 )
@@ -61,11 +65,11 @@ export const threadsSlice = createSlice({
       .addCase(asyncAddThread.fulfilled, (state, action) => {
         state.data = [action.payload, ...state.data]
         state.status = 'success'
-        state.message = 'Add thread successfully!'
+        state.message = 'Your thread has been created successfully.'
       })
-      .addCase(asyncAddThread.rejected, (state) => {
+      .addCase(asyncAddThread.rejected, (state, action) => {
         state.status = 'error'
-        state.message = 'Add thread failed!'
+        state.message = action.error.message || 'Add thread failed!'
       })
   },
 })

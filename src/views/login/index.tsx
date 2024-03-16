@@ -16,7 +16,7 @@ import { useAppDispatch } from '@/libs/redux'
 import { asyncAuth } from '@/libs/redux/slices/auth'
 import { authSchema } from '@/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { LogIn, Undo2 } from 'lucide-react'
+import { Loader2, LogIn, Undo2 } from 'lucide-react'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -37,7 +37,7 @@ export default function LoginView() {
 
   async function handleLogin(values: z.infer<typeof authSchema>) {
     try {
-      dispatch(asyncAuth(values))
+      dispatch(asyncAuth({ email: values.email, password: values.password }))
 
       await signIn('credentials', {
         ...values,
@@ -98,7 +98,11 @@ export default function LoginView() {
               )}
             />
             <Button type="submit" className="w-full" disabled={isDisabled}>
-              {form.formState.isSubmitting ? 'Loading...' : 'Login'}
+              {form.formState.isSubmitting ? (
+                <Loader2 className="animate-spin" />
+              ) : (
+                'Login'
+              )}
             </Button>
           </form>
         </Form>

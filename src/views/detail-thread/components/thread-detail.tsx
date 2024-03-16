@@ -1,6 +1,8 @@
 import { Button, Heading, Separator, Skeleton } from '@/components/ui'
 import { useAppDispatch, useAppSelector } from '@/libs/redux'
 import { asyncVoteThread } from '@/libs/redux/slices/thread-detail'
+import { Comment } from '@/types'
+import { cn } from '@/utils'
 import parse from 'html-react-parser'
 import { ThumbsDown, ThumbsUp } from 'lucide-react'
 import { useSession } from 'next-auth/react'
@@ -14,8 +16,11 @@ const ThreadDetails = ({ threadId }: { threadId: string }) => {
     (state) => state.threadDetail,
   )
 
+  const isUpVoted = threadDetail?.upVotesBy.includes(profile?.id as string)
+  const isDownVoted = threadDetail?.downVotesBy.includes(profile?.id as string)
+
   const handleUpVote = () => {
-    if (threadDetail.upVotesBy.includes(profile?.id as string)) {
+    if (isUpVoted) {
       dispatch(asyncVoteThread({ threadId, voteType: 'neutral-vote' }))
     } else {
       dispatch(asyncVoteThread({ threadId, voteType: 'up-vote' }))
@@ -23,7 +28,7 @@ const ThreadDetails = ({ threadId }: { threadId: string }) => {
   }
 
   const handleDownVote = () => {
-    if (threadDetail.downVotesBy.includes(profile?.id as string)) {
+    if (isDownVoted) {
       dispatch(asyncVoteThread({ threadId, voteType: 'neutral-vote' }))
     } else {
       dispatch(asyncVoteThread({ threadId, voteType: 'down-vote' }))
@@ -71,22 +76,29 @@ const ThreadDetails = ({ threadId }: { threadId: string }) => {
             <Button
               variant="ghost"
               onClick={handleUpVote}
-              disabled={authStatus === 'unauthenticated'}
-              className="flex items-center gap-1 text-lg"
-            >
-              <ThumbsUp size={18} />
-              {threadStatus === 'success' ? threadDetail?.upVotesBy.length : 0}
+              className={cn('flex items-center gap-1 text-lg', {
+                'cursor-not-allowed': authStatus === 'unauthenticated',
+              })}>
+              {isUpVoted ? (
+                <ThumbsUp size={18} className="fill-blue-600" />
+              ) : (
+                <ThumbsUp size={18} />
+              )}
+              {threadDetail?.upVotesBy.length || 0}
             </Button>
+
             <Button
               variant="ghost"
               onClick={handleDownVote}
-              disabled={authStatus === 'unauthenticated'}
-              className="flex items-center gap-1 text-lg"
-            >
-              <ThumbsDown size={18} />
-              {threadStatus === 'success'
-                ? threadDetail?.downVotesBy.length
-                : 0}
+              className={cn('flex items-center gap-1 text-lg', {
+                'cursor-not-allowed': authStatus === 'unauthenticated',
+              })}>
+              {isDownVoted ? (
+                <ThumbsDown size={18} className="fill-blue-600" />
+              ) : (
+                <ThumbsDown size={18} />
+              )}
+              {threadDetail?.downVotesBy.length || 0}
             </Button>
           </div>
         </div>

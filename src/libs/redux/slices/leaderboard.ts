@@ -1,18 +1,22 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { Leaderboard } from '@/types'
 import api from '@/utils/api'
+import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
 const asyncReceiveLeaderboard = createAsyncThunk(
   'leaderboard/receive',
-  async () => {
+  async (_, { dispatch }) => {
     try {
+      dispatch(showLoading())
       const leaderboard = await api.getLeaderboard()
       return leaderboard
-    } catch (error: unknown) {
+    } catch (error: any) {
       if (error instanceof Error) {
         console.log('there is an error:', error.message)
         throw new Error(error.message)
       }
+    } finally {
+      dispatch(hideLoading())
     }
   },
 )

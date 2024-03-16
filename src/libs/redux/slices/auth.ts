@@ -11,7 +11,7 @@ export const asyncAuth = createAsyncThunk(
       dispatch(showLoading())
       const data = await api.login(body)
       return data
-    } catch (error: unknown) {
+    } catch (error: any) {
       if (error instanceof Error) {
         console.log('there is an error:', error.message)
         throw new Error(error.message)
@@ -51,9 +51,9 @@ const authSlice = createSlice({
         state.message = 'Login successfully!'
       })
 
-      .addCase(asyncAuth.rejected, (state) => {
+      .addCase(asyncAuth.rejected, (state, action) => {
         state.status = 'error'
-        state.message = 'Login failed, please try again'
+        state.message = action.error.message || 'Login failed, please try again'
       })
   },
 })

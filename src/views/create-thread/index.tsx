@@ -13,18 +13,19 @@ import {
   Input,
 } from '@/components/ui'
 import { useToast } from '@/hooks'
-import { useAppDispatch } from '@/libs/redux'
+import { useAppDispatch, useAppSelector } from '@/libs/redux'
 import { asyncAddThread } from '@/libs/redux/slices/threads'
 import { createThreadSchema } from '@/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { unwrapResult } from '@reduxjs/toolkit'
-import { PenLine, Undo2 } from 'lucide-react'
+import { PenLine, Undo2, Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 export default function CreateThreadView() {
   const dispatch = useAppDispatch()
+  const { status, message } = useAppSelector((state) => state.threads)
+
   const { toast } = useToast()
   const { push } = useRouter()
 
@@ -40,7 +41,16 @@ export default function CreateThreadView() {
   async function handleCreateThread(
     values: z.infer<typeof createThreadSchema>,
   ) {
-    try {
+    if (status === 'error') {
+      toast({
+        title: 'Create thread failed',
+        description: message,
+        variant: 'destructive',
+      })
+      return
+    }
+
+    if (status === 'success') {
       dispatch(
         asyncAddThread({
           title: values.title,
@@ -50,19 +60,12 @@ export default function CreateThreadView() {
       )
 
       toast({
-        title: 'Thread created',
+        title: 'Thread created!',
         description: 'Your thread has been created successfully.',
         variant: 'success',
       })
 
       push('/')
-    } catch (error: any) {
-      console.log(error.message)
-      toast({
-        title: 'Error',
-        description: error.message,
-        variant: 'destructive',
-      })
     }
   }
 
@@ -133,7 +136,11 @@ export default function CreateThreadView() {
               )}
             />
             <Button type="submit" className="w-full" disabled={isDisabled}>
-              {form.formState.isSubmitting ? 'Loading...' : 'Create Thread'}
+              {form.formState.isSubmitting ? (
+                <Loader2 className="animate-spin" />
+              ) : (
+                'Create Thread'
+              )}
             </Button>
           </form>
         </Form>

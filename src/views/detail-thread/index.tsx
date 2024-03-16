@@ -59,12 +59,7 @@ export const DetailThreadView = ({ slug }: DetailtThreadViewProps) => {
           {hasComments && <Separator />}
 
           {data?.comments?.map((comment: Comment) => (
-            <CardComment
-              key={comment.id}
-              {...comment}
-              threadId={slug}
-              threadStatus={status}
-            />
+            <CardComment key={comment.id} {...comment} threadId={slug} />
           ))}
 
           {hasComments && <Footer />}
