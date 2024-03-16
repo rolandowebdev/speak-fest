@@ -144,7 +144,6 @@ export const threadDetailSlice = createSlice({
         state.status = 'error'
         state.message = 'Add comment failed!'
       })
-
       .addCase(asyncVoteThread.fulfilled, ({ data }, action) => {
         switch (action.payload.voteType) {
           case 1:

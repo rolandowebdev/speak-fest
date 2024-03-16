@@ -44,13 +44,11 @@ const profileSlice = createSlice({
         state.status = 'loading'
         state.message = 'Get own profile in progress...'
       })
-
       .addCase(asyncSetProfile.fulfilled, (state, action) => {
         state.data = action.payload.user as User
         state.status = 'success'
         state.message = 'Get own profile successfully!'
       })
-
       .addCase(asyncSetProfile.rejected, (state) => {
         state.status = 'error'
         state.message = 'Get own profile failed, please try again'

@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { NewThread, Thread } from '@/types'
 import api from '@/utils/api'
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
+import { toast } from '@/hooks'
 
 const asyncReceiveThreads = createAsyncThunk('threads/receive', async () => {
   const threads = await api.getAllThreads()
@@ -67,10 +68,21 @@ export const threadsSlice = createSlice({
         state.data = [action.payload, ...state.data]
         state.status = 'success'
         state.message = 'Your thread has been created successfully.'
+        toast({
+          title: 'Create thread success!',
+          description: state.message,
+          variant: 'success',
+        })
       })
       .addCase(asyncAddThread.rejected, (state, action) => {
         state.status = 'error'
-        state.message = action.error.message || 'Add thread failed!'
+        state.message =
+          action.error.message || 'Add thread failed, please try again'
+        toast({
+          title: 'Create thread failed!',
+          description: state.message,
+          variant: 'destructive',
+        })
       })
   },
 })

@@ -34,18 +34,23 @@ function ThreadComment({ treadId }: { treadId: string }) {
 
   async function handleLogin(values: z.infer<typeof postCommentSchema>) {
     try {
-      dispatch(
+      await dispatch(
         asyncAddThreadComment({ content: values.comment, threadId: treadId }),
       )
 
       toast({
-        title: 'Comment created',
+        title: 'Comment created!',
         description: 'Your comment has been created successfully.',
         variant: 'success',
       })
 
       form.reset()
     } catch (error: any) {
+      toast({
+        title: 'Comment failed!',
+        description: error.message,
+        variant: 'destructive',
+      })
       console.log(error.message)
       throw new Error(error)
     }

@@ -18,8 +18,10 @@ export function ThreadsCard({
   return (
     <Link href={`thread/${id}`} className="group">
       <article className="rounded-md border p-5 duration-300 hover:-translate-y-2 hover:shadow-md">
-        <Heading variant="h2" className="text-wrap group-hover:underline ">
-          {title.length > 45 ? `${title.slice(0, 45)}...` : title}
+        <Heading
+          variant="h2"
+          className="truncate text-wrap group-hover:underline ">
+          {title.length > 50 ? `${title.slice(0, 50)}...` : title}
         </Heading>
         <div className="mt-4 max-h-6 truncate text-wrap">
           {parse(body.length > 100 ? `${body.slice(0, 100)}...` : body)}

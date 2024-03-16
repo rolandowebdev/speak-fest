@@ -23,7 +23,11 @@ export const store = () =>
       register: resgiterSlice,
       loadingBar: loadingBarReducer,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        immutableCheck: { warnAfter: 128 },
+        serializableCheck: { warnAfter: 128 },
+      }),
   })
 
 export type AppStore = ReturnType<typeof store>

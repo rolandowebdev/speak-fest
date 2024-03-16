@@ -14,7 +14,6 @@ import {
   FormMessage,
   Input,
 } from '@/components/ui'
-import { useToast } from '@/hooks'
 import { useAppDispatch, useAppSelector } from '@/libs/redux'
 import { asyncAddThread } from '@/libs/redux/slices/threads'
 import { createThreadSchema } from '@/schema'
@@ -26,9 +25,7 @@ import { z } from 'zod'
 
 export default function CreateThreadView() {
   const dispatch = useAppDispatch()
-  const { status, message } = useAppSelector((state) => state.threads)
-
-  const { toast } = useToast()
+  const { status } = useAppSelector((state) => state.threads)
   const { push } = useRouter()
 
   const form = useForm<z.infer<typeof createThreadSchema>>({
@@ -43,32 +40,19 @@ export default function CreateThreadView() {
   async function handleCreateThread(
     values: z.infer<typeof createThreadSchema>,
   ) {
+    await dispatch(
+      asyncAddThread({
+        title: values.title,
+        body: values.body,
+        category: values.category,
+      }),
+    )
+
     if (status === 'error') {
-      toast({
-        title: 'Create thread failed',
-        description: message,
-        variant: 'destructive',
-      })
-      return
+      throw new Error('Failed to create thread')
     }
 
-    if (status === 'success') {
-      dispatch(
-        asyncAddThread({
-          title: values.title,
-          body: values.body,
-          category: values.category,
-        }),
-      )
-
-      toast({
-        title: 'Thread created!',
-        description: 'Your thread has been created successfully.',
-        variant: 'success',
-      })
-
-      push('/')
-    }
+    push('/')
   }
 
   const checkInputValidationError =

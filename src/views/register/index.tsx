@@ -12,7 +12,7 @@ import {
   FormMessage,
   Input,
 } from '@/components/ui'
-import { useAppDispatch } from '@/libs/redux'
+import { useAppDispatch, useAppSelector } from '@/libs/redux'
 import { asyncRegisterUser } from '@/libs/redux/slices/register'
 import { registerSchema } from '@/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -22,11 +22,11 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { HeaderWithLink } from '@/components/custom'
-import { toast } from '@/hooks'
 
 export default function RegisterView() {
   const dispatch = useAppDispatch()
-  const { push } = useRouter()
+  const { status } = useAppSelector((state) => state.register)
+  const router = useRouter()
 
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
@@ -38,30 +38,15 @@ export default function RegisterView() {
   })
 
   async function handleRegister(values: z.infer<typeof registerSchema>) {
-    try {
-      dispatch(
-        asyncRegisterUser({
-          email: values.email,
-          password: values.password,
-          name: values.name,
-        }),
-      )
+    await dispatch(asyncRegisterUser({ ...values }))
 
-      toast({
-        title: 'Register success',
-        description: 'Your account has been created successfully.',
-        variant: 'success',
-      })
-
-      push('/login')
-    } catch (error: any) {
-      toast({
-        title: 'Register failed',
-        description: error.message,
-        variant: 'destructive',
-      })
-      console.log(error.message)
+    if (status === 'error') {
+      throw new Error('Failed to register')
+    } else {
+      router.refresh()
     }
+
+    form.reset()
   }
 
   const checkInputValidationError =
