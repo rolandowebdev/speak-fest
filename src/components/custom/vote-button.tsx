@@ -38,7 +38,7 @@ export function VoteButton({
       variant="ghost"
       onClick={onClick}
       className="flex items-center gap-1 text-lg"
-      disabled={authStatus === 'unauthenticated'}>
+      disabled={authStatus === 'unauthenticated' || authStatus === 'loading'}>
       {icon}
       {voteCount || 0}
     </Button>

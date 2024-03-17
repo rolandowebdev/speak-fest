@@ -58,53 +58,61 @@ function ThreadComment({ treadId }: { treadId: string }) {
 
   const checkInputValidationError =
     Object.keys(form.formState.errors).length > 0
-  const isDisabled = form.formState.isSubmitting || checkInputValidationError
-
-  if (authStatus === 'loading') {
-    return <Skeleton className="h-12 w-full" />
-  }
-
-  if (authStatus === 'authenticated') {
-    return (
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-2">
-          <FormField
-            control={form.control}
-            name="comment"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-xl">Add your comment</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Type your comment here..."
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <Button type="submit" className="w-full" disabled={isDisabled}>
-            {form.formState.isSubmitting ? (
-              <Loader2 className="animate-spin" />
-            ) : (
-              'Post'
-            )}
-          </Button>
-        </form>
-      </Form>
-    )
-  }
+  const isDisabled =
+    form.formState.isSubmitting ||
+    checkInputValidationError ||
+    authStatus === 'unauthenticated'
 
   return (
-    <p>
-      <Link href="/login" className="link-style">
-        Login
-      </Link>{' '}
-      to add your comment
-    </p>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-2">
+        <FormField
+          control={form.control}
+          name="comment"
+          render={({ field }) => (
+            <FormItem>
+              {authStatus === 'loading' ? (
+                <Skeleton className="h-6 w-44" />
+              ) : (
+                <FormLabel className="text-md">
+                  {authStatus === 'authenticated' ? (
+                    <span> Add your comment</span>
+                  ) : (
+                    <span>
+                      <Link href="/login" className="link-style">
+                        Login
+                      </Link>{' '}
+                      to add your comment
+                    </span>
+                  )}
+                </FormLabel>
+              )}
+              <FormControl>
+                <Textarea
+                  disabled={
+                    authStatus === 'unauthenticated' || authStatus === 'loading'
+                  }
+                  placeholder="Type your comment here..."
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={isDisabled || authStatus === 'loading'}>
+          {form.formState.isSubmitting ? (
+            <Loader2 className="animate-spin" />
+          ) : (
+            'Post'
+          )}
+        </Button>
+      </form>
+    </Form>
   )
 }
-
 export default ThreadComment

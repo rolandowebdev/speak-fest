@@ -51,8 +51,6 @@ export default function ThreadDetails({ threadId }: { threadId: string }) {
           ) : (
             <div className="my-4 space-y-3">
               <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-full" />
               <Skeleton className="h-4 w-4/5" />
               <Skeleton className="h-4 w-1/2" />
             </div>
@@ -68,34 +66,25 @@ export default function ThreadDetails({ threadId }: { threadId: string }) {
                 : 'comment'
             }`
           ) : (
-            <Skeleton className="h-5 w-36" />
+            <Skeleton className="h-5 w-20" />
           )}
 
           <div className="flex gap-2">
-            {threadStatus === 'success' ? (
-              <>
-                <VoteButton
-                  authStatus={authStatus}
-                  voteType="up-vote"
-                  onClick={handleUpVote}
-                  voteCount={threadDetail?.upVotesBy.length}
-                  isVoted={isUpVoted}
-                />
+            <VoteButton
+              authStatus={authStatus}
+              voteType="up-vote"
+              onClick={handleUpVote}
+              voteCount={threadDetail?.upVotesBy.length}
+              isVoted={isUpVoted}
+            />
 
-                <VoteButton
-                  authStatus={authStatus}
-                  voteType="down-vote"
-                  onClick={handleDownVote}
-                  voteCount={threadDetail?.downVotesBy.length}
-                  isVoted={isDownVoted}
-                />
-              </>
-            ) : (
-              <>
-                <Skeleton className="h-9 w-14" />
-                <Skeleton className="h-9 w-14" />
-              </>
-            )}
+            <VoteButton
+              authStatus={authStatus}
+              voteType="down-vote"
+              onClick={handleDownVote}
+              voteCount={threadDetail?.downVotesBy.length}
+              isVoted={isDownVoted}
+            />
           </div>
         </div>
       </div>
