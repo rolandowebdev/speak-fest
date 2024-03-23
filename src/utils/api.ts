@@ -75,7 +75,8 @@ const api = (() => {
         throw new Error(`Login failed with status ${response.status}`)
       }
 
-      return await response.json()
+      const responseData = await response.json()
+      return responseData
     } catch (error: any) {
       throw new Error(error.message)
     }
@@ -267,7 +268,7 @@ const api = (() => {
   }
 
   async function getLeaderboard() {
-    const response = await fetchWithAuth(`${BASE_URL}/leaderboards`)
+    const response = await fetch(`${BASE_URL}/leaderboards`)
 
     const responseJson = await response.json()
 
@@ -285,6 +286,8 @@ const api = (() => {
   }
 
   return {
+    BASE_URL,
+    fetchWithAuth,
     register,
     login,
     getOwnProfile,

@@ -10,7 +10,7 @@ export const asyncSetProfile = createAsyncThunk(
     try {
       dispatch(showLoading())
       const { data } = await api.getOwnProfile()
-      return data
+      return data.user
     } catch (error: any) {
       if (error instanceof Error) {
         console.log('there is an error:', error.message)
@@ -45,7 +45,7 @@ const profileSlice = createSlice({
         state.message = 'Get own profile in progress...'
       })
       .addCase(asyncSetProfile.fulfilled, (state, action) => {
-        state.data = action.payload.user as User
+        state.data = action.payload
         state.status = 'success'
         state.message = 'Get own profile successfully!'
       })

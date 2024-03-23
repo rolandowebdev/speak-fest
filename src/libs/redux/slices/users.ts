@@ -22,14 +22,14 @@ const asyncReceiveUsers = createAsyncThunk(
   },
 )
 
-interface InitialState {
-  data: User[]
+type InitialState = {
+  data: User[] | null
   status: 'idle' | 'loading' | 'error' | 'success'
   message: string | null
 }
 
 const initialState: InitialState = {
-  data: [],
+  data: null,
   status: 'idle',
   message: null,
 }

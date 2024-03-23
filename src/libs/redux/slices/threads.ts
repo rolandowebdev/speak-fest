@@ -4,10 +4,21 @@ import api from '@/utils/api'
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
 import { toast } from '@/hooks'
 
-const asyncReceiveThreads = createAsyncThunk('threads/receive', async () => {
-  const threads = await api.getAllThreads()
-  return threads
-})
+const asyncReceiveThreads = createAsyncThunk(
+  'threads/receive',
+  // eslint-disable-next-line consistent-return
+  async () => {
+    try {
+      const threads = await api.getAllThreads()
+      return threads
+    } catch (error: any) {
+      if (error instanceof Error) {
+        console.log('there is an error:', error.message)
+        throw new Error(error.message)
+      }
+    }
+  },
+)
 
 const asyncAddThread = createAsyncThunk(
   'threads/add',
@@ -29,7 +40,7 @@ const asyncAddThread = createAsyncThunk(
   },
 )
 
-interface InitialState {
+type InitialState = {
   data: Thread[]
   status: 'idle' | 'loading' | 'error' | 'success'
   message: string | null
@@ -41,7 +52,7 @@ const initialState: InitialState = {
   message: null,
 }
 
-export const threadsSlice = createSlice({
+const threadsSlice = createSlice({
   name: 'threads',
   initialState,
   reducers: {},

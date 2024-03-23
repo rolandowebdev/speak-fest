@@ -82,7 +82,7 @@ const asyncVoteComment = createAsyncThunk(
   },
 )
 
-interface InitialState {
+type InitialState = {
   data: ThreadDetail
   status: 'idle' | 'loading' | 'error' | 'success'
   message: string | null

@@ -22,19 +22,19 @@ const asyncReceiveLeaderboard = createAsyncThunk(
   },
 )
 
-interface InitialState {
-  data: Leaderboard[]
+type InitialState = {
+  data: Leaderboard[] | null
   status: 'idle' | 'loading' | 'error' | 'success'
   message: string | null
 }
 
 const initialState: InitialState = {
-  data: [],
+  data: null,
   status: 'idle',
   message: null,
 }
 
-export const leaderboardSlice = createSlice({
+const leaderboardSlice = createSlice({
   name: 'leaderboard',
   initialState,
   reducers: {},
