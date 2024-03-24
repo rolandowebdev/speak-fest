@@ -7,7 +7,7 @@ import {
   JetBrains_Mono as FontMono,
 } from 'next/font/google'
 import { cn } from '@/utils'
-import { StoreProvider, ThemeProvider } from '@/components/provider'
+import Providers from '@/components/providers'
 import { Navigation } from '@/components/layout'
 import { Toaster } from '@/components/ui'
 import METADATA from '@/constants/metadata'
@@ -56,19 +56,13 @@ export default function RootLayout({
           fontSans.variable,
           fontMono.variable,
         )}>
-        <StoreProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange>
-            <main className="mx-auto flex max-w-5xl">
-              <Navigation />
-              {children}
-              <Toaster />
-            </main>
-          </ThemeProvider>
-        </StoreProvider>
+        <Providers>
+          <main className="mx-auto flex max-w-5xl">
+            <Navigation />
+            {children}
+            <Toaster />
+          </main>
+        </Providers>
       </body>
     </html>
   )
