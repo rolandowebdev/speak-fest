@@ -7,7 +7,12 @@
 import { configureStore, Store } from '@reduxjs/toolkit'
 import api from '@/utils/api'
 import authSlice, { asyncAuth } from '@/libs/redux/slices/auth'
-import { authToken, authuser } from '../utils/fake-response'
+import { authToken } from '../utils/fake-response'
+
+const authuser = {
+  email: 'zeta@gmail.com',
+  password: 'zeta123',
+}
 
 jest.mock('@/utils/api')
 

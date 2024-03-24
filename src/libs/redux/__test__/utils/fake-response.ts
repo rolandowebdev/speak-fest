@@ -1,10 +1,5 @@
 const authToken = 'secret-token'
 
-const authuser = {
-  email: 'zeta@gmail.com',
-  password: 'zeta123',
-}
-
 const leaderboardResponse = [
   {
     score: 10,
@@ -47,7 +42,6 @@ const errorResponse = {
 }
 
 export {
-  authuser,
   authToken,
   leaderboardResponse,
   usersResponse,
