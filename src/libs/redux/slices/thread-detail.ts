@@ -6,9 +6,8 @@ import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
 const asyncReceiveThreadDetail = createAsyncThunk(
   'threadDetail/receive',
-  async (threadId: string, { dispatch }) => {
+  async (threadId: string) => {
     try {
-      dispatch(showLoading())
       const thread = await api.getDetailThread(threadId)
       return thread
     } catch (error: any) {
@@ -16,8 +15,6 @@ const asyncReceiveThreadDetail = createAsyncThunk(
         console.log('there is an error:', error.message)
         throw new Error(error.message)
       }
-    } finally {
-      dispatch(hideLoading())
     }
   },
 )

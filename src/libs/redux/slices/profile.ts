@@ -1,14 +1,12 @@
 import api from '@/utils/api'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { User } from '@/types'
-import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
 export const asyncSetProfile = createAsyncThunk(
   'profile/set',
   // eslint-disable-next-line consistent-return
-  async (_, { dispatch }) => {
+  async () => {
     try {
-      dispatch(showLoading())
       const { data } = await api.getOwnProfile()
       return data.user
     } catch (error: any) {
@@ -16,8 +14,6 @@ export const asyncSetProfile = createAsyncThunk(
         console.log('there is an error:', error.message)
         throw new Error(error.message)
       }
-    } finally {
-      dispatch(hideLoading())
     }
   },
 )
