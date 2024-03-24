@@ -24,7 +24,7 @@ export default function ThreadsView() {
 
   const threadsWithAuthor = threads.map((thread: Thread) => ({
     ...thread,
-    author: users.find((user) => user.id === thread.ownerId)?.name,
+    author: users?.find((user) => user.id === thread.ownerId)?.name,
   }))
 
   const getAllCategories = searchParams.getAll('category')
