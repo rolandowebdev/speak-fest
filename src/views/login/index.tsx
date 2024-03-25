@@ -19,14 +19,17 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2, LogIn } from 'lucide-react'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { HeaderWithLink } from '@/components/custom'
 
 export default function LoginView() {
+  const searchParams = useSearchParams()
   const dispatch = useAppDispatch()
   const { push } = useRouter()
+
+  const callbackUrl = searchParams.get('callbackUrl') || '/'
 
   const form = useForm<z.infer<typeof authSchema>>({
     resolver: zodResolver(authSchema),
@@ -38,14 +41,15 @@ export default function LoginView() {
 
   async function handleLogin(values: z.infer<typeof authSchema>) {
     try {
-      dispatch(asyncAuth({ email: values.email, password: values.password }))
+      dispatch(asyncAuth(values))
       const response = await signIn('credentials', {
         ...values,
         redirect: false,
+        callbackUrl,
       })
 
       if (response?.ok) {
-        push('/')
+        push(callbackUrl)
       }
     } catch (error: any) {
       console.log(error.message)

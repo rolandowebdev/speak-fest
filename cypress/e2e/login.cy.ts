@@ -85,6 +85,8 @@ describe('Login spec', () => {
     cy.get('input[type="password"]').type('zeta123')
     cy.get('form').submit()
 
-    cy.url().should('eq', 'http://localhost:3000/')
+    cy.get('[data-cy="toast-viewport"]').should('be.visible')
+    cy.visit('http://localhost:3000/')
+    cy.location('pathname').should('eq', '/')
   })
 })
