@@ -6,8 +6,8 @@
  *   - should display error message & disabled button login if email pattern is not valid
  *   - should display error message & disabled button login if password less than 6 character
  *   - should display error message & disabled button login if password greater than 15 character
- *   - should display toastify error if email or password is incorrect
- *   - should display toastify success if email or password is correct
+ *   - should display toast error if email or password is incorrect
+ *   - should display toast success if email or password is correct
  *   - should redirect to threads page if login successfully
  */
 
@@ -64,7 +64,7 @@ describe('Login spec', () => {
     cy.get('button').should('be.disabled')
   })
 
-  it('should display toastify error if email or password is incorrect', () => {
+  it('should display toast error if email or password is incorrect', () => {
     cy.get('input[type="email"]').type('zeta@gmail.com')
     cy.get('input[type="password"]').type('fakezeta123')
     cy.get('form').submit()
@@ -72,7 +72,7 @@ describe('Login spec', () => {
     cy.get('[data-cy="toast-viewport"]').should('be.visible')
   })
 
-  it('should display toastify success if email or password is correct', () => {
+  it('should display toast success if email or password is correct', () => {
     cy.get('input[type="email"]').type('zeta@gmail.com')
     cy.get('input[type="password"]').type('zeta123')
     cy.get('form').submit()
