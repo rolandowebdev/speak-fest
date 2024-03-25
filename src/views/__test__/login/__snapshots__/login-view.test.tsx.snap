@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test login views should render correctly component LoginViews 1`] = `
+exports[`test login view component should render correctly login view component 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
