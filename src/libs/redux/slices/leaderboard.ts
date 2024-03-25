@@ -1,14 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { Leaderboard } from '@/types'
 import api from '@/utils/api'
-import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
 const asyncReceiveLeaderboard = createAsyncThunk(
   'leaderboard/receive',
   // eslint-disable-next-line consistent-return
-  async (_, { dispatch }) => {
+  async () => {
     try {
-      dispatch(showLoading())
       const leaderboard = await api.getLeaderboard()
       return leaderboard
     } catch (error: any) {
@@ -16,25 +14,23 @@ const asyncReceiveLeaderboard = createAsyncThunk(
         console.log('there is an error:', error.message)
         throw new Error(error.message)
       }
-    } finally {
-      dispatch(hideLoading())
     }
   },
 )
 
-interface InitialState {
-  data: Leaderboard[]
+type InitialState = {
+  data: Leaderboard[] | null
   status: 'idle' | 'loading' | 'error' | 'success'
   message: string | null
 }
 
 const initialState: InitialState = {
-  data: [],
+  data: null,
   status: 'idle',
   message: null,
 }
 
-export const leaderboardSlice = createSlice({
+const leaderboardSlice = createSlice({
   name: 'leaderboard',
   initialState,
   reducers: {},

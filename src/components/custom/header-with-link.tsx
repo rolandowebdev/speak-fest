@@ -15,6 +15,7 @@ export function HeaderWithLink({ icon, title }: HeaderWithLinkProps) {
   return (
     <Header>
       <Button
+        data-testid="back-to-home"
         variant="link"
         className="flex items-center gap-1 px-0 text-lg text-primary"
         onClick={() => push('/')}>

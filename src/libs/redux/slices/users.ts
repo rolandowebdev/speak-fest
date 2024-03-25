@@ -1,14 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { User } from '@/types'
 import api from '@/utils/api'
-import { hideLoading, showLoading } from 'react-redux-loading-bar'
 
 const asyncReceiveUsers = createAsyncThunk(
   'users/receive',
   // eslint-disable-next-line consistent-return
-  async (_, { dispatch }) => {
+  async () => {
     try {
-      dispatch(showLoading())
       const users = await api.getAllUsers()
       return users
     } catch (error: any) {
@@ -16,20 +14,18 @@ const asyncReceiveUsers = createAsyncThunk(
         console.log('there is an error:', error.message)
         throw new Error(error.message)
       }
-    } finally {
-      dispatch(hideLoading())
     }
   },
 )
 
-interface InitialState {
-  data: User[]
+type InitialState = {
+  data: User[] | null
   status: 'idle' | 'loading' | 'error' | 'success'
   message: string | null
 }
 
 const initialState: InitialState = {
-  data: [],
+  data: null,
   status: 'idle',
   message: null,
 }

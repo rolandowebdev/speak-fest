@@ -83,7 +83,7 @@ export function Navigation() {
       <LoadingBar
         style={{
           backgroundColor: '#3b82f6',
-          height: '5px',
+          height: '3px',
           zIndex: 99999,
           position: 'fixed',
           top: 0,

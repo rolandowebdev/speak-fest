@@ -41,8 +41,8 @@ export default function ProfileView() {
 
   const { avatar, name, email, score, totalThreads } = {
     ...profile,
-    score: leaderboard.find(({ user }) => profile?.id === user.id)?.score || 0,
-    totalThreads: threads.filter((thread) => profile?.id === thread.ownerId)
+    score: leaderboard?.find(({ user }) => profile?.id === user.id)?.score || 0,
+    totalThreads: threads?.filter((thread) => profile?.id === thread.ownerId)
       .length,
   }
 

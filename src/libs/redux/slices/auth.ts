@@ -46,7 +46,7 @@ const authSlice = createSlice({
         state.message = 'Login in progress...'
       })
       .addCase(asyncAuth.fulfilled, (state, action) => {
-        state.data = action.payload.data.token
+        state.data = action.payload
         state.status = 'success'
         state.message = 'You have successfully logged in.'
         toast({

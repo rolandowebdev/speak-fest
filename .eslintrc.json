@@ -1,10 +1,18 @@
 {
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
   "extends": [
     "next/core-web-vitals",
     "airbnb",
     "airbnb-typescript",
-    "prettier"
+    "prettier",
+    "plugin:jest/recommended",
+    "plugin:testing-library/react"
   ],
+  "plugins": ["jest", "jest-dom", "testing-library"],
   "parserOptions": {
     "project": "./tsconfig.json"
   },

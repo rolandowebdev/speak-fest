@@ -1,0 +1,322 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginView component should render correctly login view component 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <section
+        class="flex w-full flex-col space-y-4 border-l px-2 py-4 sm:px-6"
+      >
+        <header
+          class="space-y-4 border-b pb-4"
+        >
+          <button
+            class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 underline-offset-4 hover:underline h-10 py-2 flex items-center gap-1 px-0 text-lg text-primary"
+            data-testid="back-to-home"
+          >
+            <svg
+              class="lucide lucide-undo2 "
+              fill="none"
+              height="18"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="18"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 14 4 9l5-5"
+              />
+              <path
+                d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11"
+              />
+            </svg>
+            Back to home
+          </button>
+          <h1
+            class="scroll-m-12 font-bold text-4xl flex flex-wrap items-center gap-2"
+          >
+            <svg
+              class="lucide lucide-log-in "
+              fill="none"
+              height="32"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="32"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"
+              />
+              <polyline
+                points="10 17 15 12 10 7"
+              />
+              <line
+                x1="15"
+                x2="3"
+                y1="12"
+                y2="12"
+              />
+            </svg>
+             
+            Login
+          </h1>
+        </header>
+        <div
+          class="flex flex-col space-y-2"
+        >
+          <form
+            class="space-y-2"
+          >
+            <div
+              class="space-y-2"
+            >
+              <label
+                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                for=":r0:-form-item"
+              >
+                Email
+              </label>
+              <input
+                aria-describedby=":r0:-form-item-description"
+                aria-invalid="false"
+                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                id=":r0:-form-item"
+                name="email"
+                placeholder="Type your email here..."
+                value=""
+              />
+            </div>
+            <div
+              class="space-y-2"
+            >
+              <label
+                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                for=":r1:-form-item"
+              >
+                Password
+              </label>
+              <input
+                aria-describedby=":r1:-form-item-description"
+                aria-invalid="false"
+                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                id=":r1:-form-item"
+                name="password"
+                placeholder="******"
+                type="password"
+                value=""
+              />
+            </div>
+            <button
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+              type="submit"
+            >
+              Login
+            </button>
+          </form>
+          <p
+            class="text-center"
+          >
+            Don't have an account?
+             
+            <a
+              class="link-style"
+              href="/register"
+            >
+              Register
+            </a>
+          </p>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="flex w-full flex-col space-y-4 border-l px-2 py-4 sm:px-6"
+    >
+      <header
+        class="space-y-4 border-b pb-4"
+      >
+        <button
+          class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 underline-offset-4 hover:underline h-10 py-2 flex items-center gap-1 px-0 text-lg text-primary"
+          data-testid="back-to-home"
+        >
+          <svg
+            class="lucide lucide-undo2 "
+            fill="none"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 14 4 9l5-5"
+            />
+            <path
+              d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11"
+            />
+          </svg>
+          Back to home
+        </button>
+        <h1
+          class="scroll-m-12 font-bold text-4xl flex flex-wrap items-center gap-2"
+        >
+          <svg
+            class="lucide lucide-log-in "
+            fill="none"
+            height="32"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="32"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"
+            />
+            <polyline
+              points="10 17 15 12 10 7"
+            />
+            <line
+              x1="15"
+              x2="3"
+              y1="12"
+              y2="12"
+            />
+          </svg>
+           
+          Login
+        </h1>
+      </header>
+      <div
+        class="flex flex-col space-y-2"
+      >
+        <form
+          class="space-y-2"
+        >
+          <div
+            class="space-y-2"
+          >
+            <label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              for=":r0:-form-item"
+            >
+              Email
+            </label>
+            <input
+              aria-describedby=":r0:-form-item-description"
+              aria-invalid="false"
+              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              id=":r0:-form-item"
+              name="email"
+              placeholder="Type your email here..."
+              value=""
+            />
+          </div>
+          <div
+            class="space-y-2"
+          >
+            <label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              for=":r1:-form-item"
+            >
+              Password
+            </label>
+            <input
+              aria-describedby=":r1:-form-item-description"
+              aria-invalid="false"
+              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              id=":r1:-form-item"
+              name="password"
+              placeholder="******"
+              type="password"
+              value=""
+            />
+          </div>
+          <button
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+            type="submit"
+          >
+            Login
+          </button>
+        </form>
+        <p
+          class="text-center"
+        >
+          Don't have an account?
+           
+          <a
+            class="link-style"
+            href="/register"
+          >
+            Register
+          </a>
+        </p>
+      </div>
+    </section>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
