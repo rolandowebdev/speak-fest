@@ -69,7 +69,7 @@ describe('Login spec', () => {
     cy.get('input[type="password"]').type('fakezeta123')
     cy.get('form').submit()
 
-    cy.get('[data-cy="toast-error"]').should('be.visible')
+    cy.get('[data-cy="toast-viewport"]').should('be.visible')
   })
 
   it('should display toast success if email or password is correct', () => {
@@ -77,7 +77,7 @@ describe('Login spec', () => {
     cy.get('input[type="password"]').type('zeta123')
     cy.get('form').submit()
 
-    cy.get('[data-cy="toast-success"]').should('be.visible')
+    cy.get('[data-cy="toast-viewport"]').should('be.visible')
   })
 
   it('should redirect to threads page if login successfully', () => {
@@ -85,7 +85,7 @@ describe('Login spec', () => {
     cy.get('input[type="password"]').type('zeta123')
     cy.get('form').submit()
 
-    cy.get('[data-cy="toast-success"]').should('be.visible')
+    cy.get('[data-cy="toast-viewport"]').should('be.visible')
     cy.visit('http://localhost:3000/')
     cy.location('pathname').should('eq', '/')
   })
