@@ -1,5 +1,5 @@
 /**
- * - threads slice reducer test cases:
+ * - Threads slice reducer test cases :
  *  - should handle initialState
  *  - should handle async received threads pending
  *  - should handle async received threads fulfilled

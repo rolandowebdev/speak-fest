@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test login view component should render correctly login view component 1`] = `
+exports[`LoginView component should render correctly login view component 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
@@ -13,6 +13,7 @@ exports[`test login view component should render correctly login view component 
         >
           <button
             class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 underline-offset-4 hover:underline h-10 py-2 flex items-center gap-1 px-0 text-lg text-primary"
+            data-testid="back-to-home"
           >
             <svg
               class="lucide lucide-undo2 "
@@ -144,6 +145,7 @@ exports[`test login view component should render correctly login view component 
       >
         <button
           class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 underline-offset-4 hover:underline h-10 py-2 flex items-center gap-1 px-0 text-lg text-primary"
+          data-testid="back-to-home"
         >
           <svg
             class="lucide lucide-undo2 "

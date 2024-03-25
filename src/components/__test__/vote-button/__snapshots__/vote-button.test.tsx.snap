@@ -1,0 +1,209 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VoteButton component should disable vote button when auth status is loading 1`] = `
+<button
+  class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center gap-1 text-lg"
+  disabled=""
+>
+  <svg
+    class="lucide lucide-thumbs-up "
+    data-testid="thumbs-up-icon"
+    fill="none"
+    height="18"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    viewBox="0 0 24 24"
+    width="18"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M7 10v12"
+    />
+    <path
+      d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"
+    />
+  </svg>
+  <span
+    class="text-lg"
+  >
+    0
+  </span>
+</button>
+`;
+
+exports[`VoteButton component should disable vote button when auth status is unauthenticated 1`] = `
+<button
+  class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center gap-1 text-lg"
+  disabled=""
+>
+  <svg
+    class="lucide lucide-thumbs-up "
+    data-testid="thumbs-up-icon"
+    fill="none"
+    height="18"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    viewBox="0 0 24 24"
+    width="18"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M7 10v12"
+    />
+    <path
+      d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"
+    />
+  </svg>
+  <span
+    class="text-lg"
+  >
+    0
+  </span>
+</button>
+`;
+
+exports[`VoteButton component should render correctly icon based on vote type for down-vote 1`] = `
+<button
+  class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center gap-1 text-lg"
+>
+  <svg
+    class="lucide lucide-thumbs-down "
+    data-testid="thumbs-down-icon"
+    fill="none"
+    height="18"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    viewBox="0 0 24 24"
+    width="18"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M17 14V2"
+    />
+    <path
+      d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z"
+    />
+  </svg>
+  <span
+    class="text-lg"
+  >
+    0
+  </span>
+</button>
+`;
+
+exports[`VoteButton component should render correctly icon based on vote type for down-vote 2`] = `
+<svg
+  class="lucide lucide-thumbs-down "
+  data-testid="thumbs-down-icon"
+  fill="none"
+  height="18"
+  stroke="currentColor"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  viewBox="0 0 24 24"
+  width="18"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M17 14V2"
+  />
+  <path
+    d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z"
+  />
+</svg>
+`;
+
+exports[`VoteButton component should render correctly icon based on vote type for up-vote 1`] = `
+<button
+  class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center gap-1 text-lg"
+>
+  <svg
+    class="lucide lucide-thumbs-up "
+    data-testid="thumbs-up-icon"
+    fill="none"
+    height="18"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    viewBox="0 0 24 24"
+    width="18"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M7 10v12"
+    />
+    <path
+      d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"
+    />
+  </svg>
+  <span
+    class="text-lg"
+  >
+    0
+  </span>
+</button>
+`;
+
+exports[`VoteButton component should render correctly icon based on vote type for up-vote 2`] = `
+<svg
+  class="lucide lucide-thumbs-up "
+  data-testid="thumbs-up-icon"
+  fill="none"
+  height="18"
+  stroke="currentColor"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  viewBox="0 0 24 24"
+  width="18"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M7 10v12"
+  />
+  <path
+    d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"
+  />
+</svg>
+`;
+
+exports[`VoteButton component should undisable vote button when auth status is authenticated 1`] = `
+<button
+  class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center gap-1 text-lg"
+>
+  <svg
+    class="lucide lucide-thumbs-up "
+    data-testid="thumbs-up-icon"
+    fill="none"
+    height="18"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    viewBox="0 0 24 24"
+    width="18"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M7 10v12"
+    />
+    <path
+      d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"
+    />
+  </svg>
+  <span
+    class="text-lg"
+  >
+    0
+  </span>
+</button>
+`;

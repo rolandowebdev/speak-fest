@@ -1,5 +1,5 @@
 /**
- * - leaderboard slice reducer test cases:
+ * - Leaderboard slice reducer test cases :
  *  - should handle initialState
  *  - should handle async get leaderboards pending
  *  - should handle async get leaderboards fulfilled

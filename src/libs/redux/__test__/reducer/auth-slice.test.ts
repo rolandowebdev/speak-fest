@@ -1,5 +1,5 @@
 /**
- * - auth slice reducer test cases:
+ * - Auth slice reducer test cases :
  *  - should handle initial state
  *  - should handle async auth pending
  *  - should handle async auth fulfilled

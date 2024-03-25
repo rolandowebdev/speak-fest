@@ -1,5 +1,5 @@
 /**
- * - users slice reducer test cases:
+ * - Users slice reducer test cases :
  *  - should handle initialState
  *  - should handle async received users pending
  *  - should handle async received users fulfilled

@@ -1,5 +1,5 @@
 /**
- * - async receive threads thunk test cases :
+ * - Async receive threads thunk test cases :
  *  - should dispatch action correctly when data fetching is success
  *  - should dispatch action correctly when data fetching is error
  */

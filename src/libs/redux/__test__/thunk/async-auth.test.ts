@@ -1,5 +1,5 @@
 /**
- * - async auth thunk test cases :
+ * - Async auth thunk test cases :
  *  - should dispatch action correctly when data fetching is success
  *  - should dispatch action correctly when data fetching is error
  */

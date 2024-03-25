@@ -1,5 +1,5 @@
 /**
- * skenario test for register view component :
+ * Scenario test for RegisterView component :
  * - should render correctly register view component
  * - should handle correctly when simulate typing name
  * - should handle correctly when simulate typing email
@@ -15,9 +15,13 @@ import userEvent from '@testing-library/user-event'
 import { enableFetchMocks } from 'jest-fetch-mock'
 import AppRouterContextProviderMock from '../utils/app-router-context'
 
-describe('test register view component', () => {
+describe('RegisterView component', () => {
   beforeEach(() => {
     enableFetchMocks()
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
   })
 
   it('should render correctly register view component', async () => {

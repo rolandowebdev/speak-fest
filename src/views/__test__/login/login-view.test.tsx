@@ -1,5 +1,5 @@
 /**
- * skenario test for login view component :
+ * Scenario test for LoginView component :
  * - should render correctly login view component
  * - should handle correctly when simulate typing email
  * - should handle correctly when simulate typing password
@@ -14,9 +14,13 @@ import userEvent from '@testing-library/user-event'
 import { enableFetchMocks } from 'jest-fetch-mock'
 import AppRouterContextProviderMock from '../utils/app-router-context'
 
-describe('test login view component', () => {
+describe('LoginView component', () => {
   beforeEach(() => {
     enableFetchMocks()
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
   })
 
   it('should render correctly login view component', async () => {

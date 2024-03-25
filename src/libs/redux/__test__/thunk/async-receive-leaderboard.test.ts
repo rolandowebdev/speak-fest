@@ -1,5 +1,5 @@
 /**
- * - async receive leaderboard test cases :
+ * - Async receive leaderboard test cases :
  *  - should dispatch action correctly when data fetching is success
  *  - should dispatch action correctly when data fetching is error
  */

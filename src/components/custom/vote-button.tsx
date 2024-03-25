@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Button } from '@/components/ui'
 import { ThumbsDown, ThumbsUp } from 'lucide-react'
 
-interface VoteButtonProps {
+export type VoteButtonProps = {
   voteType: 'up-vote' | 'down-vote'
   isVoted: boolean
   voteCount: number
@@ -21,15 +21,23 @@ export function VoteButton({
 
   if (voteType === 'up-vote') {
     icon = isVoted ? (
-      <ThumbsUp size={18} className="fill-blue-500 dark:fill-blue-600" />
+      <ThumbsUp
+        size={18}
+        className="fill-blue-500 dark:fill-blue-600"
+        data-testid="thumbs-up-icon"
+      />
     ) : (
-      <ThumbsUp size={18} />
+      <ThumbsUp size={18} data-testid="thumbs-up-icon" />
     )
   } else {
     icon = isVoted ? (
-      <ThumbsDown size={18} className="fill-blue-500 dark:fill-blue-600" />
+      <ThumbsDown
+        size={18}
+        className="fill-blue-500 dark:fill-blue-600"
+        data-testid="thumbs-down-icon"
+      />
     ) : (
-      <ThumbsDown size={18} />
+      <ThumbsDown size={18} data-testid="thumbs-down-icon" />
     )
   }
 
@@ -40,7 +48,7 @@ export function VoteButton({
       className="flex items-center gap-1 text-lg"
       disabled={authStatus === 'unauthenticated' || authStatus === 'loading'}>
       {icon}
-      {voteCount || 0}
+      <span className="text-lg">{voteCount || 0}</span>
     </Button>
   )
 }
