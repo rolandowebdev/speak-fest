@@ -13,6 +13,7 @@
     "prepare": "husky install",
     "test": "jest",
     "test:watch": "jest --watch",
+    "e2e": "cypress run",
     "cypress:open": "cypress open",
     "ci:test": "jest --no-watch && start-server-and-test dev http://localhost:3000 e2e"
   },

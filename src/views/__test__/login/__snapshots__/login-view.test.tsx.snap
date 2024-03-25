@@ -90,6 +90,7 @@ exports[`LoginView component should render correctly login view component 1`] = 
                 id=":r0:-form-item"
                 name="email"
                 placeholder="Type your email here..."
+                type="email"
                 value=""
               />
             </div>
@@ -222,6 +223,7 @@ exports[`LoginView component should render correctly login view component 1`] = 
               id=":r0:-form-item"
               name="email"
               placeholder="Type your email here..."
+              type="email"
               value=""
             />
           </div>
