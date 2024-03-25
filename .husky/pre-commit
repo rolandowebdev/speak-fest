@@ -5,12 +5,16 @@ echo '🛠️ Styling your project before committing 🛠️'
 echo 'Please wait, this may take a while...'
 
 # Check eslint standard and run tests
-for cmd in lint test; do
-  pnpm "$cmd" || {
-    echo '💀 Oops.. you have a problem with your code 💀'
-    echo 'Fix it first, then commit it again'
-    false
-  }
-done
+pnpm lint || {
+  echo '💀 Oops.. you have a problem with your code 💀'
+  echo 'Fix it first, then commit it again'
+  false
+}
+
+pnpm ci:test || {
+  echo '💀 Oops.. you have a problem with your test code 💀'
+  echo 'Fix it first, then commit it again'
+  false
+}
 
 echo '✅ No error found: you can commit your code now 🚀🚀'

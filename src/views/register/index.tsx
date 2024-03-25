@@ -68,7 +68,11 @@ export default function RegisterView() {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Type your name here..." {...field} />
+                    <Input
+                      type="text"
+                      placeholder="Type your name here..."
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -81,7 +85,11 @@ export default function RegisterView() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="Type your email here..." {...field} />
+                    <Input
+                      type="email"
+                      placeholder="Type your email here..."
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

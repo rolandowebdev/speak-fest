@@ -38,13 +38,13 @@ export default function LoginView() {
 
   async function handleLogin(values: z.infer<typeof authSchema>) {
     try {
+      dispatch(asyncAuth({ email: values.email, password: values.password }))
       const response = await signIn('credentials', {
         ...values,
         redirect: false,
       })
 
       if (response?.ok) {
-        dispatch(asyncAuth({ email: values.email, password: values.password }))
         push('/')
       }
     } catch (error: any) {
@@ -69,7 +69,11 @@ export default function LoginView() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="Type your email here..." {...field} />
+                    <Input
+                      type="email"
+                      placeholder="Type your email here..."
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

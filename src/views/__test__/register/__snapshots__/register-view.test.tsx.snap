@@ -94,6 +94,7 @@ exports[`RegisterView component should render correctly register view component 
                 id=":r0:-form-item"
                 name="name"
                 placeholder="Type your name here..."
+                type="text"
                 value=""
               />
             </div>
@@ -113,6 +114,7 @@ exports[`RegisterView component should render correctly register view component 
                 id=":r1:-form-item"
                 name="email"
                 placeholder="Type your email here..."
+                type="email"
                 value=""
               />
             </div>
@@ -249,6 +251,7 @@ exports[`RegisterView component should render correctly register view component 
               id=":r0:-form-item"
               name="name"
               placeholder="Type your name here..."
+              type="text"
               value=""
             />
           </div>
@@ -268,6 +271,7 @@ exports[`RegisterView component should render correctly register view component 
               id=":r1:-form-item"
               name="email"
               placeholder="Type your email here..."
+              type="email"
               value=""
             />
           </div>
