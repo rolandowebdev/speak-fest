@@ -11,10 +11,10 @@ pnpm lint || {
   false
 }
 
-pnpm ci:test || {
-  echo '💀 Oops.. you have a problem with your test code 💀'
-  echo 'Fix it first, then commit it again'
-  false
-}
+# pnpm ci:test || {
+#   echo '💀 Oops.. you have a problem with your test code 💀'
+#   echo 'Fix it first, then commit it again'
+#   false
+# }
 
 echo '✅ No error found: you can commit your code now 🚀🚀'

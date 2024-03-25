@@ -57,7 +57,7 @@ const authSlice = createSlice({
       })
       .addCase(asyncAuth.rejected, (state) => {
         state.status = 'error'
-        state.message = 'Make sure your email and password are correct.'
+        state.message = 'Make sure your email and password are correct bro.'
         toast({
           title: 'Login failed!',
           description: state.message,
