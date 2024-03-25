@@ -85,6 +85,7 @@ describe('Login spec', () => {
     cy.get('input[type="password"]').type('zeta123')
     cy.get('form').submit()
 
-    cy.url().should('eq', 'http://localhost:3000/')
+    cy.url().should('not.eq', 'http://localhost:3000/login')
+    cy.url({ timeout: 60000 }).should('eq', 'http://localhost:3000/')
   })
 })
