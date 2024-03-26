@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { ThreadDetail, VoteType } from '@/types'
 import api from '@/utils/api'
 import { hideLoading, showLoading } from 'react-redux-loading-bar'
+import { toast } from '@/hooks'
 
 const asyncReceiveThreadDetail = createAsyncThunk(
   'threadDetail/receive',
@@ -135,11 +136,21 @@ export const threadDetailSlice = createSlice({
       .addCase(asyncAddThreadComment.fulfilled, (state, action) => {
         state.data.comments = [action.payload, ...state.data.comments]
         state.status = 'success'
-        state.message = 'Add comment successfully!'
+        state.message = 'Your comment has been created successfully.'
+        toast({
+          title: 'Create comment success!',
+          description: state.message,
+          variant: 'success',
+        })
       })
       .addCase(asyncAddThreadComment.rejected, (state) => {
         state.status = 'error'
-        state.message = 'Add comment failed!'
+        state.message = 'Your comment has not been created.'
+        toast({
+          title: 'Create comment failed!',
+          description: state.message,
+          variant: 'success',
+        })
       })
       .addCase(asyncVoteThread.fulfilled, ({ data }, action) => {
         switch (action.payload.voteType) {

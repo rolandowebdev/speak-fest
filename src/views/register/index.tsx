@@ -12,7 +12,7 @@ import {
   FormMessage,
   Input,
 } from '@/components/ui'
-import { useAppDispatch, useAppSelector } from '@/libs/redux'
+import { useAppDispatch } from '@/libs/redux'
 import { asyncRegisterUser } from '@/libs/redux/slices/register'
 import { registerSchema } from '@/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -25,7 +25,6 @@ import { HeaderWithLink } from '@/components/custom'
 
 export default function RegisterView() {
   const dispatch = useAppDispatch()
-  const { status } = useAppSelector((state) => state.register)
   const router = useRouter()
 
   const form = useForm<z.infer<typeof registerSchema>>({
@@ -39,14 +38,15 @@ export default function RegisterView() {
 
   async function handleRegister(values: z.infer<typeof registerSchema>) {
     await dispatch(asyncRegisterUser({ ...values }))
-
-    if (status === 'error') {
-      throw new Error('Failed to register')
-    } else {
-      router.refresh()
-    }
-
-    form.reset()
+      .unwrap()
+      .then((originalPromiseResult) => {
+        if (originalPromiseResult) {
+          router.push('/login')
+        }
+      })
+      .catch((error: any) => {
+        console.log(error.message)
+      })
   }
 
   const checkInputValidationError =
