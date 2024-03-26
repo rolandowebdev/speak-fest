@@ -9,7 +9,7 @@ exports[`HeaderWithLink Component should navigate to home page when clicked back
         class="space-y-4 border-b pb-4"
       >
         <button
-          class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 underline-offset-4 hover:underline h-10 py-2 flex items-center gap-1 px-0 text-lg text-primary"
+          class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 link-variant-test underline-offset-4 hover:underline default-size-test h-10 py-2 flex items-center gap-1 px-0 text-lg text-primary"
           data-testid="back-to-home"
         >
           <svg
@@ -66,7 +66,7 @@ exports[`HeaderWithLink Component should navigate to home page when clicked back
       class="space-y-4 border-b pb-4"
     >
       <button
-        class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 underline-offset-4 hover:underline h-10 py-2 flex items-center gap-1 px-0 text-lg text-primary"
+        class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 link-variant-test underline-offset-4 hover:underline default-size-test h-10 py-2 flex items-center gap-1 px-0 text-lg text-primary"
         data-testid="back-to-home"
       >
         <svg
