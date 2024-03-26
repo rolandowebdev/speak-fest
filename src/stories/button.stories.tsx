@@ -1,9 +1,8 @@
 import '@/styles/globals.css'
 import * as React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { Button, buttonVariants } from '@/components/ui/button'
-import { Home } from 'lucide-react'
-import { cn } from '@/utils'
+import { Button } from '@/components/ui/button'
+import { ChevronLeft } from 'lucide-react'
 import { fn } from '@storybook/test'
 
 const meta: Meta<typeof Button> = {
@@ -19,34 +18,20 @@ const meta: Meta<typeof Button> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const variantStyles = {
-  default: buttonVariants({ variant: 'default' }),
-  destructive: buttonVariants({ variant: 'destructive' }),
-  outline: buttonVariants({ variant: 'outline' }),
-  secondary: buttonVariants({ variant: 'secondary' }),
-  ghost: buttonVariants({ variant: 'ghost' }),
-  link: buttonVariants({ variant: 'link' }),
-}
-
-const sizeStyles = {
-  default: buttonVariants({ size: 'default' }),
-  sm: buttonVariants({ size: 'sm' }),
-  lg: buttonVariants({ size: 'lg' }),
-  icon: buttonVariants({ size: 'icon' }),
-}
-
 export const Default: Story = {
   args: {
-    className: cn(variantStyles.default, sizeStyles.default),
-    children: 'Button',
+    size: 'default',
+    variant: 'default',
+    children: 'Button Default',
     onClick: () => {},
   },
 }
 
 export const Small: Story = {
   args: {
-    className: cn(variantStyles.default, sizeStyles.sm),
-    children: 'Button',
+    size: 'sm',
+    variant: 'default',
+    children: 'Button Small',
     onClick: () => {},
   },
 }
@@ -54,56 +39,62 @@ export const Small: Story = {
 export const Large: Story = {
   args: {
     size: 'lg',
-    className: cn(variantStyles.default, sizeStyles.lg),
-    children: 'Button',
+    variant: 'default',
+    children: 'Button Large',
     onClick: () => {},
   },
 }
 
 export const Icon: Story = {
   args: {
-    className: cn(variantStyles.default),
-    children: <Home size={18} />,
+    size: 'icon',
+    variant: 'default',
+    children: <ChevronLeft size={18} />,
     onClick: () => {},
   },
 }
 
 export const Destructive: Story = {
   args: {
-    className: cn(variantStyles.destructive),
-    children: 'Button',
+    size: 'default',
+    variant: 'destructive',
+    children: 'Button Destructive',
     onClick: () => {},
   },
 }
 
 export const Outline: Story = {
   args: {
-    className: cn(variantStyles.outline, 'text-slate-900'),
-    children: 'Button',
+    size: 'default',
+    variant: 'outline',
+    children: 'Button Outline',
     onClick: () => {},
   },
 }
 
 export const Secondary: Story = {
   args: {
-    className: cn(variantStyles.secondary),
-    children: 'Button',
+    size: 'default',
+    variant: 'secondary',
+    children: 'Button Secondary',
     onClick: () => {},
   },
 }
 
 export const Ghost: Story = {
   args: {
-    className: cn(variantStyles.ghost, 'bg-transparent text-slate-900'),
-    children: 'Button',
+    size: 'default',
+    variant: 'ghost',
+    children: 'Button Ghost',
     onClick: () => {},
   },
 }
 
 export const Link: Story = {
   args: {
-    className: cn(variantStyles.link, sizeStyles.default),
-    children: 'Button',
+    size: 'default',
+    variant: 'link',
+    children: 'Button Link',
     onClick: () => {},
   },
 }
