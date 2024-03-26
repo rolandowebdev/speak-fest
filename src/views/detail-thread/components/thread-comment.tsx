@@ -10,7 +10,6 @@ import {
   Skeleton,
   Textarea,
 } from '@/components/ui'
-import { toast } from '@/hooks'
 import { useAppDispatch } from '@/libs/redux'
 import { asyncAddThreadComment } from '@/libs/redux/slices/thread-detail'
 import { postCommentSchema } from '@/schema'
@@ -32,28 +31,20 @@ function ThreadComment({ treadId }: { treadId: string }) {
     },
   })
 
-  async function handleLogin(values: z.infer<typeof postCommentSchema>) {
-    try {
-      await dispatch(
-        asyncAddThreadComment({ content: values.comment, threadId: treadId }),
-      )
-
-      toast({
-        title: 'Comment created!',
-        description: 'Your comment has been created successfully.',
-        variant: 'success',
+  async function handleAddComment(values: z.infer<typeof postCommentSchema>) {
+    await dispatch(
+      asyncAddThreadComment({ content: values.comment, threadId: treadId }),
+    )
+      .unwrap()
+      .then((originalPromiseResult) => {
+        console.log(originalPromiseResult)
+        if (originalPromiseResult) {
+          form.reset()
+        }
       })
-
-      form.reset()
-    } catch (error: any) {
-      toast({
-        title: 'Comment failed!',
-        description: error.message,
-        variant: 'destructive',
+      .catch((error: any) => {
+        console.log(error.message)
       })
-      console.log(error.message)
-      throw new Error(error)
-    }
   }
 
   const checkInputValidationError =
@@ -65,7 +56,9 @@ function ThreadComment({ treadId }: { treadId: string }) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-2">
+      <form
+        onSubmit={form.handleSubmit(handleAddComment)}
+        className="space-y-2">
         <FormField
           control={form.control}
           name="comment"

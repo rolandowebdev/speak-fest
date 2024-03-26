@@ -14,7 +14,7 @@ import {
   FormMessage,
   Input,
 } from '@/components/ui'
-import { useAppDispatch, useAppSelector } from '@/libs/redux'
+import { useAppDispatch } from '@/libs/redux'
 import { asyncAddThread } from '@/libs/redux/slices/threads'
 import { createThreadSchema } from '@/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -25,7 +25,6 @@ import { z } from 'zod'
 
 export default function CreateThreadView() {
   const dispatch = useAppDispatch()
-  const { status } = useAppSelector((state) => state.threads)
   const { push } = useRouter()
 
   const form = useForm<z.infer<typeof createThreadSchema>>({
@@ -40,19 +39,17 @@ export default function CreateThreadView() {
   async function handleCreateThread(
     values: z.infer<typeof createThreadSchema>,
   ) {
-    await dispatch(
-      asyncAddThread({
-        title: values.title,
-        body: values.body,
-        category: values.category,
-      }),
-    )
-
-    if (status === 'error') {
-      throw new Error('Failed to create thread')
-    }
-
-    push('/')
+    await dispatch(asyncAddThread(values))
+      .unwrap()
+      .then((originalPromiseResult) => {
+        console.log(originalPromiseResult)
+        if (originalPromiseResult) {
+          push('/')
+        }
+      })
+      .catch((error: any) => {
+        console.log(error.message)
+      })
   }
 
   const checkInputValidationError =

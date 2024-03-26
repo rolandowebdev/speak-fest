@@ -40,20 +40,22 @@ export default function LoginView() {
   })
 
   async function handleLogin(values: z.infer<typeof authSchema>) {
-    try {
-      dispatch(asyncAuth(values))
-      const response = await signIn('credentials', {
-        ...values,
-        redirect: false,
-        callbackUrl,
+    await dispatch(asyncAuth(values))
+      .unwrap()
+      .then(async (originalPromiseResult) => {
+        console.log(originalPromiseResult)
+        if (originalPromiseResult.status === 'success') {
+          await signIn('credentials', {
+            ...values,
+            redirect: false,
+            callbackUrl,
+          })
+          push(callbackUrl)
+        }
       })
-
-      if (response?.ok) {
-        push(callbackUrl)
-      }
-    } catch (error: any) {
-      console.log(error.message)
-    }
+      .catch((error: any) => {
+        console.log(error.message)
+      })
   }
 
   const checkInputValidationError =

@@ -1,15 +1,16 @@
 /* eslint-disable jest/expect-expect */
 /**
- * - Scenario register spec :
- *   - should display register page correctly
- *   - should display error message and disabled button register if name, email or password is empty
- *   - should display error message and disabled button register if name less than 3 character
- *   - should display error message and disabled button register if name greater than 50 character
- *   - should display error message and disabled button register if email pattern is not valid
- *   - should display error message and disabled button register if password less than 6 character
- *   - should display error message and disabled button register if password greater than 15 character
- *   - should display toast error if email already exists
- *   - should display toast success if register successfully
+ * Scenario register spec :
+ *  - should display register page correctly
+ *  - should display error message and disabled button register if name, email or password is empty
+ *  - should display error message and disabled button register if name less than 3 character
+ *  - should display error message and disabled button register if name greater than 50 character
+ *  - should display error message and disabled button register if email pattern is not valid
+ *  - should display error message and disabled button register if password less than 6 character
+ *  - should display error message and disabled button register if password greater than 15 character
+ *  - should display toast error if email already exists
+ *  - should display toast success if register successfully
+ *  - should redirect to login page if register successfully
  */
 
 describe('Register spec', () => {
@@ -110,5 +111,16 @@ describe('Register spec', () => {
     cy.get('form').submit()
 
     cy.get('[data-cy="toast-viewport"]').should('be.visible')
+  })
+
+  it('should redirect to login page if register successfully', () => {
+    cy.get('input[type="text"]').type('Zeta Vestia')
+    cy.get('input[type="email"]').type(`zeta-${+new Date()}@gmail.com`)
+    cy.get('input[type="password"]').type('zeta123')
+    cy.get('form').submit()
+
+    cy.get('[data-cy="toast-viewport"]').should('be.visible')
+    cy.visit('http://localhost:3000/login')
+    cy.location('pathname').should('eq', '/login')
   })
 })
