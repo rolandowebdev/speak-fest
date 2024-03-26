@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Button, Heading } from '@/components/ui'
 import { Undo2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { Header } from '../layout'
+import { Header } from '@/components/layout'
 
 type HeaderWithLinkProps = {
   icon: React.ReactNode

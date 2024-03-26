@@ -35,13 +35,10 @@ describe('asyncSetAuthUser thunk', () => {
   it('should dispatch action correctly when data fetching success', async () => {
     expect.assertions(2)
 
-    // arrange
     mockedApi.login.mockResolvedValue(authToken)
 
-    // action
     const next = await store.dispatch(asyncAuth(authuser) as any)
 
-    // assert
     expect(next.type).toEqual(asyncAuth.fulfilled.type)
     expect(next.payload).toEqual(authToken)
   })
@@ -49,14 +46,11 @@ describe('asyncSetAuthUser thunk', () => {
   it('should return error response when data fetching failed', async () => {
     expect.assertions(3)
 
-    // arrange
     const errorMsg = 'email or password is wrong'
     mockedApi.login.mockRejectedValue(new Error(errorMsg))
 
-    // action
     const next = await store.dispatch(asyncAuth(authuser) as any)
 
-    // assert
     expect(next.type).toEqual(asyncAuth.rejected.type)
     expect(next.error.message).toEqual(errorMsg)
     expect(next.payload).toEqual(undefined)

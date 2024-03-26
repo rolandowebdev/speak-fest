@@ -30,13 +30,10 @@ describe('asyncReceiveThreads thunk', () => {
   it('should dispatch action correctly when data fetching is success', async () => {
     expect.assertions(2)
 
-    // arrange
     mockedApi.getAllThreads.mockResolvedValue(threadsResponse)
 
-    // action
     const next = await store.dispatch(asyncReceiveThreads() as any)
 
-    // assert
     expect(next.type).toEqual(asyncReceiveThreads.fulfilled.type)
     expect(next.payload).toEqual(threadsResponse)
   })
@@ -44,14 +41,11 @@ describe('asyncReceiveThreads thunk', () => {
   it('should dispatch action correctly when data fetching is error', async () => {
     expect.assertions(3)
 
-    // arrange
     const errorMsg = 'Get threads failed!'
     mockedApi.getAllThreads.mockRejectedValue(new Error(errorMsg))
 
-    // action
     const next = await store.dispatch(asyncReceiveThreads() as any)
 
-    // assert
     expect(next.type).toEqual(asyncReceiveThreads.rejected.type)
     expect(next.error.message).toEqual(errorMsg)
     expect(next.payload).toEqual(undefined)

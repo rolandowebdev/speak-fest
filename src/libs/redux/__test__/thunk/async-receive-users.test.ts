@@ -30,13 +30,10 @@ describe('asyncReceiveUsers thunk', () => {
   it('should dispatch action correctly when data fetching is success', async () => {
     expect.assertions(2)
 
-    // arrange
     mockedApi.getAllUsers.mockResolvedValue(usersResponse)
 
-    // action
     const next = await store.dispatch(asyncReceiveUsers() as any)
 
-    // assert
     expect(next.type).toEqual(asyncReceiveUsers.fulfilled.type)
     expect(next.payload).toEqual(usersResponse)
   })
@@ -44,14 +41,11 @@ describe('asyncReceiveUsers thunk', () => {
   it('should dispatch action correctly when data fetching is error', async () => {
     expect.assertions(3)
 
-    // arrange
     const errorMsg = 'Get users failed!'
     mockedApi.getAllUsers.mockRejectedValue(new Error(errorMsg))
 
-    // action
     const next = await store.dispatch(asyncReceiveUsers() as any)
 
-    // assert
     expect(next.type).toEqual(asyncReceiveUsers.rejected.type)
     expect(next.error.message).toEqual(errorMsg)
     expect(next.payload).toEqual(undefined)

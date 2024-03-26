@@ -32,13 +32,10 @@ describe('asyncReceiveLeaderboard thunk', () => {
   it('should dispatch action correctly when data fetching is success', async () => {
     expect.assertions(2)
 
-    // arrange
     mockedApi.getLeaderboard.mockResolvedValue(leaderboardResponse)
 
-    // action
     const next = await store.dispatch(asyncReceiveLeaderboard() as any)
 
-    // assert
     expect(next.type).toEqual(asyncReceiveLeaderboard.fulfilled.type)
     expect(next.payload).toEqual(leaderboardResponse)
   })
@@ -46,14 +43,11 @@ describe('asyncReceiveLeaderboard thunk', () => {
   it('should dispatch action correctly when data fetching is error', async () => {
     expect.assertions(3)
 
-    // arrange
     const errorMsg = 'Get leaderboard failed!'
     mockedApi.getLeaderboard.mockRejectedValue(new Error(errorMsg))
 
-    // action
     const next = await store.dispatch(asyncReceiveLeaderboard() as any)
 
-    // assert
     expect(next.type).toEqual(asyncReceiveLeaderboard.rejected.type)
     expect(next.error.message).toEqual(errorMsg)
     expect(next.payload).toEqual(undefined)
