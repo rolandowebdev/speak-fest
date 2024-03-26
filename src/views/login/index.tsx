@@ -63,61 +63,57 @@ export default function LoginView() {
   const isDisabled = form.formState.isSubmitting || checkInputValidationError
 
   return (
-    <React.Suspense>
-      <PageContainer>
-        <HeaderWithLink icon={<LogIn size={32} />} title="Login" />
-        <div className="flex flex-col space-y-2">
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(handleLogin)}
-              className="space-y-2">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="Type your email here..."
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input type="password" placeholder="******" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" className="w-full" disabled={isDisabled}>
-                {form.formState.isSubmitting ? (
-                  <Loader2 className="animate-spin" />
-                ) : (
-                  'Login'
-                )}
-              </Button>
-            </form>
-          </Form>
-          <p className="text-center">
-            Don&apos;t have an account?{' '}
-            <Link href="/register" className="link-style">
-              Register
-            </Link>
-          </p>
-        </div>
-      </PageContainer>
-    </React.Suspense>
+    <PageContainer>
+      <HeaderWithLink icon={<LogIn size={32} />} title="Login" />
+      <div className="flex flex-col space-y-2">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-2">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="email"
+                      placeholder="Type your email here..."
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input type="password" placeholder="******" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit" className="w-full" disabled={isDisabled}>
+              {form.formState.isSubmitting ? (
+                <Loader2 className="animate-spin" />
+              ) : (
+                'Login'
+              )}
+            </Button>
+          </form>
+        </Form>
+        <p className="text-center">
+          Don&apos;t have an account?{' '}
+          <Link href="/register" className="link-style">
+            Register
+          </Link>
+        </p>
+      </div>
+    </PageContainer>
   )
 }
