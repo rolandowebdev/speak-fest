@@ -42,29 +42,31 @@ export default function ThreadsView() {
   }, [dispatch])
 
   return (
-    <PageContainer>
-      <ThreadsHeader />
-      <div className="flex flex-col">
-        <div className="flex flex-col gap-6 space-y-2">
-          {statusThreads === 'success' ? (
-            threadsCategory?.length > 0 &&
-            threadsCategory.map((thread: Thread) => (
-              <ThreadsCard key={thread.id} {...thread} />
-            ))
-          ) : (
-            <>
-              <ThreadsSkeleton />
-              <ThreadsSkeleton />
-            </>
-          )}
+    <React.Suspense>
+      <PageContainer>
+        <ThreadsHeader />
+        <div className="flex flex-col">
+          <div className="flex flex-col gap-6 space-y-2">
+            {statusThreads === 'success' ? (
+              threadsCategory?.length > 0 &&
+              threadsCategory.map((thread: Thread) => (
+                <ThreadsCard key={thread.id} {...thread} />
+              ))
+            ) : (
+              <>
+                <ThreadsSkeleton />
+                <ThreadsSkeleton />
+              </>
+            )}
 
-          {statusThreads === 'success' && threadsCategory?.length < 1 && (
-            <NotFoundThreads />
-          )}
+            {statusThreads === 'success' && threadsCategory?.length < 1 && (
+              <NotFoundThreads />
+            )}
+          </div>
         </div>
-      </div>
 
-      <Footer />
-    </PageContainer>
+        <Footer />
+      </PageContainer>
+    </React.Suspense>
   )
 }

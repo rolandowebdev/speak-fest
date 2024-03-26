@@ -15,7 +15,9 @@
     "test:watch": "jest --watch",
     "e2e": "cypress run",
     "cypress:open": "cypress open",
-    "ci:test": "jest --no-watch && start-server-and-test dev http://localhost:3000 e2e"
+    "ci:test": "jest --no-watch && start-server-and-test dev http://localhost:3000 e2e",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
@@ -49,7 +51,16 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^1.2.25",
     "@jest/globals": "^29.7.0",
+    "@storybook/addon-essentials": "^8.0.4",
+    "@storybook/addon-interactions": "^8.0.4",
+    "@storybook/addon-links": "^8.0.4",
+    "@storybook/addon-onboarding": "^8.0.4",
+    "@storybook/blocks": "^8.0.4",
+    "@storybook/nextjs": "^8.0.4",
+    "@storybook/react": "^8.0.4",
+    "@storybook/test": "^8.0.4",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.2",
     "@testing-library/user-event": "^14.5.2",
@@ -68,6 +79,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jest": "^27.9.0",
     "eslint-plugin-jest-dom": "^5.1.0",
+    "eslint-plugin-storybook": "^0.8.0",
     "eslint-plugin-testing-library": "^6.2.0",
     "fetch-mock": "^9.11.0",
     "husky": "^8.0.0",
@@ -78,6 +90,7 @@
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.12",
     "start-server-and-test": "^2.0.3",
+    "storybook": "^8.0.4",
     "tailwindcss": "^3.3.0",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
