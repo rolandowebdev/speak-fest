@@ -37,7 +37,9 @@ export default function ThreadDetails({ threadId }: { threadId: string }) {
   return (
     <>
       {threadStatus === 'success' ? (
-        <Heading variant="h2">{threadDetail?.title}</Heading>
+        <Heading variant="h2" className="truncate text-wrap">
+          {threadDetail?.title}
+        </Heading>
       ) : (
         <Skeleton className="h-10 w-2/4" />
       )}
@@ -45,8 +47,8 @@ export default function ThreadDetails({ threadId }: { threadId: string }) {
         <div>
           <Separator />
           {threadStatus === 'success' ? (
-            <div className="my-4 text-muted-foreground">
-              {parse(threadDetail?.body ?? '')}
+            <div className="my-4 max-w-4xl truncate text-wrap text-muted-foreground">
+              {parse(threadDetail?.body)}
             </div>
           ) : (
             <div className="my-4 space-y-3">

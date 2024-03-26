@@ -12,7 +12,7 @@ exports[`RegisterView component should render correctly register view component 
           class="space-y-4 border-b pb-4"
         >
           <button
-            class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 underline-offset-4 hover:underline h-10 py-2 flex items-center gap-1 px-0 text-lg text-primary"
+            class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 link-variant-test underline-offset-4 hover:underline default-size-test h-10 py-2 flex items-center gap-1 px-0 text-lg text-primary"
             data-testid="back-to-home"
           >
             <svg
@@ -139,7 +139,7 @@ exports[`RegisterView component should render correctly register view component 
               />
             </div>
             <button
-              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 default-variant-test bg-primary text-primary-foreground hover:bg-primary/90 default-size-test h-10 px-4 py-2 w-full"
               type="submit"
             >
               Register
@@ -169,7 +169,7 @@ exports[`RegisterView component should render correctly register view component 
         class="space-y-4 border-b pb-4"
       >
         <button
-          class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 underline-offset-4 hover:underline h-10 py-2 flex items-center gap-1 px-0 text-lg text-primary"
+          class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 link-variant-test underline-offset-4 hover:underline default-size-test h-10 py-2 flex items-center gap-1 px-0 text-lg text-primary"
           data-testid="back-to-home"
         >
           <svg
@@ -296,7 +296,7 @@ exports[`RegisterView component should render correctly register view component 
             />
           </div>
           <button
-            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 default-variant-test bg-primary text-primary-foreground hover:bg-primary/90 default-size-test h-10 px-4 py-2 w-full"
             type="submit"
           >
             Register
