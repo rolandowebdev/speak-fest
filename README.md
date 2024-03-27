@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Final Submission Dicoding Menjadi React Developer Expert
+
+![Speakfest Preview](public/speakfest-thumbnail.png)
+
+🎉 Welcome to the breathtaking world of Speakfest! 🚀
+
+Step into the realm of innovation and connectivity with Speakfest - a visionary creation born from my passion and dedication, marking a significant milestone in my journey towards mastery as a React Developer Expert. 🌟
+
+As a proud contender of the prestigious IDCamp scholarship in 2023, I present to you Speakfest, an ingenious application that transcends boundaries, enabling you to craft your threads of thought and explore the vibrant tapestry of conversations woven by individuals across the globe. 💬🌍
+
+Join us as we embark on an exhilarating adventure where ideas know no bounds and connections know no limits. Dive into Speakfest and unleash the power of global discourse at your fingertips! 💡✨
+
+Experience the magic. Experience Speakfest. 💫
+
+[Discover more about the Menjadi React Developer Expert program here! 🎓](https://www.dicoding.com/academies/418)
+
+## Features
+
+- 📘️ Create threads
+- 👤 Authentication & Registration User
+- 💬 Interaction with everyone in Speakfest
+- 🏆 Leaderboard list
+- 🌓 Dark & Light mode
+- 🎯 Filter threads by category
 
 ## Getting Started
 
-First, run the development server:
+To get started with Read Easy, you can follow this step:
+
+1. **Clone the Repository** You can clone this GitHub repository to your local machine using the following command:
+
+   ```shell
+   git clone https://github.com/rolandowebdev/speakfest.git
+   ```
+
+2. **Running project**
+
+Node.js version `>= 20.x` setup with [pnpm](https://pnpm.io/) is recommended.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# duplicate & fill environment file
+cp .env.example .env.local
+
+# install dependencies
+pnpm install
+
+# serve with hot reload at localhost:3000
 pnpm dev
-# or
-bun dev
+
+# build for production
+pnpm build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> **_WARNING: Use this repo only as a reference._**
+>
+> - In accordance with the terms of use at Dicoding, Dicoding Academy class submissions must be your own work.
+> - Code obtained from other sources (websites, books, forums, GitHub, etc.) is only used as a reference. The level of similarity cannot be more than 70%.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<br clear="both">
+<br clear="both">
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+> If you have questions or issues, visit the following repository -> [new issue](https://github.com/rolandowebdev/speak-fest/issues/new)
+> If this documentation is useful, let's be friends by pressing the follow button on this [profile](https://github.com/rolandowebdev) and star this [repository](https://github.com/rolandowebdev/speakfest.git) 😁️
 
-## Learn More
+<br clear="both">
 
-To learn more about Next.js, take a look at the following resources:
+Big thanks for [Dicoding](https://www.dicoding.com/) and [Idcamp](https://idcamp.ioh.co.id/)🙌️
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<br clear="both">
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Thank you for checking out Speakfest! Happy learning and coding! If you have any questions or encounter any issues, feel free to open an issue on this repository.
