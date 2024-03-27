@@ -1,4 +1,4 @@
-# Final Submission Dicoding Menjadi React Developer Expert
+# Submission Dicoding Menjadi React Developer Expert
 
 ![Speakfest Preview](public/speakfest-thumbnail.png)
 
