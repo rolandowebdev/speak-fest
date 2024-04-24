@@ -25,14 +25,14 @@ export async function generateMetadata({
       title: `${thread?.title} ${METADATA.exTitle}`,
       description: thread?.body || 'Detail thread not found',
       openGraph: {
-        url: `${process.env.DOMAIN}/thread/${thread?.id}`,
+        url: `${process.env.DOMAIN}/threads/${thread?.id}`,
         siteName: METADATA.openGraph.siteName,
         locale: METADATA.openGraph.locale,
         type: 'article',
       },
       keywords: thread?.title,
       alternates: {
-        canonical: `${process.env.DOMAIN}/thread/${thread?.id}`,
+        canonical: `${process.env.DOMAIN}/threads/${thread?.id}`,
       },
     }
   } catch (error) {
@@ -40,14 +40,14 @@ export async function generateMetadata({
       title: `Thread not found ${METADATA.exTitle}`,
       description: 'Detail thread not found',
       openGraph: {
-        url: `${process.env.DOMAIN}/thread/not-found`,
+        url: `${process.env.DOMAIN}/threads/not-found`,
         siteName: METADATA.openGraph.siteName,
         locale: METADATA.openGraph.locale,
         type: 'article',
       },
       keywords: 'Thread Not Found',
       alternates: {
-        canonical: `${process.env.DOMAIN}/thread/not-found`,
+        canonical: `${process.env.DOMAIN}/threads/not-found`,
       },
     }
   }
