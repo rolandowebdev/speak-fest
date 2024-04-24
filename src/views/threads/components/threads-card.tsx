@@ -16,7 +16,7 @@ export function ThreadsCard({
   author,
 }: Thread) {
   return (
-    <Link href={`thread/${id}`} className="group">
+    <Link href={`threads/${id}`} className="group">
       <article className="rounded-md border p-5 duration-300 hover:-translate-y-2 hover:shadow-md">
         <Heading
           variant="h2"
